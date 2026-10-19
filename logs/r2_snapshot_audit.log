@@ -1,0 +1,15 @@
+SNAPSHOT_FILE_OK step= 1 rank= 0 bytes= 6794505330
+SNAPSHOT_FILE_OK step= 1 rank= 1 bytes= 6794505330
+SNAPSHOT_FILE_OK step= 2 rank= 0 bytes= 6794505330
+SNAPSHOT_FILE_OK step= 2 rank= 1 bytes= 6794505330
+SNAPSHOT_FILE_AUDIT_OK
+LOADING_RANK_0_SNAPSHOT_1
+LOADING_RANK_0_SNAPSHOT_2
+RANK_AUDIT 0 compared_keys= 435 changed_keys= 435 example_changes= ['model.embed_tokens.weight', 'model.layers.0.self_attn.q_proj.weight', 'model.layers.0.self_attn.q_proj.bias', 'model.layers.0.self_attn.k_proj.weight', 'model.layers.0.self_attn.k_proj.bias', 'model.layers.0.self_attn.v_proj.weight']
+LOADING_RANK_1_SNAPSHOT_1
+LOADING_RANK_1_SNAPSHOT_2
+RANK_AUDIT 1 compared_keys= 435 changed_keys= 435 example_changes= ['model.embed_tokens.weight', 'model.layers.0.self_attn.q_proj.weight', 'model.layers.0.self_attn.q_proj.bias', 'model.layers.0.self_attn.k_proj.weight', 'model.layers.0.self_attn.k_proj.bias', 'model.layers.0.self_attn.v_proj.weight']
+TOTAL_COMPARED_KEYS 870
+TOTAL_CHANGED_KEYS 870
+SNAPSHOT_WEIGHT_CHANGE_CONFIRMED
+NOTE: optimizer preserved in running process, NOT stored in snapshots

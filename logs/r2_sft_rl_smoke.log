@@ -1,0 +1,475 @@
+RUN_ID=tree_rl_step1_20261010_204030
+LOG=logs/tree_rl_step1_20261010_204030.log
+文件系统        大小  已用  可用 已用% 挂载点
+/dev/sda1       7.0T  2.7T  4.0T   41% /mnt/data
+index, memory.used [MiB], utilization.gpu [%]
+0, 11 MiB, 0 %
+1, 5 MiB, 0 %
+2, 22870 MiB, 0 %
+3, 22416 MiB, 0 %
+4, 22416 MiB, 0 %
+Ray is not initialized! run ray.init()...
+2026-10-10 20:40:36,595	WARNING authentication_token_setup.py:85 -- Token authentication is enabled for this Ray cluster. Set RAY_AUTH_MODE=disabled to opt out. For more information, see https://docs.ray.io/en/latest/ray-security/token-auth.html
+2026-10-10 20:40:39,261	INFO worker.py:2033 -- Started a local Ray instance.
+Ray already initialized. Get remote ...
+[36m(main_task pid=3278678)[0m {'actor_rollout_ref': {'actor': {'clip_ratio': 0.2,
+[36m(main_task pid=3278678)[0m                                  'clip_ratio_c': 3.0,
+[36m(main_task pid=3278678)[0m                                  'clip_ratio_high': 0.2,
+[36m(main_task pid=3278678)[0m                                  'clip_ratio_low': 0.2,
+[36m(main_task pid=3278678)[0m                                  'entropy_coeff': 0.001,
+[36m(main_task pid=3278678)[0m                                  'fsdp_config': {'fsdp_size': -1,
+[36m(main_task pid=3278678)[0m                                                  'grad_offload': False,
+[36m(main_task pid=3278678)[0m                                                  'mixed_precision': {'buffer_dtype': 'fp32',
+[36m(main_task pid=3278678)[0m                                                                      'param_dtype': 'fp16',
+[36m(main_task pid=3278678)[0m                                                                      'reduce_dtype': 'fp32'},
+[36m(main_task pid=3278678)[0m                                                  'optimizer_offload': True,
+[36m(main_task pid=3278678)[0m                                                  'param_offload': False,
+[36m(main_task pid=3278678)[0m                                                  'wrap_policy': {'min_num_params': 0}},
+[36m(main_task pid=3278678)[0m                                  'grad_clip': 1.0,
+[36m(main_task pid=3278678)[0m                                  'kl_loss_coef': 0.001,
+[36m(main_task pid=3278678)[0m                                  'kl_loss_type': 'low_var_kl',
+[36m(main_task pid=3278678)[0m                                  'loss_agg_mode': 'token-mean',
+[36m(main_task pid=3278678)[0m                                  'optim': {'lr': 1e-06,
+[36m(main_task pid=3278678)[0m                                            'lr_warmup_steps_ratio': 0.0,
+[36m(main_task pid=3278678)[0m                                            'min_lr_ratio': None,
+[36m(main_task pid=3278678)[0m                                            'total_training_steps': -1,
+[36m(main_task pid=3278678)[0m                                            'warmup_style': 'constant'},
+[36m(main_task pid=3278678)[0m                                  'policy_loss': 'grpo',
+[36m(main_task pid=3278678)[0m                                  'ppo_epochs': 1,
+[36m(main_task pid=3278678)[0m                                  'ppo_max_token_len_per_gpu': 16384,
+[36m(main_task pid=3278678)[0m                                  'ppo_micro_batch_size': 1,
+[36m(main_task pid=3278678)[0m                                  'ppo_micro_batch_size_fixed': None,
+[36m(main_task pid=3278678)[0m                                  'ppo_mini_batch_size': 4,
+[36m(main_task pid=3278678)[0m                                  'ppo_mini_batch_size_fixed': None,
+[36m(main_task pid=3278678)[0m                                  'shuffle': False,
+[36m(main_task pid=3278678)[0m                                  'state_masking': True,
+[36m(main_task pid=3278678)[0m                                  'strategy': 'fsdp',
+[36m(main_task pid=3278678)[0m                                  'ulysses_sequence_parallel_size': 1,
+[36m(main_task pid=3278678)[0m                                  'use_dynamic_bsz': False,
+[36m(main_task pid=3278678)[0m                                  'use_kl_loss': True},
+[36m(main_task pid=3278678)[0m                        'hybrid_engine': True,
+[36m(main_task pid=3278678)[0m                        'model': {'enable_gradient_checkpointing': True,
+[36m(main_task pid=3278678)[0m                                  'external_lib': None,
+[36m(main_task pid=3278678)[0m                                  'override_config': {},
+[36m(main_task pid=3278678)[0m                                  'path': '/home/wzy/workspace/r2searcher/R2-Searcher/models/Qwen2.5-3B-R2-SFT-E5',
+[36m(main_task pid=3278678)[0m                                  'use_remove_padding': False},
+[36m(main_task pid=3278678)[0m                        'ref': {'fsdp_config': {'fsdp_size': -1,
+[36m(main_task pid=3278678)[0m                                                'mixed_precision': {'buffer_dtype': 'fp32',
+[36m(main_task pid=3278678)[0m                                                                    'param_dtype': 'fp16',
+[36m(main_task pid=3278678)[0m                                                                    'reduce_dtype': 'fp32'},
+[36m(main_task pid=3278678)[0m                                                'model_dtype': 'fp16',
+[36m(main_task pid=3278678)[0m                                                'param_offload': True,
+[36m(main_task pid=3278678)[0m                                                'wrap_policy': {'min_num_params': 0}},
+[36m(main_task pid=3278678)[0m                                'log_prob_max_token_len_per_gpu': 16384,
+[36m(main_task pid=3278678)[0m                                'log_prob_micro_batch_size': 1,
+[36m(main_task pid=3278678)[0m                                'log_prob_use_dynamic_bsz': False,
+[36m(main_task pid=3278678)[0m                                'ulysses_sequence_parallel_size': 1},
+[36m(main_task pid=3278678)[0m                        'rollout': {'disable_log_stats': True,
+[36m(main_task pid=3278678)[0m                                    'do_sample': True,
+[36m(main_task pid=3278678)[0m                                    'dtype': 'float16',
+[36m(main_task pid=3278678)[0m                                    'enable_chunked_prefill': False,
+[36m(main_task pid=3278678)[0m                                    'enforce_eager': True,
+[36m(main_task pid=3278678)[0m                                    'expand_mode': 'random',
+[36m(main_task pid=3278678)[0m                                    'free_cache_engine': True,
+[36m(main_task pid=3278678)[0m                                    'gpu_memory_utilization': 0.3,
+[36m(main_task pid=3278678)[0m                                    'ignore_eos': False,
+[36m(main_task pid=3278678)[0m                                    'load_format': 'dummy_dtensor',
+[36m(main_task pid=3278678)[0m                                    'log_prob_max_token_len_per_gpu': 16384,
+[36m(main_task pid=3278678)[0m                                    'log_prob_micro_batch_size': 1,
+[36m(main_task pid=3278678)[0m                                    'log_prob_use_dynamic_bsz': False,
+[36m(main_task pid=3278678)[0m                                    'max_num_batched_tokens': 4096,
+[36m(main_task pid=3278678)[0m                                    'max_num_seqs': 8,
+[36m(main_task pid=3278678)[0m                                    'n': 1,
+[36m(main_task pid=3278678)[0m                                    'n_agent': 1,
+[36m(main_task pid=3278678)[0m                                    'name': 'vllm',
+[36m(main_task pid=3278678)[0m                                    'prompt_length': 2048,
+[36m(main_task pid=3278678)[0m                                    'response_length': 256,
+[36m(main_task pid=3278678)[0m                                    'reward_mode': 'base',
+[36m(main_task pid=3278678)[0m                                    'temperature': 1.0,
+[36m(main_task pid=3278678)[0m                                    'tensor_model_parallel_size': 1,
+[36m(main_task pid=3278678)[0m                                    'top_k': -1,
+[36m(main_task pid=3278678)[0m                                    'top_p': 0.95,
+[36m(main_task pid=3278678)[0m                                    'tree_search': True,
+[36m(main_task pid=3278678)[0m                                    'ts_k': 2,
+[36m(main_task pid=3278678)[0m                                    'ts_k_s1': 1,
+[36m(main_task pid=3278678)[0m                                    'ts_k_s2': 1,
+[36m(main_task pid=3278678)[0m                                    'ts_l': 1,
+[36m(main_task pid=3278678)[0m                                    'ts_l_s1': 1,
+[36m(main_task pid=3278678)[0m                                    'ts_l_s2': 1,
+[36m(main_task pid=3278678)[0m                                    'ts_m': 2,
+[36m(main_task pid=3278678)[0m                                    'ts_m_s1': 1,
+[36m(main_task pid=3278678)[0m                                    'ts_m_s2': 1,
+[36m(main_task pid=3278678)[0m                                    'ts_n': 1,
+[36m(main_task pid=3278678)[0m                                    'ts_n_s1': 1,
+[36m(main_task pid=3278678)[0m                                    'ts_n_s2': 1}},
+[36m(main_task pid=3278678)[0m  'algorithm': {'adv_estimator': 'tree',
+[36m(main_task pid=3278678)[0m                'adv_estimator_s2': 'gae',
+[36m(main_task pid=3278678)[0m                'gamma': 1.0,
+[36m(main_task pid=3278678)[0m                'kl_ctrl': {'kl_coef': 0.001, 'type': 'fixed'},
+[36m(main_task pid=3278678)[0m                'kl_fix': 'none',
+[36m(main_task pid=3278678)[0m                'kl_penalty': 'kl',
+[36m(main_task pid=3278678)[0m                'lam': 1.0,
+[36m(main_task pid=3278678)[0m                'no_think_rl': False,
+[36m(main_task pid=3278678)[0m                'state_masking': {'end_state_marker': '</documents>',
+[36m(main_task pid=3278678)[0m                                  'start_state_marker': '<documents>'},
+[36m(main_task pid=3278678)[0m                'use_kl_in_reward': False},
+[36m(main_task pid=3278678)[0m  'critic': {'cliprange_value': 0.5,
+[36m(main_task pid=3278678)[0m             'forward_max_token_len_per_gpu': 32768,
+[36m(main_task pid=3278678)[0m             'forward_micro_batch_size': 64,
+[36m(main_task pid=3278678)[0m             'grad_clip': 1.0,
+[36m(main_task pid=3278678)[0m             'model': {'enable_gradient_checkpointing': False,
+[36m(main_task pid=3278678)[0m                       'external_lib': None,
+[36m(main_task pid=3278678)[0m                       'fsdp_config': {'fsdp_size': -1,
+[36m(main_task pid=3278678)[0m                                       'grad_offload': False,
+[36m(main_task pid=3278678)[0m                                       'optimizer_offload': False,
+[36m(main_task pid=3278678)[0m                                       'param_offload': False,
+[36m(main_task pid=3278678)[0m                                       'wrap_policy': {'min_num_params': 0}},
+[36m(main_task pid=3278678)[0m                       'override_config': {},
+[36m(main_task pid=3278678)[0m                       'path': '~/models/deepseek-llm-7b-chat',
+[36m(main_task pid=3278678)[0m                       'tokenizer_path': '/home/wzy/workspace/r2searcher/R2-Searcher/models/Qwen2.5-3B-R2-SFT-E5',
+[36m(main_task pid=3278678)[0m                       'use_remove_padding': False},
+[36m(main_task pid=3278678)[0m             'optim': {'lr': 1e-05,
+[36m(main_task pid=3278678)[0m                       'lr_warmup_steps_ratio': 0.0,
+[36m(main_task pid=3278678)[0m                       'min_lr_ratio': None,
+[36m(main_task pid=3278678)[0m                       'total_training_steps': -1,
+[36m(main_task pid=3278678)[0m                       'warmup_style': 'constant'},
+[36m(main_task pid=3278678)[0m             'ppo_epochs': 1,
+[36m(main_task pid=3278678)[0m             'ppo_max_token_len_per_gpu': 32768,
+[36m(main_task pid=3278678)[0m             'ppo_micro_batch_size': 64,
+[36m(main_task pid=3278678)[0m             'ppo_mini_batch_size': 4,
+[36m(main_task pid=3278678)[0m             'shuffle': False,
+[36m(main_task pid=3278678)[0m             'strategy': 'fsdp',
+[36m(main_task pid=3278678)[0m             'ulysses_sequence_parallel_size': 1,
+[36m(main_task pid=3278678)[0m             'use_dynamic_bsz': False},
+[36m(main_task pid=3278678)[0m  'data': {'max_obs_length': 256,
+[36m(main_task pid=3278678)[0m           'max_prompt_length': 2048,
+[36m(main_task pid=3278678)[0m           'max_response_length': 256,
+[36m(main_task pid=3278678)[0m           'max_start_length': 1024,
+[36m(main_task pid=3278678)[0m           'prompt_key': 'prompt',
+[36m(main_task pid=3278678)[0m           'return_raw_chat': False,
+[36m(main_task pid=3278678)[0m           'return_raw_input_ids': False,
+[36m(main_task pid=3278678)[0m           'shuffle_train_dataloader': False,
+[36m(main_task pid=3278678)[0m           'tokenizer': None,
+[36m(main_task pid=3278678)[0m           'train_batch_size': 1,
+[36m(main_task pid=3278678)[0m           'train_data_num': 1,
+[36m(main_task pid=3278678)[0m           'train_files': '/home/wzy/workspace/r2searcher/R2-Searcher/data/train.parquet',
+[36m(main_task pid=3278678)[0m           'val_batch_size': 1,
+[36m(main_task pid=3278678)[0m           'val_data_num': 1,
+[36m(main_task pid=3278678)[0m           'val_files': '/home/wzy/workspace/r2searcher/R2-Searcher/data/smoke_1.parquet'},
+[36m(main_task pid=3278678)[0m  'do_search': True,
+[36m(main_task pid=3278678)[0m  'max_turns': 3,
+[36m(main_task pid=3278678)[0m  'retriever': {'topk': 3, 'url': 'http://127.0.0.1:8000/retrieve'},
+[36m(main_task pid=3278678)[0m  'reward_model': {'enable': False,
+[36m(main_task pid=3278678)[0m                   'final_format_score': 0.1,
+[36m(main_task pid=3278678)[0m                   'forward_max_token_len_per_gpu': 32768,
+[36m(main_task pid=3278678)[0m                   'max_length': None,
+[36m(main_task pid=3278678)[0m                   'micro_batch_size': 64,
+[36m(main_task pid=3278678)[0m                   'model': {'external_lib': None,
+[36m(main_task pid=3278678)[0m                             'fsdp_config': {'min_num_params': 0,
+[36m(main_task pid=3278678)[0m                                             'param_offload': False},
+[36m(main_task pid=3278678)[0m                             'input_tokenizer': '/home/wzy/workspace/r2searcher/R2-Searcher/models/Qwen2.5-3B-R2-SFT-E5',
+[36m(main_task pid=3278678)[0m                             'path': '~/models/FsfairX-LLaMA3-RM-v0.1',
+[36m(main_task pid=3278678)[0m                             'use_remove_padding': False},
+[36m(main_task pid=3278678)[0m                   'retrieval_score': 0,
+[36m(main_task pid=3278678)[0m                   'strategy': 'fsdp',
+[36m(main_task pid=3278678)[0m                   'structure_format_score': 0.2,
+[36m(main_task pid=3278678)[0m                   'ulysses_sequence_parallel_size': 1,
+[36m(main_task pid=3278678)[0m                   'use_dynamic_bsz': False},
+[36m(main_task pid=3278678)[0m  'trainer': {'critic_warmup': 0,
+[36m(main_task pid=3278678)[0m              'default_hdfs_dir': None,
+[36m(main_task pid=3278678)[0m              'default_local_dir': '/home/wzy/workspace/r2searcher/R2-Searcher/outputs/tree_rl_step1_20261010_204030',
+[36m(main_task pid=3278678)[0m              'experiment_name': 'tree_rl_step1_20261010_204030',
+[36m(main_task pid=3278678)[0m              'logger': ['console'],
+[36m(main_task pid=3278678)[0m              'n_gpus_per_node': 2,
+[36m(main_task pid=3278678)[0m              'nnodes': 1,
+[36m(main_task pid=3278678)[0m              'project_name': 'r2_v100',
+[36m(main_task pid=3278678)[0m              'save_freq': -1,
+[36m(main_task pid=3278678)[0m              'smoke_skip_saving': True,
+[36m(main_task pid=3278678)[0m              'stage1_training_steps': 1,
+[36m(main_task pid=3278678)[0m              'test_freq': -1,
+[36m(main_task pid=3278678)[0m              'total_epochs': 1,
+[36m(main_task pid=3278678)[0m              'total_training_steps': 1,
+[36m(main_task pid=3278678)[0m              'val_before_train': False,
+[36m(main_task pid=3278678)[0m              'val_only': False}}
+[36m(main_task pid=3278678)[0m INFO 10-10 20:40:48 [importing.py:53] Triton module has been replaced with a placeholder.
+[36m(main_task pid=3278678)[0m INFO 10-10 20:40:48 [__init__.py:239] Automatically detected platform cuda.
+[36m(main_task pid=3278678)[0m original dataset len: 169615
+[36m(main_task pid=3278678)[0m filter dataset len: 169615
+[36m(main_task pid=3278678)[0m filtered training dataset size: 1
+[36m(main_task pid=3278678)[0m original dataset len: 1
+[36m(main_task pid=3278678)[0m filter dataset len: 1
+[36m(main_task pid=3278678)[0m filtered validation dataset size: 1
+[36m(main_task pid=3278678)[0m Size of train dataloader: 1
+[36m(main_task pid=3278678)[0m Size of val dataloader: 1
+[36m(main_task pid=3278678)[0m Total training steps: 1
+[36m(main_task pid=3278678)[0m Using LocalLogger is deprecated. The constructor API will change 
+[36m(main_task pid=3278678)[0m =================init_workers================
+[36m(pid=3281000)[0m INFO 10-10 20:41:03 [importing.py:53] Triton module has been replaced with a placeholder.
+[36m(pid=3281000)[0m INFO 10-10 20:41:03 [__init__.py:239] Automatically detected platform cuda.
+[36m(pid=3282598)[0m INFO 10-10 20:41:14 [importing.py:53] Triton module has been replaced with a placeholder.
+[36m(pid=3282598)[0m INFO 10-10 20:41:14 [__init__.py:239] Automatically detected platform cuda.
+[36m(WorkerDict pid=3281000)[0m normalize batch size config
+[36m(WorkerDict pid=3281000)[0m actor ppo_mini_batch_size=8, ppo_micro_batch_size=1
+[36m(WorkerDict pid=3281000)[0m before normalize,                     rollout.log_prob_micro_batch_size=1
+[36m(WorkerDict pid=3281000)[0m rollout log_prob_micro_batch_size=1
+[36m(WorkerDict pid=3281000)[0m normalize batch size config
+[36m(WorkerDict pid=3281000)[0m ref log_prob_micro_batch_size=1
+[36m(WorkerDict pid=3281000)[0m Model config after override: Qwen2Config {
+[36m(WorkerDict pid=3281000)[0m   "architectures": [
+[36m(WorkerDict pid=3281000)[0m     "Qwen2ForCausalLM"
+[36m(WorkerDict pid=3281000)[0m   ],
+[36m(WorkerDict pid=3281000)[0m   "attention_dropout": 0.0,
+[36m(WorkerDict pid=3281000)[0m   "eos_token_id": 151645,
+[36m(WorkerDict pid=3281000)[0m   "hidden_act": "silu",
+[36m(WorkerDict pid=3281000)[0m   "hidden_size": 2048,
+[36m(WorkerDict pid=3281000)[0m   "initializer_range": 0.02,
+[36m(WorkerDict pid=3281000)[0m   "intermediate_size": 11008,
+[36m(WorkerDict pid=3281000)[0m   "max_position_embeddings": 32768,
+[36m(WorkerDict pid=3281000)[0m   "max_window_layers": 70,
+[36m(WorkerDict pid=3281000)[0m   "model_type": "qwen2",
+[36m(WorkerDict pid=3281000)[0m   "num_attention_heads": 16,
+[36m(WorkerDict pid=3281000)[0m   "num_hidden_layers": 36,
+[36m(WorkerDict pid=3281000)[0m   "num_key_value_heads": 2,
+[36m(WorkerDict pid=3281000)[0m   "pad_token_id": 151643,
+[36m(WorkerDict pid=3281000)[0m   "rms_norm_eps": 1e-06,
+[36m(WorkerDict pid=3281000)[0m   "rope_scaling": null,
+[36m(WorkerDict pid=3281000)[0m   "rope_theta": 1000000.0,
+[36m(WorkerDict pid=3281000)[0m   "sliding_window": 32768,
+[36m(WorkerDict pid=3281000)[0m   "tie_word_embeddings": true,
+[36m(WorkerDict pid=3281000)[0m   "torch_dtype": "float16",
+[36m(WorkerDict pid=3281000)[0m   "transformers_version": "4.51.3",
+[36m(WorkerDict pid=3281000)[0m   "use_cache": true,
+[36m(WorkerDict pid=3281000)[0m   "use_sliding_window": false,
+[36m(WorkerDict pid=3281000)[0m   "vocab_size": 151936
+[36m(WorkerDict pid=3281000)[0m }
+[36m(WorkerDict pid=3281000)[0m 
+[36m(WorkerDict pid=3281000)[0m Sliding Window Attention is enabled but not implemented for `sdpa`; unexpected results may be encountered.
+[36m(WorkerDict pid=3281000)[0m Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]
+[36m(WorkerDict pid=3281000)[0m Loading checkpoint shards:  75%|███████▌  | 3/4 [00:00<00:00, 28.33it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00, 36.06it/s]
+[36m(WorkerDict pid=3282598)[0m Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00, 12.15it/s]
+[36m(WorkerDict pid=3281000)[0m Qwen2ForCausalLM contains 3.09B parameters
+[36m(WorkerDict pid=3281000)[0m wrap_policy: functools.partial(<function _or_policy at 0x744d4b144180>, policies=[functools.partial(<function transformer_auto_wrap_policy at 0x744d4b144040>, transformer_layer_cls={<class 'transformers.models.qwen2.modeling_qwen2.Qwen2DecoderLayer'>})])
+[36m(WorkerDict pid=3282598)[0m Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00, 18.52it/s]
+[36m(WorkerDict pid=3281000)[0m NCCL version 2.21.5+cuda12.4
+[36m(WorkerDict pid=3281000)[0m Actor use_remove_padding=False
+[36m(WorkerDict pid=3282598)[0m normalize batch size config[32m [repeated 2x across cluster] (Ray deduplicates logs by default. Set RAY_DEDUP_LOGS=0 to disable log deduplication, or see https://docs.ray.io/en/master/ray-observability/user-guides/configure-logging.html#log-deduplication for more options.)[0m
+[36m(WorkerDict pid=3282598)[0m actor ppo_mini_batch_size=8, ppo_micro_batch_size=1
+[36m(WorkerDict pid=3282598)[0m before normalize,                     rollout.log_prob_micro_batch_size=1
+[36m(WorkerDict pid=3282598)[0m rollout log_prob_micro_batch_size=1
+[36m(WorkerDict pid=3282598)[0m ref log_prob_micro_batch_size=1
+[36m(WorkerDict pid=3282598)[0m wrap_policy: functools.partial(<function _or_policy at 0x75079663c180>, policies=[functools.partial(<function transformer_auto_wrap_policy at 0x75079663c040>, transformer_layer_cls={<class 'transformers.models.qwen2.modeling_qwen2.Qwen2DecoderLayer'>})])
+[36m(WorkerDict pid=3281000)[0m Model config after override: Qwen2Config {
+[36m(WorkerDict pid=3281000)[0m   "architectures": [
+[36m(WorkerDict pid=3281000)[0m     "Qwen2ForCausalLM"
+[36m(WorkerDict pid=3281000)[0m   ],
+[36m(WorkerDict pid=3281000)[0m   "attention_dropout": 0.0,
+[36m(WorkerDict pid=3281000)[0m   "eos_token_id": 151645,
+[36m(WorkerDict pid=3281000)[0m   "hidden_act": "silu",
+[36m(WorkerDict pid=3281000)[0m   "hidden_size": 2048,
+[36m(WorkerDict pid=3281000)[0m   "initializer_range": 0.02,
+[36m(WorkerDict pid=3281000)[0m   "intermediate_size": 11008,
+[36m(WorkerDict pid=3281000)[0m   "max_position_embeddings": 32768,
+[36m(WorkerDict pid=3281000)[0m   "max_window_layers": 70,
+[36m(WorkerDict pid=3281000)[0m   "model_type": "qwen2",
+[36m(WorkerDict pid=3281000)[0m   "num_attention_heads": 16,
+[36m(WorkerDict pid=3281000)[0m   "num_hidden_layers": 36,
+[36m(WorkerDict pid=3281000)[0m   "num_key_value_heads": 2,
+[36m(WorkerDict pid=3281000)[0m   "pad_token_id": 151643,
+[36m(WorkerDict pid=3281000)[0m   "rms_norm_eps": 1e-06,
+[36m(WorkerDict pid=3281000)[0m   "rope_scaling": null,
+[36m(WorkerDict pid=3281000)[0m   "rope_theta": 1000000.0,
+[36m(WorkerDict pid=3281000)[0m   "sliding_window": 32768,
+[36m(WorkerDict pid=3281000)[0m   "tie_word_embeddings": true,
+[36m(WorkerDict pid=3281000)[0m   "torch_dtype": "float16",
+[36m(WorkerDict pid=3281000)[0m   "transformers_version": "4.51.3",
+[36m(WorkerDict pid=3281000)[0m   "use_cache": true,
+[36m(WorkerDict pid=3281000)[0m   "use_sliding_window": false,
+[36m(WorkerDict pid=3281000)[0m   "vocab_size": 151936
+[36m(WorkerDict pid=3281000)[0m }
+[36m(WorkerDict pid=3281000)[0m 
+[36m(WorkerDict pid=3282598)[0m Sliding Window Attention is enabled but not implemented for `sdpa`; unexpected results may be encountered.
+[36m(WorkerDict pid=3281000)[0m Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s][32m [repeated 2x across cluster][0m
+[36m(WorkerDict pid=3281000)[0m Loading checkpoint shards:  25%|██▌       | 1/4 [00:02<00:08,  2.86s/it]
+[36m(WorkerDict pid=3282598)[0m Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]
+[36m(WorkerDict pid=3281000)[0m Loading checkpoint shards:  75%|███████▌  | 3/4 [00:08<00:02,  2.94s/it][32m [repeated 4x across cluster][0m
+[36m(WorkerDict pid=3281000)[0m Loading checkpoint shards: 100%|██████████| 4/4 [00:09<00:00,  1.94s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:09<00:00,  2.30s/it]
+[36m(WorkerDict pid=3281000)[0m Qwen2ForCausalLM contains 3.09B parameters
+[36m(WorkerDict pid=3281000)[0m wrap_policy: functools.partial(<function _or_policy at 0x744d4b144180>, policies=[functools.partial(<function transformer_auto_wrap_policy at 0x744d4b144040>, transformer_layer_cls={<class 'transformers.models.qwen2.modeling_qwen2.Qwen2DecoderLayer'>})])
+[36m(WorkerDict pid=3282598)[0m Actor use_remove_padding=False
+[36m(WorkerDict pid=3281000)[0m Total steps: 1, num_warmup_steps: 0
+[36m(WorkerDict pid=3282598)[0m wrap_policy: functools.partial(<function _or_policy at 0x75079663c180>, policies=[functools.partial(<function transformer_auto_wrap_policy at 0x75079663c040>, transformer_layer_cls={<class 'transformers.models.qwen2.modeling_qwen2.Qwen2DecoderLayer'>})])
+[36m(WorkerDict pid=3281000)[0m Actor use_remove_padding=False
+[36m(WorkerDict pid=3281000)[0m Before building vllm rollout, memory allocated (GB): 5.783204078674316, memory reserved (GB): 5.78515625
+[36m(WorkerDict pid=3281000)[0m INFO 10-10 20:41:50 [config.py:717] This model supports multiple tasks: {'generate', 'classify', 'score', 'reward', 'embed'}. Defaulting to 'generate'.
+[36m(WorkerDict pid=3281000)[0m WARNING 10-10 20:41:50 [arg_utils.py:1658] Compute Capability < 8.0 is not supported by the V1 Engine. Falling back to V0. 
+[36m(WorkerDict pid=3281000)[0m INFO 10-10 20:41:50 [config.py:1729] Disabling V1 multiprocessing for external launcher.
+[36m(WorkerDict pid=3281000)[0m WARNING 10-10 20:41:50 [cuda.py:93] To see benefits of async output processing, enable CUDA graph. Since, enforce-eager is enabled, async output processor cannot be used
+[36m(WorkerDict pid=3281000)[0m INFO 10-10 20:41:50 [llm_engine.py:240] Initializing a V0 LLM engine (v0.8.5.post1) with config: model='/home/wzy/workspace/r2searcher/R2-Searcher/models/Qwen2.5-3B-R2-SFT-E5', speculative_config=None, tokenizer='/home/wzy/workspace/r2searcher/R2-Searcher/models/Qwen2.5-3B-R2-SFT-E5', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, override_neuron_config=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.float16, max_seq_len=2304, download_dir=None, load_format=LoadFormat.AUTO, tensor_parallel_size=1, pipeline_parallel_size=1, disable_custom_all_reduce=True, quantization=None, enforce_eager=True, kv_cache_dtype=auto,  device_config=cuda, decoding_config=DecodingConfig(guided_decoding_backend='auto', reasoning_backend=None), observability_config=ObservabilityConfig(show_hidden_metrics=False, otlp_traces_endpoint=None, collect_model_forward_time=False, collect_model_execute_time=False), seed=123, served_model_name=/home/wzy/workspace/r2searcher/R2-Searcher/models/Qwen2.5-3B-R2-SFT-E5, num_scheduler_steps=1, multi_step_stream_outputs=True, enable_prefix_caching=None, chunked_prefill_enabled=False, use_async_output_proc=False, disable_mm_preprocessor_cache=False, mm_processor_kwargs=None, pooler_config=None, compilation_config={"splitting_ops":[],"compile_sizes":[],"cudagraph_capture_sizes":[],"max_capture_size":0}, use_cached_outputs=False, 
+[36m(WorkerDict pid=3282598)[0m Total steps: 1, num_warmup_steps: 0
+[36m(WorkerDict pid=3282598)[0m Actor use_remove_padding=False
+[36m(WorkerDict pid=3281000)[0m INFO 10-10 20:41:51 [cuda.py:228] Using XFormers backend.
+[36m(WorkerDict pid=3282598)[0m INFO 10-10 20:41:52 [config.py:717] This model supports multiple tasks: {'generate', 'classify', 'reward', 'embed', 'score'}. Defaulting to 'generate'.
+[36m(WorkerDict pid=3281000)[0m INFO 10-10 20:41:53 [parallel_state.py:1004] rank 0 in world size 2 is assigned as DP rank 0, PP rank 0, TP rank 0
+[36m(WorkerDict pid=3281000)[0m INFO 10-10 20:41:53 [model_runner.py:1108] Starting to load model /home/wzy/workspace/r2searcher/R2-Searcher/models/Qwen2.5-3B-R2-SFT-E5...
+[36m(WorkerDict pid=3281000)[0m Loading safetensors checkpoint shards:   0% Completed | 0/4 [00:00<?, ?it/s]
+[36m(WorkerDict pid=3282598)[0m Loading checkpoint shards:  75%|███████▌  | 3/4 [00:08<00:02,  2.96s/it]
+[36m(WorkerDict pid=3282598)[0m Loading checkpoint shards: 100%|██████████| 4/4 [00:09<00:00,  1.96s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:09<00:00,  2.33s/it]
+[36m(WorkerDict pid=3281000)[0m Loading safetensors checkpoint shards:  25% Completed | 1/4 [00:00<00:02,  1.47it/s]
+[36m(WorkerDict pid=3281000)[0m Loading safetensors checkpoint shards:  50% Completed | 2/4 [00:01<00:01,  1.64it/s]
+[36m(WorkerDict pid=3281000)[0m Loading safetensors checkpoint shards:  75% Completed | 3/4 [00:01<00:00,  2.62it/s]
+[36m(WorkerDict pid=3281000)[0m INFO 10-10 20:41:55 [loader.py:458] Loading weights took 1.93 seconds
+[36m(WorkerDict pid=3282598)[0m WARNING 10-10 20:41:52 [arg_utils.py:1658] Compute Capability < 8.0 is not supported by the V1 Engine. Falling back to V0. 
+[36m(WorkerDict pid=3282598)[0m INFO 10-10 20:41:52 [config.py:1729] Disabling V1 multiprocessing for external launcher.
+[36m(WorkerDict pid=3282598)[0m WARNING 10-10 20:41:52 [cuda.py:93] To see benefits of async output processing, enable CUDA graph. Since, enforce-eager is enabled, async output processor cannot be used
+[36m(WorkerDict pid=3282598)[0m INFO 10-10 20:41:52 [llm_engine.py:240] Initializing a V0 LLM engine (v0.8.5.post1) with config: model='/home/wzy/workspace/r2searcher/R2-Searcher/models/Qwen2.5-3B-R2-SFT-E5', speculative_config=None, tokenizer='/home/wzy/workspace/r2searcher/R2-Searcher/models/Qwen2.5-3B-R2-SFT-E5', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, override_neuron_config=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.float16, max_seq_len=2304, download_dir=None, load_format=LoadFormat.AUTO, tensor_parallel_size=1, pipeline_parallel_size=1, disable_custom_all_reduce=True, quantization=None, enforce_eager=True, kv_cache_dtype=auto,  device_config=cuda, decoding_config=DecodingConfig(guided_decoding_backend='auto', reasoning_backend=None), observability_config=ObservabilityConfig(show_hidden_metrics=False, otlp_traces_endpoint=None, collect_model_forward_time=False, collect_model_execute_time=False), seed=123, served_model_name=/home/wzy/workspace/r2searcher/R2-Searcher/models/Qwen2.5-3B-R2-SFT-E5, num_scheduler_steps=1, multi_step_stream_outputs=True, enable_prefix_caching=None, chunked_prefill_enabled=False, use_async_output_proc=False, disable_mm_preprocessor_cache=False, mm_processor_kwargs=None, pooler_config=None, compilation_config={"splitting_ops":[],"compile_sizes":[],"cudagraph_capture_sizes":[],"max_capture_size":0}, use_cached_outputs=False, 
+[36m(WorkerDict pid=3281000)[0m Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:01<00:00,  2.23it/s]
+[36m(WorkerDict pid=3281000)[0m Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:01<00:00,  2.10it/s]
+[36m(WorkerDict pid=3281000)[0m 
+[36m(WorkerDict pid=3281000)[0m INFO 10-10 20:41:55 [model_runner.py:1140] Model loading took 5.7916 GiB and 2.098016 seconds
+[36m(WorkerDict pid=3282598)[0m INFO 10-10 20:41:52 [cuda.py:228] Using XFormers backend.
+[36m(WorkerDict pid=3281000)[0m INFO 10-10 20:41:57 [worker.py:287] Memory profiling takes 1.22 seconds
+[36m(WorkerDict pid=3281000)[0m INFO 10-10 20:41:57 [worker.py:287] the current vLLM instance can use total_gpu_memory (31.74GiB) x gpu_memory_utilization (0.30) = 9.52GiB
+[36m(WorkerDict pid=3281000)[0m INFO 10-10 20:41:57 [worker.py:287] model weights take 5.79GiB; non_torch_memory takes 0.01GiB; PyTorch activation peak memory takes 1.40GiB; the rest of the memory reserved for KV Cache is 2.32GiB.
+[36m(WorkerDict pid=3281000)[0m INFO 10-10 20:41:58 [executor_base.py:112] # cuda blocks: 4218, # CPU blocks: 7281
+[36m(WorkerDict pid=3281000)[0m INFO 10-10 20:41:58 [executor_base.py:117] Maximum concurrency for 2304 tokens per request: 29.29x
+[36m(WorkerDict pid=3282598)[0m INFO 10-10 20:41:53 [parallel_state.py:1004] rank 1 in world size 2 is assigned as DP rank 0, PP rank 0, TP rank 0
+[36m(WorkerDict pid=3282598)[0m INFO 10-10 20:41:53 [model_runner.py:1108] Starting to load model /home/wzy/workspace/r2searcher/R2-Searcher/models/Qwen2.5-3B-R2-SFT-E5...
+[36m(WorkerDict pid=3281000)[0m INFO 10-10 20:42:01 [llm_engine.py:437] init engine (profile, create kv cache, warmup model) took 6.02 seconds
+[36m(WorkerDict pid=3282598)[0m INFO 10-10 20:41:55 [loader.py:458] Loading weights took 2.25 seconds
+[36m(WorkerDict pid=3282598)[0m INFO 10-10 20:41:56 [model_runner.py:1140] Model loading took 5.7916 GiB and 2.424538 seconds
+[36m(WorkerDict pid=3282598)[0m INFO 10-10 20:41:58 [worker.py:287] Memory profiling takes 1.54 seconds
+[36m(WorkerDict pid=3282598)[0m INFO 10-10 20:41:58 [worker.py:287] the current vLLM instance can use total_gpu_memory (31.74GiB) x gpu_memory_utilization (0.30) = 9.52GiB
+[36m(WorkerDict pid=3282598)[0m INFO 10-10 20:41:58 [worker.py:287] model weights take 5.79GiB; non_torch_memory takes 0.01GiB; PyTorch activation peak memory takes 1.40GiB; the rest of the memory reserved for KV Cache is 2.32GiB.
+[36m(WorkerDict pid=3281000)[0m INFO 10-10 20:42:09 [worker.py:145] Sleep mode freed 8.18 GiB memory, 6.28 GiB memory is still in use.
+[36m(WorkerDict pid=3281000)[0m INFO 10-10 20:42:09 [executor_base.py:210] It took 7.133198 seconds to fall asleep.
+[36m(WorkerDict pid=3281000)[0m kwargs: {'n': 1, 'logprobs': 1, 'max_tokens': 256, 'detokenize': False, 'temperature': 1.0, 'top_k': -1, 'top_p': 0.95, 'ignore_eos': False}
+[36m(WorkerDict pid=3281000)[0m After building vllm rollout, memory allocated (GB): 13.903040885925293, memory reserved (GB): 14.005859375
+[36m(WorkerDict pid=3281000)[0m After building sharding manager, memory allocated (GB): 13.903040885925293, memory reserved (GB): 14.005859375
+[36m(WorkerDict pid=3282598)[0m INFO 10-10 20:41:58 [executor_base.py:112] # cuda blocks: 4218, # CPU blocks: 7281
+[36m(WorkerDict pid=3282598)[0m INFO 10-10 20:41:58 [executor_base.py:117] Maximum concurrency for 2304 tokens per request: 29.29x
+[36m(WorkerDict pid=3282598)[0m INFO 10-10 20:42:02 [llm_engine.py:437] init engine (profile, create kv cache, warmup model) took 6.47 seconds
+[36m(WorkerDict pid=3281000)[0m /mnt/data/software/miniforge3/envs/r2-rl/lib/python3.12/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py:690: FutureWarning: FSDP.state_dict_type() and FSDP.set_state_dict_type() are being deprecated. Please use APIs, get_state_dict() and set_state_dict(), which can support different parallelisms, FSDP1, FSDP2, DDP. API doc: https://pytorch.org/docs/stable/distributed.checkpoint.html#torch.distributed.checkpoint.state_dict.get_state_dict .Tutorial: https://pytorch.org/tutorials/recipes/distributed_checkpoint_recipe.html .
+[36m(WorkerDict pid=3281000)[0m   warnings.warn(
+[36m(main_task pid=3278678)[0m =================fit================
+[36m(main_task pid=3278678)[0m 'Check config changes, kl_fix=none, use_kl_in_reward=False'
+[36m(main_task pid=3278678)[0m [########]epoch 0, step 1
+[36m(WorkerDict pid=3281000)[0m INFO 10-10 20:42:13 [executor_base.py:226] It took 1.286185 seconds to wake up tags {'kv_cache', 'weights'}.
+[36m(WorkerDict pid=3282598)[0m NCCL version 2.21.5+cuda12.4
+[36m(WorkerDict pid=3282598)[0m INFO 10-10 20:42:10 [worker.py:145] Sleep mode freed 8.18 GiB memory, 6.28 GiB memory is still in use.
+[36m(WorkerDict pid=3282598)[0m INFO 10-10 20:42:10 [executor_base.py:210] It took 7.603519 seconds to fall asleep.
+[36m(WorkerDict pid=3282598)[0m kwargs: {'n': 1, 'logprobs': 1, 'max_tokens': 256, 'detokenize': False, 'temperature': 1.0, 'top_k': -1, 'top_p': 0.95, 'ignore_eos': False}
+[36m(WorkerDict pid=3282598)[0m INFO 10-10 20:42:18 [worker.py:145] Sleep mode freed 8.30 GiB memory, 6.34 GiB memory is still in use.
+[36m(WorkerDict pid=3282598)[0m INFO 10-10 20:42:18 [executor_base.py:210] It took 1.071221 seconds to fall asleep.
+[36m(WorkerDict pid=3282598)[0m INFO 10-10 20:42:13 [executor_base.py:226] It took 1.288713 seconds to wake up tags {'kv_cache', 'weights'}.
+[36m(WorkerDict pid=3281000)[0m INFO 10-10 20:42:24 [worker.py:145] Sleep mode freed 8.30 GiB memory, 6.35 GiB memory is still in use.
+[36m(WorkerDict pid=3281000)[0m INFO 10-10 20:42:24 [executor_base.py:210] It took 1.143916 seconds to fall asleep.
+[36m(main_task pid=3278678)[0m [WARNING] OBSERVATION TOO LONG, CONSIDER CHANGING YOUR CONFIG, 429 & 256
+[36m(main_task pid=3278678)[0m [ROLLING DTYPE] torch.int64
+[36m(WorkerDict pid=3281000)[0m INFO 10-10 20:42:28 [executor_base.py:226] It took 1.304115 seconds to wake up tags {'kv_cache', 'weights'}.
+[36m(WorkerDict pid=3281000)[0m INFO 10-10 20:42:37 [worker.py:145] Sleep mode freed 8.87 GiB memory, 6.35 GiB memory is still in use.
+[36m(WorkerDict pid=3281000)[0m INFO 10-10 20:42:37 [executor_base.py:210] It took 1.079595 seconds to fall asleep.
+[36m(WorkerDict pid=3282598)[0m INFO 10-10 20:42:28 [executor_base.py:226] It took 1.278506 seconds to wake up tags {'kv_cache', 'weights'}.
+[36m(main_task pid=3278678)[0m [ROLLING DTYPE] torch.int64
+[36m(WorkerDict pid=3281000)[0m INFO 10-10 20:42:42 [executor_base.py:226] It took 1.257368 seconds to wake up tags {'kv_cache', 'weights'}.
+[36m(WorkerDict pid=3281000)[0m INFO 10-10 20:42:45 [worker.py:145] Sleep mode freed 8.89 GiB memory, 6.35 GiB memory is still in use.[32m [repeated 2x across cluster][0m
+[36m(WorkerDict pid=3281000)[0m INFO 10-10 20:42:45 [executor_base.py:210] It took 1.146893 seconds to fall asleep.[32m [repeated 2x across cluster][0m
+[36m(main_task pid=3278678)[0m [ROLLING DTYPE] torch.int64
+[36m(WorkerDict pid=3281000)[0m INFO 10-10 20:42:50 [executor_base.py:226] It took 1.286965 seconds to wake up tags {'kv_cache', 'weights'}.[32m [repeated 2x across cluster][0m
+[36m(WorkerDict pid=3281000)[0m INFO 10-10 20:42:54 [worker.py:145] Sleep mode freed 8.89 GiB memory, 6.35 GiB memory is still in use.[32m [repeated 2x across cluster][0m
+[36m(WorkerDict pid=3281000)[0m INFO 10-10 20:42:54 [executor_base.py:210] It took 1.522191 seconds to fall asleep.[32m [repeated 2x across cluster][0m
+[36m(main_task pid=3278678)[0m [ROLLING DTYPE] torch.int64
+[36m(main_task pid=3278678)[0m tmp_node_list[0] before update: 7fc48f35-62fc-4417-a5a6-dbe8e818974e 7fc48f35-62fc-4417-a5a6-dbe8e818974e
+[36m(main_task pid=3278678)[0m Updated tmp_node_list[0] to new_node: b0bddba4-c8d6-4a87-a173-72070fea9864
+[36m(main_task pid=3278678)[0m parent=7fc48f35-62fc-4417-a5a6-dbe8e818974e, child=b0bddba4-c8d6-4a87-a173-72070fea9864, child is_leaf=True
+[36m(main_task pid=3278678)[0m ROLLOUT_TOKEN_CNT=1792
+[36m(main_task pid=3278678)[0m ==========get expansion for root=4f1c2c15-9c61-444b-9431-d6647f513cbb, uid_list=['630fc473-1a3e-4550-8959-09c73a2ceff5']
+[36m(main_task pid=3278678)[0m ==========get expansion for root=182dfeb9-c44f-4f27-a6cc-772394a9b3a7, uid_list=['4ff8381f-87bc-4456-9bcc-eea292584f48']
+[36m(WorkerDict pid=3281000)[0m INFO 10-10 20:42:57 [executor_base.py:226] It took 1.297242 seconds to wake up tags {'kv_cache', 'weights'}.[32m [repeated 2x across cluster][0m
+[36m(WorkerDict pid=3281000)[0m INFO 10-10 20:43:01 [worker.py:145] Sleep mode freed 8.89 GiB memory, 6.35 GiB memory is still in use.[32m [repeated 2x across cluster][0m
+[36m(WorkerDict pid=3281000)[0m INFO 10-10 20:43:01 [executor_base.py:210] It took 1.167200 seconds to fall asleep.[32m [repeated 2x across cluster][0m
+[36m(WorkerDict pid=3282598)[0m INFO 10-10 20:42:57 [executor_base.py:226] It took 1.246565 seconds to wake up tags {'kv_cache', 'weights'}.
+[36m(WorkerDict pid=3282598)[0m INFO 10-10 20:43:08 [worker.py:145] Sleep mode freed 8.87 GiB memory, 6.34 GiB memory is still in use.
+[36m(WorkerDict pid=3282598)[0m INFO 10-10 20:43:08 [executor_base.py:210] It took 1.107383 seconds to fall asleep.
+[36m(main_task pid=3278678)[0m [ROLLING DTYPE] torch.int64
+[36m(WorkerDict pid=3281000)[0m INFO 10-10 20:43:11 [executor_base.py:226] It took 1.294736 seconds to wake up tags {'kv_cache', 'weights'}.
+[36m(WorkerDict pid=3281000)[0m INFO 10-10 20:43:19 [worker.py:145] Sleep mode freed 8.90 GiB memory, 6.35 GiB memory is still in use.
+[36m(WorkerDict pid=3281000)[0m INFO 10-10 20:43:19 [executor_base.py:210] It took 1.137009 seconds to fall asleep.
+[36m(WorkerDict pid=3282598)[0m INFO 10-10 20:43:11 [executor_base.py:226] It took 1.303467 seconds to wake up tags {'kv_cache', 'weights'}.
+[36m(main_task pid=3278678)[0m [WARNING] OBSERVATION TOO LONG, CONSIDER CHANGING YOUR CONFIG, 455 & 256
+[36m(main_task pid=3278678)[0m [ROLLING DTYPE] torch.int64
+[36m(WorkerDict pid=3281000)[0m INFO 10-10 20:43:24 [executor_base.py:226] It took 1.300880 seconds to wake up tags {'kv_cache', 'weights'}.
+[36m(WorkerDict pid=3281000)[0m INFO 10-10 20:43:27 [worker.py:145] Sleep mode freed 8.89 GiB memory, 6.35 GiB memory is still in use.[32m [repeated 2x across cluster][0m
+[36m(WorkerDict pid=3281000)[0m INFO 10-10 20:43:27 [executor_base.py:210] It took 1.187083 seconds to fall asleep.[32m [repeated 2x across cluster][0m
+[36m(WorkerDict pid=3282598)[0m INFO 10-10 20:43:24 [executor_base.py:226] It took 1.317927 seconds to wake up tags {'kv_cache', 'weights'}.
+[36m(WorkerDict pid=3282598)[0m INFO 10-10 20:43:35 [worker.py:145] Sleep mode freed 8.93 GiB memory, 6.34 GiB memory is still in use.
+[36m(WorkerDict pid=3282598)[0m INFO 10-10 20:43:35 [executor_base.py:210] It took 1.034659 seconds to fall asleep.
+[36m(main_task pid=3278678)[0m [ROLLING DTYPE] torch.int64
+[36m(main_task pid=3278678)[0m tmp_node_list[0] before update: 79889baf-7eb7-4fa3-b41e-d7cec8d637c0 79889baf-7eb7-4fa3-b41e-d7cec8d637c0
+[36m(main_task pid=3278678)[0m Updated tmp_node_list[0] to new_node: 10d32a08-1c08-418d-af2c-2aedf00fbedb
+[36m(main_task pid=3278678)[0m parent=79889baf-7eb7-4fa3-b41e-d7cec8d637c0, child=10d32a08-1c08-418d-af2c-2aedf00fbedb, child is_leaf=True
+[36m(main_task pid=3278678)[0m tmp_node_list[1] before update: 3939dc71-0ab8-4d08-a0a6-4971bb56171f 3939dc71-0ab8-4d08-a0a6-4971bb56171f
+[36m(main_task pid=3278678)[0m Updated tmp_node_list[1] to new_node: 696fab1c-a165-46b9-9bf8-116b0fa5ed38
+[36m(main_task pid=3278678)[0m parent=3939dc71-0ab8-4d08-a0a6-4971bb56171f, child=696fab1c-a165-46b9-9bf8-116b0fa5ed38, child is_leaf=True
+[36m(main_task pid=3278678)[0m ROLLOUT_TOKEN_CNT=1280
+[36m(main_task pid=3278678)[0m original candidate_uid_set len=2
+[36m(main_task pid=3278678)[0m sampled candidate_uid_set len=2
+[36m(main_task pid=3278678)[0m start, node=4f1c2c15-9c61-444b-9431-d6647f513cbb, child_node len=1
+[36m(main_task pid=3278678)[0m node=4f1c2c15-9c61-444b-9431-d6647f513cbb, iter for child=93bafb9a-77ea-4ecc-8f9d-6cd05393d2b5
+[36m(main_task pid=3278678)[0m start, node=93bafb9a-77ea-4ecc-8f9d-6cd05393d2b5, child_node len=1
+[36m(main_task pid=3278678)[0m node=93bafb9a-77ea-4ecc-8f9d-6cd05393d2b5, iter for child=630fc473-1a3e-4550-8959-09c73a2ceff5
+[36m(main_task pid=3278678)[0m start, node=630fc473-1a3e-4550-8959-09c73a2ceff5, child_node len=2
+[36m(main_task pid=3278678)[0m node=630fc473-1a3e-4550-8959-09c73a2ceff5, iter for child=7fc48f35-62fc-4417-a5a6-dbe8e818974e
+[36m(main_task pid=3278678)[0m start, node=7fc48f35-62fc-4417-a5a6-dbe8e818974e, child_node len=1
+[36m(main_task pid=3278678)[0m node=7fc48f35-62fc-4417-a5a6-dbe8e818974e, iter for child=b0bddba4-c8d6-4a87-a173-72070fea9864
+[36m(main_task pid=3278678)[0m start, node=b0bddba4-c8d6-4a87-a173-72070fea9864, child_node len=0
+[36m(main_task pid=3278678)[0m end, node=b0bddba4-c8d6-4a87-a173-72070fea9864, is keeped=True
+[36m(main_task pid=3278678)[0m end, node=7fc48f35-62fc-4417-a5a6-dbe8e818974e, is keeped=True
+[36m(main_task pid=3278678)[0m node=630fc473-1a3e-4550-8959-09c73a2ceff5, iter for child=79889baf-7eb7-4fa3-b41e-d7cec8d637c0
+[36m(main_task pid=3278678)[0m start, node=79889baf-7eb7-4fa3-b41e-d7cec8d637c0, child_node len=1
+[36m(main_task pid=3278678)[0m node=79889baf-7eb7-4fa3-b41e-d7cec8d637c0, iter for child=10d32a08-1c08-418d-af2c-2aedf00fbedb
+[36m(main_task pid=3278678)[0m start, node=10d32a08-1c08-418d-af2c-2aedf00fbedb, child_node len=0
+[36m(main_task pid=3278678)[0m end, node=10d32a08-1c08-418d-af2c-2aedf00fbedb, is keeped=True
+[36m(main_task pid=3278678)[0m end, node=79889baf-7eb7-4fa3-b41e-d7cec8d637c0, is keeped=True
+[36m(main_task pid=3278678)[0m end, node=630fc473-1a3e-4550-8959-09c73a2ceff5, is keeped=True
+[36m(main_task pid=3278678)[0m end, node=93bafb9a-77ea-4ecc-8f9d-6cd05393d2b5, is keeped=True
+[36m(main_task pid=3278678)[0m end, node=4f1c2c15-9c61-444b-9431-d6647f513cbb, is keeped=True
+[36m(main_task pid=3278678)[0m original candidate_uid_set len=2
+[36m(main_task pid=3278678)[0m sampled candidate_uid_set len=2
+[36m(main_task pid=3278678)[0m start, node=182dfeb9-c44f-4f27-a6cc-772394a9b3a7, child_node len=1
+[36m(main_task pid=3278678)[0m node=182dfeb9-c44f-4f27-a6cc-772394a9b3a7, iter for child=4ff8381f-87bc-4456-9bcc-eea292584f48
+[36m(main_task pid=3278678)[0m start, node=4ff8381f-87bc-4456-9bcc-eea292584f48, child_node len=2
+[36m(main_task pid=3278678)[0m node=4ff8381f-87bc-4456-9bcc-eea292584f48, iter for child=00974c0f-26df-422a-a60a-398b5b4670ba
+[36m(main_task pid=3278678)[0m start, node=00974c0f-26df-422a-a60a-398b5b4670ba, child_node len=1
+[36m(main_task pid=3278678)[0m node=00974c0f-26df-422a-a60a-398b5b4670ba, iter for child=169b37c1-35dc-44d0-beec-52342bd3a310
+[36m(main_task pid=3278678)[0m start, node=169b37c1-35dc-44d0-beec-52342bd3a310, child_node len=0
+[36m(main_task pid=3278678)[0m end, node=169b37c1-35dc-44d0-beec-52342bd3a310, is keeped=True
+[36m(main_task pid=3278678)[0m end, node=00974c0f-26df-422a-a60a-398b5b4670ba, is keeped=True
+[36m(main_task pid=3278678)[0m node=4ff8381f-87bc-4456-9bcc-eea292584f48, iter for child=4cd84f3b-361d-4c27-9d22-2ad7cfa646a2
+[36m(main_task pid=3278678)[0m start, node=4cd84f3b-361d-4c27-9d22-2ad7cfa646a2, child_node len=1
+[36m(main_task pid=3278678)[0m node=4cd84f3b-361d-4c27-9d22-2ad7cfa646a2, iter for child=3939dc71-0ab8-4d08-a0a6-4971bb56171f
+[36m(main_task pid=3278678)[0m start, node=3939dc71-0ab8-4d08-a0a6-4971bb56171f, child_node len=1
+[36m(main_task pid=3278678)[0m node=3939dc71-0ab8-4d08-a0a6-4971bb56171f, iter for child=696fab1c-a165-46b9-9bf8-116b0fa5ed38
+[36m(main_task pid=3278678)[0m start, node=696fab1c-a165-46b9-9bf8-116b0fa5ed38, child_node len=0
+[36m(main_task pid=3278678)[0m end, node=696fab1c-a165-46b9-9bf8-116b0fa5ed38, is keeped=True
+[36m(main_task pid=3278678)[0m end, node=3939dc71-0ab8-4d08-a0a6-4971bb56171f, is keeped=True
+[36m(main_task pid=3278678)[0m end, node=4cd84f3b-361d-4c27-9d22-2ad7cfa646a2, is keeped=True
+[36m(main_task pid=3278678)[0m end, node=4ff8381f-87bc-4456-9bcc-eea292584f48, is keeped=True
+[36m(main_task pid=3278678)[0m end, node=182dfeb9-c44f-4f27-a6cc-772394a9b3a7, is keeped=True
+[36m(main_task pid=3278678)[0m ===========start calculate reward
+[36m(main_task pid=3278678)[0m node:b0bddba4-c8d6-4a87-a173-72070fea9864, original_score=0
+[36m(main_task pid=3278678)[0m node:10d32a08-1c08-418d-af2c-2aedf00fbedb, original_score=0
+[36m(main_task pid=3278678)[0m node:169b37c1-35dc-44d0-beec-52342bd3a310, original_score=0.1
+[36m(main_task pid=3278678)[0m node:696fab1c-a165-46b9-9bf8-116b0fa5ed38, original_score=0
+[36m(main_task pid=3278678)[0m 1 {'global_seqlen/min': 1512, 'global_seqlen/max': 2412, 'global_seqlen/minmax_diff': 900, 'global_seqlen/balanced_min': 1651, 'global_seqlen/balanced_max': 2273, 'global_seqlen/mean': 1962.0, 'state_tokens/total': 1924, 'state_tokens/coverage': 0.7147102355957031, 'actor/kl_loss': np.float64(1.1819079190900084e-05), 'actor/kl_coef': np.float64(0.001), 'actor/entropy_loss': np.float64(0.9230754375457764), 'actor/pg_loss': np.float64(0.8535384088754654), 'actor/pg_clipfrac': np.float64(0.0), 'actor/ppo_kl': np.float64(0.0), 'actor/grad_norm': np.float64(2.0721328258514404), 'mfu/actor': np.float64(0.0), 'actor/lr': np.float64(1e-06), 'critic/score/mean': 0.02500000037252903, 'critic/score/max': 0.10000000149011612, 'critic/score/min': 0.0, 'critic/rewards/mean': 0.02500000037252903, 'critic/rewards/max': 0.10000000149011612, 'critic/rewards/min': 0.0, 'critic/advantages/mean': -0.22726993262767792, 'critic/advantages/max': 2.207066774368286, 'critic/advantages/min': -1.2070868015289307, 'critic/returns/mean': -0.22726993262767792, 'critic/returns/max': 2.207066774368286, 'critic/returns/min': -1.2070868015289307, 'critic/inter_tree_advantages/mean': -0.06389173120260239, 'critic/inter_tree_advantages/max': 1.4999700784683228, 'critic/inter_tree_advantages/min': -0.4999900162220001, 'critic/inner_tree_advantages/mean': -0.16337820887565613, 'critic/inner_tree_advantages/max': 0.7070967555046082, 'critic/inner_tree_advantages/min': -0.7070967555046082, 'response_length/mean': 673.0, 'response_length/max': 1209.0, 'response_length/min': 448.0, 'response_length/clip_ratio': 0.25, 'prompt_length/mean': 308.0, 'prompt_length/max': 308.0, 'prompt_length/min': 308.0, 'prompt_length/clip_ratio': 0.0, 'critic/accurate_retrieval/mean': 0.5, 'critic/accurate_retrieval/max': 1.0, 'critic/accurate_retrieval/min': 0.0, 'critic/accurate_retrieval/std': 0.5773502588272095, 'critic/reverse_rank_scores/mean': 0.625, 'critic/reverse_rank_scores/max': 1.5, 'critic/reverse_rank_scores/min': 0.0, 'critic/reverse_rank_scores/std': 0.75, 'critic/answer_em/mean': 0.0, 'critic/answer_em/max': 0.0, 'critic/answer_em/min': 0.0, 'critic/answer_em/std': 0.0, 'critic/answer_f1/mean': 0.0, 'critic/answer_f1/max': 0.0, 'critic/answer_f1/min': 0.0, 'critic/answer_f1/std': 0.0, 'critic/answer_cem/mean': 0.0, 'critic/answer_cem/max': 0.0, 'critic/answer_cem/min': 0.0, 'critic/answer_cem/std': 0.0, 'critic/reasoning_shot_ratio': 0.0, 'critic/fixinfo_success_ratio(total)': 0.0, 'critic/seekinfo_success_ratio(total)': 0.0, 'critic/effective_fixinfo': 1.0, 'critic/effective_seekinfo': 1.0, 'critic/format_scores/mean': 0.75, 'critic/format_scores/max': 1.0, 'critic/format_scores/min': 0.0, 'critic/format_scores/std': 0.5, 'response_length/std': 363.29144287109375, 'prompt_length/std': 0.0, 'env/number_of_actions/mean': 3.75, 'env/number_of_actions/max': 4.0, 'env/number_of_actions/min': 3.0, 'env/finish_ratio': 0.25, 'env/number_of_valid_action': 1.0, 'env/ratio_of_valid_action': 0.29166666666666663, 'env/number_of_valid_search': 0.75, 'timing_s/gen': 85.16854198090732, 'timing_s/ref': 13.340454735793173, 'timing_s/adv': 0.029981430154293776, 'timing_s/update_actor': 25.371286588255316, 'timing_s/step': 126.19805241469294, 'timing_per_token_ms/update_actor': 6.465669364998806, 'timing_per_token_ms/gen': 31.637645609549526, 'timing_per_token_ms/ref': 3.399708138581339, 'timing_per_token_ms/adv': 0.007640527562256314}
+[36m(main_task pid=3278678)[0m step:1 - global_seqlen/min:1512.000 - global_seqlen/max:2412.000 - global_seqlen/minmax_diff:900.000 - global_seqlen/balanced_min:1651.000 - global_seqlen/balanced_max:2273.000 - global_seqlen/mean:1962.000 - state_tokens/total:1924.000 - state_tokens/coverage:0.715 - actor/kl_loss:0.000 - actor/kl_coef:0.001 - actor/entropy_loss:0.923 - actor/pg_loss:0.854 - actor/pg_clipfrac:0.000 - actor/ppo_kl:0.000 - actor/grad_norm:2.072 - mfu/actor:0.000 - actor/lr:0.000 - critic/score/mean:0.025 - critic/score/max:0.100 - critic/score/min:0.000 - critic/rewards/mean:0.025 - critic/rewards/max:0.100 - critic/rewards/min:0.000 - critic/advantages/mean:-0.227 - critic/advantages/max:2.207 - critic/advantages/min:-1.207 - critic/returns/mean:-0.227 - critic/returns/max:2.207 - critic/returns/min:-1.207 - critic/inter_tree_advantages/mean:-0.064 - critic/inter_tree_advantages/max:1.500 - critic/inter_tree_advantages/min:-0.500 - critic/inner_tree_advantages/mean:-0.163 - critic/inner_tree_advantages/max:0.707 - critic/inner_tree_advantages/min:-0.707 - response_length/mean:673.000 - response_length/max:1209.000 - response_length/min:448.000 - response_length/clip_ratio:0.250 - prompt_length/mean:308.000 - prompt_length/max:308.000 - prompt_length/min:308.000 - prompt_length/clip_ratio:0.000 - critic/accurate_retrieval/mean:0.500 - critic/accurate_retrieval/max:1.000 - critic/accurate_retrieval/min:0.000 - critic/accurate_retrieval/std:0.577 - critic/reverse_rank_scores/mean:0.625 - critic/reverse_rank_scores/max:1.500 - critic/reverse_rank_scores/min:0.000 - critic/reverse_rank_scores/std:0.750 - critic/answer_em/mean:0.000 - critic/answer_em/max:0.000 - critic/answer_em/min:0.000 - critic/answer_em/std:0.000 - critic/answer_f1/mean:0.000 - critic/answer_f1/max:0.000 - critic/answer_f1/min:0.000 - critic/answer_f1/std:0.000 - critic/answer_cem/mean:0.000 - critic/answer_cem/max:0.000 - critic/answer_cem/min:0.000 - critic/answer_cem/std:0.000 - critic/reasoning_shot_ratio:0.000 - critic/fixinfo_success_ratio(total):0.000 - critic/seekinfo_success_ratio(total):0.000 - critic/effective_fixinfo:1.000 - critic/effective_seekinfo:1.000 - critic/format_scores/mean:0.750 - critic/format_scores/max:1.000 - critic/format_scores/min:0.000 - critic/format_scores/std:0.500 - response_length/std:363.291 - prompt_length/std:0.000 - env/number_of_actions/mean:3.750 - env/number_of_actions/max:4.000 - env/number_of_actions/min:3.000 - env/finish_ratio:0.250 - env/number_of_valid_action:1.000 - env/ratio_of_valid_action:0.292 - env/number_of_valid_search:0.750 - timing_s/gen:85.169 - timing_s/ref:13.340 - timing_s/adv:0.030 - timing_s/update_actor:25.371 - timing_s/step:126.198 - timing_per_token_ms/update_actor:6.466 - timing_per_token_ms/gen:31.638 - timing_per_token_ms/ref:3.400 - timing_per_token_ms/adv:0.008
+[36m(main_task pid=3278678)[0m SMOKE_STEP_FINISHED_NO_CHECKPOINT
+[36m(WorkerDict pid=3282598)[0m /mnt/data/software/miniforge3/envs/r2-rl/lib/python3.12/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py:690: FutureWarning: FSDP.state_dict_type() and FSDP.set_state_dict_type() are being deprecated. Please use APIs, get_state_dict() and set_state_dict(), which can support different parallelisms, FSDP1, FSDP2, DDP. API doc: https://pytorch.org/docs/stable/distributed.checkpoint.html#torch.distributed.checkpoint.state_dict.get_state_dict .Tutorial: https://pytorch.org/tutorials/recipes/distributed_checkpoint_recipe.html .
+[36m(WorkerDict pid=3282598)[0m   warnings.warn(
+TRAIN_PROCESS_EXIT_CODE=0
+LOG=logs/tree_rl_step1_20261010_204030.log
+=== KEY EVENTS ===
+[36m(main_task pid=3278678)[0m [########]epoch 0, step 1
+[36m(main_task pid=3278678)[0m ==========get expansion for root=4f1c2c15-9c61-444b-9431-d6647f513cbb, uid_list=['630fc473-1a3e-4550-8959-09c73a2ceff5']
+[36m(main_task pid=3278678)[0m ==========get expansion for root=182dfeb9-c44f-4f27-a6cc-772394a9b3a7, uid_list=['4ff8381f-87bc-4456-9bcc-eea292584f48']
+[36m(main_task pid=3278678)[0m 1 {'global_seqlen/min': 1512, 'global_seqlen/max': 2412, 'global_seqlen/minmax_diff': 900, 'global_seqlen/balanced_min': 1651, 'global_seqlen/balanced_max': 2273, 'global_seqlen/mean': 1962.0, 'state_tokens/total': 1924, 'state_tokens/coverage': 0.7147102355957031, 'actor/kl_loss': np.float64(1.1819079190900084e-05), 'actor/kl_coef': np.float64(0.001), 'actor/entropy_loss': np.float64(0.9230754375457764), 'actor/pg_loss': np.float64(0.8535384088754654), 'actor/pg_clipfrac': np.float64(0.0), 'actor/ppo_kl': np.float64(0.0), 'actor/grad_norm': np.float64(2.0721328258514404), 'mfu/actor': np.float64(0.0), 'actor/lr': np.float64(1e-06), 'critic/score/mean': 0.02500000037252903, 'critic/score/max': 0.10000000149011612, 'critic/score/min': 0.0, 'critic/rewards/mean': 0.02500000037252903, 'critic/rewards/max': 0.10000000149011612, 'critic/rewards/min': 0.0, 'critic/advantages/mean': -0.22726993262767792, 'critic/advantages/max': 2.207066774368286, 'critic/advantages/min': -1.2070868015289307, 'critic/returns/mean': -0.22726993262767792, 'critic/returns/max': 2.207066774368286, 'critic/returns/min': -1.2070868015289307, 'critic/inter_tree_advantages/mean': -0.06389173120260239, 'critic/inter_tree_advantages/max': 1.4999700784683228, 'critic/inter_tree_advantages/min': -0.4999900162220001, 'critic/inner_tree_advantages/mean': -0.16337820887565613, 'critic/inner_tree_advantages/max': 0.7070967555046082, 'critic/inner_tree_advantages/min': -0.7070967555046082, 'response_length/mean': 673.0, 'response_length/max': 1209.0, 'response_length/min': 448.0, 'response_length/clip_ratio': 0.25, 'prompt_length/mean': 308.0, 'prompt_length/max': 308.0, 'prompt_length/min': 308.0, 'prompt_length/clip_ratio': 0.0, 'critic/accurate_retrieval/mean': 0.5, 'critic/accurate_retrieval/max': 1.0, 'critic/accurate_retrieval/min': 0.0, 'critic/accurate_retrieval/std': 0.5773502588272095, 'critic/reverse_rank_scores/mean': 0.625, 'critic/reverse_rank_scores/max': 1.5, 'critic/reverse_rank_scores/min': 0.0, 'critic/reverse_rank_scores/std': 0.75, 'critic/answer_em/mean': 0.0, 'critic/answer_em/max': 0.0, 'critic/answer_em/min': 0.0, 'critic/answer_em/std': 0.0, 'critic/answer_f1/mean': 0.0, 'critic/answer_f1/max': 0.0, 'critic/answer_f1/min': 0.0, 'critic/answer_f1/std': 0.0, 'critic/answer_cem/mean': 0.0, 'critic/answer_cem/max': 0.0, 'critic/answer_cem/min': 0.0, 'critic/answer_cem/std': 0.0, 'critic/reasoning_shot_ratio': 0.0, 'critic/fixinfo_success_ratio(total)': 0.0, 'critic/seekinfo_success_ratio(total)': 0.0, 'critic/effective_fixinfo': 1.0, 'critic/effective_seekinfo': 1.0, 'critic/format_scores/mean': 0.75, 'critic/format_scores/max': 1.0, 'critic/format_scores/min': 0.0, 'critic/format_scores/std': 0.5, 'response_length/std': 363.29144287109375, 'prompt_length/std': 0.0, 'env/number_of_actions/mean': 3.75, 'env/number_of_actions/max': 4.0, 'env/number_of_actions/min': 3.0, 'env/finish_ratio': 0.25, 'env/number_of_valid_action': 1.0, 'env/ratio_of_valid_action': 0.29166666666666663, 'env/number_of_valid_search': 0.75, 'timing_s/gen': 85.16854198090732, 'timing_s/ref': 13.340454735793173, 'timing_s/adv': 0.029981430154293776, 'timing_s/update_actor': 25.371286588255316, 'timing_s/step': 126.19805241469294, 'timing_per_token_ms/update_actor': 6.465669364998806, 'timing_per_token_ms/gen': 31.637645609549526, 'timing_per_token_ms/ref': 3.399708138581339, 'timing_per_token_ms/adv': 0.007640527562256314}
+[36m(main_task pid=3278678)[0m step:1 - global_seqlen/min:1512.000 - global_seqlen/max:2412.000 - global_seqlen/minmax_diff:900.000 - global_seqlen/balanced_min:1651.000 - global_seqlen/balanced_max:2273.000 - global_seqlen/mean:1962.000 - state_tokens/total:1924.000 - state_tokens/coverage:0.715 - actor/kl_loss:0.000 - actor/kl_coef:0.001 - actor/entropy_loss:0.923 - actor/pg_loss:0.854 - actor/pg_clipfrac:0.000 - actor/ppo_kl:0.000 - actor/grad_norm:2.072 - mfu/actor:0.000 - actor/lr:0.000 - critic/score/mean:0.025 - critic/score/max:0.100 - critic/score/min:0.000 - critic/rewards/mean:0.025 - critic/rewards/max:0.100 - critic/rewards/min:0.000 - critic/advantages/mean:-0.227 - critic/advantages/max:2.207 - critic/advantages/min:-1.207 - critic/returns/mean:-0.227 - critic/returns/max:2.207 - critic/returns/min:-1.207 - critic/inter_tree_advantages/mean:-0.064 - critic/inter_tree_advantages/max:1.500 - critic/inter_tree_advantages/min:-0.500 - critic/inner_tree_advantages/mean:-0.163 - critic/inner_tree_advantages/max:0.707 - critic/inner_tree_advantages/min:-0.707 - response_length/mean:673.000 - response_length/max:1209.000 - response_length/min:448.000 - response_length/clip_ratio:0.250 - prompt_length/mean:308.000 - prompt_length/max:308.000 - prompt_length/min:308.000 - prompt_length/clip_ratio:0.000 - critic/accurate_retrieval/mean:0.500 - critic/accurate_retrieval/max:1.000 - critic/accurate_retrieval/min:0.000 - critic/accurate_retrieval/std:0.577 - critic/reverse_rank_scores/mean:0.625 - critic/reverse_rank_scores/max:1.500 - critic/reverse_rank_scores/min:0.000 - critic/reverse_rank_scores/std:0.750 - critic/answer_em/mean:0.000 - critic/answer_em/max:0.000 - critic/answer_em/min:0.000 - critic/answer_em/std:0.000 - critic/answer_f1/mean:0.000 - critic/answer_f1/max:0.000 - critic/answer_f1/min:0.000 - critic/answer_f1/std:0.000 - critic/answer_cem/mean:0.000 - critic/answer_cem/max:0.000 - critic/answer_cem/min:0.000 - critic/answer_cem/std:0.000 - critic/reasoning_shot_ratio:0.000 - critic/fixinfo_success_ratio(total):0.000 - critic/seekinfo_success_ratio(total):0.000 - critic/effective_fixinfo:1.000 - critic/effective_seekinfo:1.000 - critic/format_scores/mean:0.750 - critic/format_scores/max:1.000 - critic/format_scores/min:0.000 - critic/format_scores/std:0.500 - response_length/std:363.291 - prompt_length/std:0.000 - env/number_of_actions/mean:3.750 - env/number_of_actions/max:4.000 - env/number_of_actions/min:3.000 - env/finish_ratio:0.250 - env/number_of_valid_action:1.000 - env/ratio_of_valid_action:0.292 - env/number_of_valid_search:0.750 - timing_s/gen:85.169 - timing_s/ref:13.340 - timing_s/adv:0.030 - timing_s/update_actor:25.371 - timing_s/step:126.198 - timing_per_token_ms/update_actor:6.466 - timing_per_token_ms/gen:31.638 - timing_per_token_ms/ref:3.400 - timing_per_token_ms/adv:0.008

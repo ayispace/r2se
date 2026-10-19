@@ -1,0 +1,750 @@
+diff --git a/scripts/data_process/qa_search_test_merge.py b/scripts/data_process/qa_search_test_merge.py
+index 1b6ed2f..e7d0c0c 100644
+--- a/scripts/data_process/qa_search_test_merge.py
++++ b/scripts/data_process/qa_search_test_merge.py
+@@ -19,7 +19,7 @@ import re
+ import os
+ import datasets
+ 
+-from verl.utils.hdfs_io import copy, makedirs
++# HDFS utilities are imported only when needed.
+ import argparse
+ 
+ 
+@@ -129,6 +129,7 @@ if __name__ == '__main__':
+     all_test_dataset.to_parquet(os.path.join(local_dir, f'{args.filename}.parquet'))
+ 
+     if hdfs_dir is not None:
++        from verl.utils.hdfs_io import copy, makedirs
+         makedirs(hdfs_dir)
+ 
+         copy(src=local_dir, dst=hdfs_dir)
+diff --git a/scripts/data_process/qa_search_train_merge.py b/scripts/data_process/qa_search_train_merge.py
+index 1088da6..9ed54c4 100644
+--- a/scripts/data_process/qa_search_train_merge.py
++++ b/scripts/data_process/qa_search_train_merge.py
+@@ -19,7 +19,7 @@ import re
+ import os
+ import datasets
+ 
+-from verl.utils.hdfs_io import copy, makedirs
++# HDFS utilities are imported only when needed.
+ import argparse
+ 
+ 
+@@ -110,6 +110,7 @@ if __name__ == '__main__':
+     all_train_dataset.to_parquet(os.path.join(local_dir, 'train.parquet'))
+ 
+     if hdfs_dir is not None:
++        from verl.utils.hdfs_io import copy, makedirs
+         makedirs(hdfs_dir)
+ 
+         copy(src=local_dir, dst=hdfs_dir)
+diff --git a/search_r1/llm_agent/__pycache__/generation_ts.cpython-312.pyc b/search_r1/llm_agent/__pycache__/generation_ts.cpython-312.pyc
+index 2da7fe138b4fc8de0f4090d809a26e50499fa934..afb5c5e1586c0134b2d901b0f28b56606de7be5c 100644
+GIT binary patch
+delta 9073
+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
+ZCzht~$|mkl1jNb1GuVcS)dp<ne*u>N-KYQn
+
+delta 6836
+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
+
+diff --git a/search_r1/llm_agent/generation_ts.py b/search_r1/llm_agent/generation_ts.py
+index 36e1930..dc092dd 100644
+--- a/search_r1/llm_agent/generation_ts.py
++++ b/search_r1/llm_agent/generation_ts.py
+@@ -24,11 +24,6 @@ import asyncio
+ 
+ from .tree_node import TreeNode, DEBUG, dprint
+ 
+-API_SECRET_KEY = ""
+-BASE_URL = ""
+-
+-os.environ["OPENAI_API_KEY"] = API_SECRET_KEY
+-os.environ["OPENAI_API_BASE"] = BASE_URL
+ 
+ 
+ class DummyRetriever(BaseRetriever):
+@@ -38,9 +33,12 @@ class DummyRetriever(BaseRetriever):
+         return self.docs
+ 
+ 
+-async_client = AsyncOpenAI(api_key=API_SECRET_KEY, base_url=BASE_URL)
++async_client = None
+ 
+ async def async_generator(model_name: str, prompt: str) -> str:
++    global async_client
++    if async_client is None:
++        async_client = AsyncOpenAI()
+     resp = await async_client.chat.completions.create(
+         model=model_name,
+         messages=[
+@@ -128,6 +126,10 @@ class LLMGenerationTreeSearchManager:
+         #     print("RESPONSES:", responses_str)
+         
+         responses = self._batch_tokenize(responses_str)
++        if responses.numel() == 0:
++            responses = responses.long()
++        elif responses.dtype != torch.long:
++            raise TypeError(f"Invalid response IDs: {responses.dtype}")
+         return responses, responses_str
+ 
+     def _process_next_obs(self, next_obs: List[str]) -> torch.Tensor:
+@@ -150,6 +152,10 @@ class LLMGenerationTreeSearchManager:
+             print(f"[WARNING] OBSERVATION TOO LONG, CONSIDER CHANGING YOUR CONFIG, {next_obs_ids.shape[1]} & {self.config.max_obs_length}")            
+             next_obs_ids = next_obs_ids[:, :self.config.max_obs_length]
+ 
++        if next_obs_ids.numel() == 0:
++            next_obs_ids = next_obs_ids.long()
++        elif next_obs_ids.dtype != torch.long:
++            raise TypeError(f"Invalid observation ID dtype: {next_obs_ids.dtype}")
+         return next_obs_ids
+ 
+     def _update_rolling_state(self, rollings: DataProto, cur_responses: torch.Tensor, 
+@@ -169,10 +175,99 @@ class LLMGenerationTreeSearchManager:
+         batch_size = rollings.batch['input_ids'].size(0)
+         cleaned_input_ids_list = []
+ 
++        # V100 reproduction: validate token ID types at the rolling-state boundary.
++        def checked_token_ids(ids, name):
++            if not isinstance(ids, torch.Tensor):
++                raise TypeError(f"{name}: expected Tensor, got {type(ids)}")
++
++            if ids.dtype in (torch.float16, torch.bfloat16):
++                raise TypeError(
++                    f"{name}: token IDs became {ids.dtype}; "
++                    "precision may have been lost upstream"
++                )
++
++            if ids.dtype.is_floating_point:
++                if not torch.isfinite(ids).all().item():
++                    raise ValueError(f"{name}: non-finite token IDs")
++                if not (ids == ids.round()).all().item():
++                    raise ValueError(f"{name}: fractional token IDs")
++
++            if ids.dtype == torch.bool:
++                raise TypeError(f"{name}: boolean token IDs")
++
++            if ids.numel():
++                if (ids.min().item() < 0 or
++                        ids.max().item() >= len(self.tokenizer)):
++                    raise ValueError(f"{name}: token ID outside vocabulary")
++
++            if ids.dtype != torch.long:
++                print(
++                    f"[TOKEN-ID FIX] {name}: {ids.dtype} -> torch.int64, "
++                    f"shape={tuple(ids.shape)}",
++                    flush=True,
++                )
++
++            return ids.long()
++
++        rollings.batch['input_ids'] = checked_token_ids(
++            rollings.batch['input_ids'], "rolling.input_ids"
++        )
++        cur_responses = checked_token_ids(
++            cur_responses, "cur_responses"
++        )
++        next_obs_ids = checked_token_ids(
++            next_obs_ids, "next_obs_ids"
++        )
++
++        # V100 reproduction: validate token ID types at the rolling-state boundary.
++        def checked_token_ids(ids, name):
++            if not isinstance(ids, torch.Tensor):
++                raise TypeError(f"{name}: expected Tensor, got {type(ids)}")
++
++            if ids.dtype in (torch.float16, torch.bfloat16):
++                raise TypeError(
++                    f"{name}: token IDs became {ids.dtype}; "
++                    "precision may have been lost upstream"
++                )
++
++            if ids.dtype.is_floating_point:
++                if not torch.isfinite(ids).all().item():
++                    raise ValueError(f"{name}: non-finite token IDs")
++                if not (ids == ids.round()).all().item():
++                    raise ValueError(f"{name}: fractional token IDs")
++
++            if ids.dtype == torch.bool:
++                raise TypeError(f"{name}: boolean token IDs")
++
++            if ids.numel():
++                if (ids.min().item() < 0 or
++                        ids.max().item() >= len(self.tokenizer)):
++                    raise ValueError(f"{name}: token ID outside vocabulary")
++
++            if ids.dtype != torch.long:
++                print(
++                    f"[TOKEN-ID FIX] {name}: {ids.dtype} -> torch.int64, "
++                    f"shape={tuple(ids.shape)}",
++                    flush=True,
++                )
++
++            return ids.long()
++
++        rollings.batch['input_ids'] = checked_token_ids(
++            rollings.batch['input_ids'], "rolling.input_ids"
++        )
++        cur_responses = checked_token_ids(
++            cur_responses, "cur_responses"
++        )
++        next_obs_ids = checked_token_ids(
++            next_obs_ids, "next_obs_ids"
++        )
++
+         # Step 1: Decode cur_responses to check if it ends with </retrieved_facts>
+         cur_resp_strs = self.tokenizer.batch_decode(cur_responses, skip_special_tokens=True)
+ 
+         # Decode current rolling input_ids for cleaning
++        print("[ROLLING DTYPE]", rollings.batch["input_ids"].dtype, flush=True)
+         rolling_strs = self.tokenizer.batch_decode(rollings.batch['input_ids'], skip_special_tokens=True)
+ 
+         for i in range(batch_size):
+diff --git a/verl/trainer/main_ppo_format_ts.py b/verl/trainer/main_ppo_format_ts.py
+index 457a031..94e64e8 100644
+--- a/verl/trainer/main_ppo_format_ts.py
++++ b/verl/trainer/main_ppo_format_ts.py
+@@ -180,7 +180,7 @@ def main(config):
+     if not ray.is_initialized():
+         # this is for local ray cluster
+         print("Ray is not initialized! run ray.init()...")
+-        ray.init(runtime_env={'env_vars': {'TOKENIZERS_PARALLELISM': 'true', 'NCCL_DEBUG': 'WARN'}})
++        ray.init(runtime_env={'env_vars': {'TOKENIZERS_PARALLELISM': 'true', 'NCCL_DEBUG': 'WARN', 'NCCL_P2P_DISABLE': '1'}})
+     print("Ray already initialized. Get remote ...")
+     ray.get(main_task.remote(config))
+ 
+diff --git a/verl/trainer/ppo/__pycache__/ray_trainer_ts.cpython-312.pyc b/verl/trainer/ppo/__pycache__/ray_trainer_ts.cpython-312.pyc
+index 62196776e9521f83aabd18c65e32cd20feecf16d..ffbb86efe254935b58b27b7d5504f13bfc4e59b2 100644
+GIT binary patch
+delta 6552
+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
+B2ZaCt
+
+delta 7222
+zcmbVRd3aP+makX!s!~a1udJ0&*~n4}Nq`W7681pY44`Rf0!ihi-m9cYZQObV2~<q5
+zqo78%D-xx3!0vIxj5c&RZqseI=(NGDD}WLoxT4*ywlfH>v`)`C_a$uI(|>fnk6)d0
+z?m6e(<(zxZz3lu#H~5_{;nldf7!CZbd(!WEA&%RVkj@nyEzaY5MNTxkD?O8&CVQqd
+zP2n_Btdx@picM3YMeD9=s$##%O=dBrU(+;AtEtzBsr?!;O^P1Up-a%MmJCdu4)Tm4
+zttuT-e>6?gnTMLD8u-n0&+y#PbOWamOGJxg5qq<w;tlec=2bsVUd-;-H_a4nsOHp)
+z6M(A~t<o%@bNczF*<vnqXO37Z=Jj(;bH#k%=1II*Ak7yiN^#PBX@OIV0|8Hk{ru(5
+z)Ul2hK}U<Fg+sbn^_xwLy0x~laIMy=U2M}TDa)7NR4;iYBFHYE_a?zBv`a)uydqlQ
+z^EzGa4(_TR<6Pjsiz`98Un6sL?u-esnxQcrP9xJVUb52BL+1F<)lws!`=8l#*UwU}
+z6`SZ0IXmHMO_7sn<&g<{-%g3MM~{D4)Q$^#?QDUup<83qH8d`=nH0V3BaRNm<Pp3<
+z!EFynlBn>GpeQH_SBdO`+pTE5e#JlpujunAJX18b364(5D+Uxjn0UQPoG8f>@wmLM
+zfb4Q8(QT5~(cuwDr;Q^MbK%1Q9Bl5Tn#vBJN2&~L=@7i_Gp0?el!+u&(#Q1qy^1j)
+z$*dow6m+MdQ5!&?<}4q5nok|!Q+JD}_$=VIFWt8EG;bZ@t%LF@e&Si)uzkt4CEFXe
+zHSC^tiqAO9$82A=ZP{-A6rVb3EAL;3EvNa65kBJ-Uo=`+dbQ+DKK~+oMH6n~mvE`1
+z3`k-_C?AJe^t8U(z#7WK$%Y>|u7V~S>yqb#f}(fHk|#itQF$SC8gs4nD2^jiz!xMA
+z$?o_0+yNeBx$sA9^ykI}TqFIHaV=Ly=SNfPLbO}}VAGQ2NUsD4V4^Vfi_x<<JDn0!
+zn1LN=uq6<j7*dTe9ifJLW6Ek+XZ6T4f2=zzki7+A4#Jg@%|jMpDUHN9)sf8$*P3J<
+zR}nrMZ{(^R(5UD)3GSc-E9@3Lej=ig73DEoB;pI$-L6haiE_Gqf?PF~tfl{*V997g
+zrF96*gQ3%Hce=VrGtEs*HMO9eAhgoCiB^LTNe>kh^RjWml|;escX!*t#xHpVx7<y(
+zfw&`lD6yC0%EEccFPXBN(WV2T6#-q?^z4W9Q_fmDkvY8`#IQ16QR-57;`aG$I#s6!
+zjRvS-jhHSg0$-a`Yw%;!MtW<`>0TU#5+{h8>=Hz?M}SNrcVP2&Y>4p&J$54bB|#?r
+zC}n*LA=Qe&zQMfjK=w|A0fb!$g9v*N_99S(dlB{_+y|i0Q@ORAjV9%#>;Db-yTj#q
+zzc;9>)JL@?cg|mis`&_A05G;b_)&D7Qn#XmH4ETg!-5UP@kA1X5QiQ~CN4*S41q9(
+zzE)BVQ>wMC;d-x~Qt*ZYP~!Z==kd#Sx8!Y?I|vRBCK@M6(FZyNzoh5_L64$m>rWc5
+zG&5DjG-mD*0-frNJPs-Wj8NzqMmBm%vpalrv@}KkOW-W@i_#(J)PrTGvu5oC0bv2d
+z7W=yCWL<7W74*u!sLmvt*#7X*`ZIh9TM^d&0xBItcoE?x1WYjUUjUcrlgo=ZCq1*=
+z0eL;=Cfds)0cV!{0^tb&g>Qp2CL58*zN(23hoh53*t6V{L&mu$YMOMTiOwT*0l2)1
+zR@z98pcO70%$qDK(XbqX-Q{)q*g`6LFcrEnW@W>a>9$Pbr)wH!8`KD*2O2UBN6|qK
+zeXgO%pbnb;p<yZ4Pp7P?H1%QIVFa0WuE>Yr*}1}^KL>)+@Z&3HnqXExY0A{5U!E;R
+z*DiT&QHqX8PDq^0W@pXiVX33WA&mDIA}0W>Em~dw7|02ix7|*J&EyPys=2vZhSoqd
+z09)Iu*4F_s6qF_Vn8kPu;)XjCUfj~l8NL9Ld`@4t-(QcUVsQJ~;Y5Ya(1a}S76LNF
+zq^gDzJ@}HywJ~nM4@iW33ksivA8++U-CPbNxe)=oPX2=MJwh#jk`fF^ki$-iz&V9`
+zwA<zACbO`~z?wYd2V|lJce{_c<PHy6N8KIyQ5p_h@EqOOk!R2${V@GiN6BoqaYrF<
+zK)CWX^g@g%iw02iqSO{_zkaG{zN?V?CcM}ctA&;NQRls!Hj1O4xh=gJXo-H6D47T@
+zC_9J+MOg@6p>M2GlvvpZndFt3#`rmcwwKQlR80ZF7R${-_sW$k8dYx<5P~j9ayI8B
+zkP`vSxjxN1#>sD|Ss$hSp4D(no$+LHi^E@ee7ab<5Zc+F7(<&juAqN?IgLhcOQE6L
+z%=Eqf6nbf65|>J2;aIXsX8L3A=Uh6S_mdpferY&`4*1IHUxv-}HD4Tk_z^SxGw|th
+z{1}~0mv4&Kc^gCY;3KIt<iCaKzAq=Rc79_jO%Gn9tJi8moT|O+wsiKD=U+*o&jrn#
+zg}xEYqo*D<@AVtOZ34~QltF)b`xu)w-tyF@%yB7_WBQ+NN~bp+H`9lXr_hzdJe{;T
+zlkw+)cVD3=^zb1*q_IyJpA|W8oD$6;`aj20_a4#Hb^d6rJc|yzk^@s^rny~l+&q{R
+zD|W20YXZH!tC+sgm7=vzpigw=(ZucMarWD;UBwttO3c`P3VS?J;1f!`)8&SW%dW};
+zWFmc{`&kRYrl>$i(CKtbO0-CPemiCmDWKc7ybSx>lC9aPg-Rl;{VIa8%N?i?1z8|@
+zbj#L)N%`<8Qh>l>nVo|s7I<)syQP2{-NmS&(BoSd=~<;l6GFFhR=O`VdqE8LRWCTe
+zzoPf~AuCA|h~VU48Ip&VS3WWy*z1l2Vy0<5g@#HD#ZY)&PbX*m$e6f0c_8-f@Z+~8
+z>k4k1m%2Jb_g02}bzampMRpPl9S^>XJHsDtYmC!nZwS&ohb*ymn&wwEnx2Vb@dipa
+z_M3GRH|(P?*vxZ^$LnuVE0$O;*WEpZp~3?i(e|LWr-)IdKov8p45*S&NvL2GM=I#6
+zJ98Fh)oFI+IJE5=hqf6qu_q^#%`}TcIR`Wk>hO}WM>`PDLwiro`1e8up%UDMLPb|R
+z)o1>bo{E^KV)PW?1|Gs*&9VHGzKYS;!0U9^?uA?{jl7d?(+@n*rCY1n%sI3i8^dP6
+zzol%GsA<o)sV{>$8Adpc@Crf&&DdLDz>p<x(|LQBq`d{CVv@T2aG$Vye4=!ihp?gt
+z_oimDeG(&Y(P5nu?efCWVRwlEC>P(@JCHnpKJErMtYbf<jk;+~>N?O@qQ=qyt|zkO
+zCm+*iXi>5UqpcYX;103@jXUXiYUQ4#3HQ3zu_AIyRAm58GPktFQ0WP}Wf%D!sxM>5
+zJHbm6S&hKTJPT4RFP5WYOb&7rQtIH4Z9vva-@bRkE%8X=eNTxdSb0gC;F_ol5;wUS
+zTQE_`r)Y!oLDnFP(V}M9T4ZrHAccKUUI=hgBXjAJeOdV(C^bNR+~$_ZgJ7ZP{60Tv
+zMvE4N6ZDRK74bEwrVo1IjtVCaJ+`m1bSk#8V#c6WuW;S-`McSf&Q4CO^nGx|d``3O
+zvvL7?<9(CXvWmqZb;)qqQ!5n{95fCAc=)I2fCBIbNj3W*ToU2%X0-z=ptfKK`3*iO
+zg7g8u+a=p<>P}##zqzjpZmk#ZJI;Mhf4#q)J4`>@KhWETZj#`8L>Q}B?V`&evkI3j
+zgJM>T2sph3(FXy7&2Wol)vettcqFL!eLfH&+STP%Vi?1g7}f(DJd)rIU=ez`WI=+S
+zAI#RmB`xv(;;0XB4{{ml?E6<~znnxr{rETGh6kR~_hwro#;nn-qSIMrBUxo{WtHz(
+z_P#l7|BO8|2A7@AE+5G*f7Ed@d+L#@Bl9EKH7Ct8cGQhd$QxXAusC8V-LY&mJ9lvU
+z!L-4g9ZN^Eat4bI>IdU@EE!G6h~!p{BvhT9QuTED(R8SH0^9;E6iPSNX~&p|!~0Cx
+zaBs@6VOWT)TsPbkS=4;;#+LJ{Dky;}7))KLjU*NvTr!eaF`8hB<X4X*RG+P?e!Avp
+z4d?{9#i&%f1ic~?k^Ijr8=f{?6j`|{a&vQJRZC>C{bX$`xW#7B0$s3}wv@SD);p3o
+zc{Cw2k~i%{!nCtfr#)SKv>23RZV_tDtVauEBBJk^nZpx@(}p)jR;`b$Y>w2ooSbO~
+zx7Z3wpb7?6&;#i0(i4f5=hHRW73VWF(J7~mmJy>Rl2viaSouDT!D#vJLbG0zUdMg2
+z*s0T4szx%WUiwC_Nt-;9TKWBjrCJ>NcNci<D*k}$0PbbKh-t~>UoD>9Ql@{cFssEH
+z^}4362AH#aQp=2(v(uAWX2rZ?OR{TY-nHsmN=)w-7@_suGJQ*Rc>SSv<9e3vE5Q@_
+z2>?`9&tVcVDV}SMwkUEJwzBKW{YV`^cmQEP!aV?s$R7Z~__8<Hkf6ZJc`Ti4pf!(`
+zBz}*oD-aeU^i$tsmR=Kn>K5d$)Uqkavg(rgV!O!0C}Z2r&ybplfSn_6A{C1i&IO4>
+zY8Fy#4>4|TXSow#RX$0@h93YhQH9N3VhW%H6PRqL=AkKO+>~swEPWLoUo}VrT{E<R
+z`xQMfbOT&D-W)3D4uy699yZk1fvOVQ?)J6e%M$F!cC`$MRkXeU7z=QtycfH}Mqx$m
+zBvEn-umwXc>Hs6rMaWM2zrRc?z|SfP0b!G5cXUXOPCslWvO2b7(1fK0tqC_l2lj@m
+zxlh8w;RX0w@cMK2=*n3?V%p#qulC|_5;=jNJ&AB_2goV<yJu#s--#`6BCtL9Eylte
+z95$!}PhigQ*m4J0CvmTXvkD%8>}*)4(P9)JV1O2Nb5Sq5skHamRO)*cOZ|P%){J*@
+zGV5eK^9z^vvFUmj-F*D_++;F0|MGmf*2IV3c)prbUk3c)=-=jRO|9@z^={iiryr{?
+z_am>~U^ls>&FpTc7-YEbKvBqscpH8x9o4M#v167=xZ<`rb(dz=eIQWc@rr<#K0n-=
+z;6<kugoM!Z$I`jmsPV=1F#XbtQ?yn-Jow`N>`6`7jOVXn#4-82?(RjT0)@-)b3X>y
+z!k5GKm*_dV?tLq~HG}x_2~V1kZAWk+;2BTc2<%M%7#(?$#oG!bQy&Ui5!h=%Cs0b_
+zSoq04c&N0)n+<701x!WtJpUt7_^_Z@<X)!ahC><_z~O_(J1ndnQXs%yZQugRa_bH>
+z!ABtSCxkwPPXOR{hA&0lc7g!|+HB%j{^9Wssm}zTqyCeqpTgpqtvL&7y7`0ICYB5=
+zk+;&{evr0--S1dH;@y#8nh<t~KMj<kgB2kb^!Sg<ku7Mp6#=Ue5<=)fxT+4Jb3e?^
+z!JhuVg$Ox9w|<zlnxf%6gqa9fWsrEZ>qTk@0@fttPNcRWuz};foZN-%00NtbyOCmh
+zjFtZR!<?Lc<bOb5uPzsnI)Qd<2YZQ@p0liBGm2TS#E-u$us6zpx=-DMHuz-rcUNl&
+z8k9H(+~!>l`(}Z7f_`!<TGY`4=Zc!yI!5C<+MPt&s6?|RLXw<8t#jxX4lG!EWZyvQ
+zGo<DN*wWO5!6j2n81my!9S@+&0c!ooGX3XB_Msh{05&r|l>IBhBM67l-T-9{l)gkj
+z)qd*z$d!+UilTG6<Sj|p-rqq~$-`#TLBIRRsXsqm6Pp-r`}mKsNzG`?vY{2I24bg8
+z7iKSI-^A@eoiH}jxP#f$?M+>+K5P#m^dRJ79dzAh2G_I?FHF?lpr^)*zwRvqH5;eI
+zjc@qUMtC)}rT)!JHF`56;Bz56)s&buKGG?X#%{mFUZhDHP6NJF5HkXXI{7^UTLd=s
+zY}Q%Sv2d~GLkEc&;ktM3OZXXt^VIoeWBeTbD(-@)@6qbBF3dI1;V%njFXr`G7aNUn
+zdaL?8j>_<#JlamTf@%C8=zu{5YiMK#y{(?qV8aP&`)V_nPY-?dSMD4=^z~$|Vx^CK
+zZ7n2O*qn{P`c{BcDFQpm=OJaKpMIU!yB5i09NsphSnRUN!C+Ni8n49Nk5G050rLsM
+zq-_H{JF)>@H*&>T3rAGYEzKq~VP3$$CXfzzUdM6V7uh<FzZj$8V$RUJzNyQ6PqXU%
+rxTM`hcdqY?Ij4y`qe;HN8@RGBlj(ckJe0ILj<fDw^pysG*&O{J0@m2X
+
+diff --git a/verl/trainer/ppo/ray_trainer_ts.py b/verl/trainer/ppo/ray_trainer_ts.py
+index b4a3b4b..9284d0c 100644
+--- a/verl/trainer/ppo/ray_trainer_ts.py
++++ b/verl/trainer/ppo/ray_trainer_ts.py
+@@ -42,7 +42,6 @@ from verl.utils.seqlen_balancing import get_seqlen_balanced_partitions, log_seql
+ import re
+ import shutil
+ from search_r1.llm_agent.generation_ts import LLMGenerationTreeSearchManager, GenerationTreeSearchConfig
+-from search_r1.llm_agent.generation import LLMGenerationManager, GenerationConfig
+ 
+ WorkerType = Type[Worker]
+ 
+@@ -767,19 +766,24 @@ class RayPPOTrainer(object):
+ 
+         metric_dict.update(extra_metric_dict)
+ 
+-        metric_readout_dict={}
+-        for metric_name in metric_dict.keys():
+-            # e.g., root = 'val/test_score/'
+-            root = '/'.join(metric_name.split('/')[:-1])
+-            root_single = f'{root}/single'
+-            root_multi = f'{root}/multi'
+-            root_mean = f'{root}/mean'
+-            if root_mean not in metric_readout_dict:
+-                metric_readout_dict[root_mean] = np.mean([metric_dict[f'{root}/{data_source}'] for data_source in ALL_DATA_SOURCES])
+-            if root_single not in metric_readout_dict:
+-                metric_readout_dict[root_single] = np.mean([metric_dict[f'{root}/{data_source}'] for data_source in SINGLE_DATA_SOURCES])
+-            if root_multi not in metric_readout_dict:
+-                metric_readout_dict[root_multi] = np.mean([metric_dict[f'{root}/{data_source}'] for data_source in MULTI_DATA_SOURCES])
++        metric_readout_dict = {}
++        groups = {
++            'mean': ALL_DATA_SOURCES,
++            'single': SINGLE_DATA_SOURCES,
++            'multi': MULTI_DATA_SOURCES,
++        }
++        roots = {key.rsplit('/', 1)[0] for key in metric_dict}
++        for root in roots:
++            for group, sources in groups.items():
++                values = [
++                    metric_dict[f'{root}/{ds}']
++                    for ds in sources
++                    if f'{root}/{ds}' in metric_dict
++                ]
++                if not values:
++                    continue
++                suffix = group if len(values) == len(sources) else group + '_observed'
++                metric_readout_dict[f'{root}/{suffix}'] = float(np.mean(values))
+         metric_dict.update(metric_readout_dict)
+ 
+         return metric_dict
+diff --git a/verl/utils/reward_score/qa_em_format.py b/verl/utils/reward_score/qa_em_format.py
+index 47db444..866036c 100644
+--- a/verl/utils/reward_score/qa_em_format.py
++++ b/verl/utils/reward_score/qa_em_format.py
+@@ -16,6 +16,7 @@ import re
+ import string
+ import random
+ from collections import Counter
++from .qa_em2 import vocab_overlap_reward
+ 
+ def normalize_answer(s):
+     def remove_articles(text):
+diff --git a/verl/workers/actor/dp_actor.py b/verl/workers/actor/dp_actor.py
+index e7f24c7..bc3a0e8 100644
+--- a/verl/workers/actor/dp_actor.py
++++ b/verl/workers/actor/dp_actor.py
+@@ -31,7 +31,10 @@ from verl.utils.ulysses import ulysses_pad_and_slice_inputs, gather_outpus_and_u
+ from verl.utils.seqlen_balancing import rearrange_micro_batches, get_reverse_idx
+ import verl.utils.torch_functional as verl_F
+ 
+-from flash_attn.bert_padding import pad_input, unpad_input, rearrange, index_first_axis
++try:
++    from flash_attn.bert_padding import pad_input, unpad_input, rearrange, index_first_axis
++except ImportError:
++    pad_input = unpad_input = rearrange = index_first_axis = None
+ 
+ __all__ = ['DataParallelPPOActor']
+ 
+@@ -63,7 +66,7 @@ class DataParallelPPOActor(BasePPOActor):
+         """
+         response_length = micro_batch["responses"].size(-1)
+ 
+-        with torch.autocast(device_type='cuda', dtype=torch.bfloat16):
++        with torch.autocast(device_type='cuda', dtype=torch.float16):
+             input_ids = micro_batch["input_ids"]
+             batch_size, seqlen = input_ids.shape
+             attention_mask = micro_batch["attention_mask"]
+@@ -74,6 +77,11 @@ class DataParallelPPOActor(BasePPOActor):
+                 position_ids = position_ids.transpose(0, 1)  # (bsz, 3, seqlen) -> (3, bsz, seqlen)
+ 
+             if self.use_remove_padding:
++                if unpad_input is None:
++                    raise RuntimeError(
++                        "Remove Padding requires flash_attn; "
++                        "set use_remove_padding=false on V100."
++                    )
+                 input_ids_rmpad, indices, *_ = unpad_input(input_ids.unsqueeze(-1), attention_mask)  # input_ids_rmpad (total_nnz, ...)
+                 input_ids_rmpad = input_ids_rmpad.transpose(0, 1)  # (1, total_nnz)
+ 
+diff --git a/verl/workers/critic/dp_critic.py b/verl/workers/critic/dp_critic.py
+index 199fd71..9119f7f 100644
+--- a/verl/workers/critic/dp_critic.py
++++ b/verl/workers/critic/dp_critic.py
+@@ -31,7 +31,10 @@ from verl.utils.torch_functional import masked_mean
+ from verl.utils.ulysses import ulysses_pad_and_slice_inputs, gather_outpus_and_unpad
+ from verl.utils.seqlen_balancing import rearrange_micro_batches, get_reverse_idx
+ 
+-from flash_attn.bert_padding import pad_input, unpad_input, rearrange, index_first_axis
++try:
++    from flash_attn.bert_padding import pad_input, unpad_input, rearrange, index_first_axis
++except ImportError:
++    pad_input = unpad_input = rearrange = index_first_axis = None
+ 
+ __all__ = ['DataParallelPPOCritic']
+ 
+@@ -52,13 +55,18 @@ class DataParallelPPOCritic(BasePPOCritic):
+ 
+     def _forward_micro_batch(self, micro_batch):
+         response_length = micro_batch['responses'].size(-1)
+-        with torch.autocast(device_type='cuda', dtype=torch.bfloat16):
++        with torch.autocast(device_type='cuda', dtype=torch.float16):
+             input_ids = micro_batch['input_ids']
+             batch, seqlen = input_ids.shape
+             attention_mask = micro_batch['attention_mask']
+             position_ids = micro_batch['position_ids']
+ 
+             if self.use_remove_padding:
++                if unpad_input is None:
++                    raise RuntimeError(
++                        "Remove Padding requires flash_attn; "
++                        "set use_remove_padding=false on V100."
++                    )
+                 input_ids_rmpad, indices, *_ = unpad_input(input_ids.unsqueeze(-1),
+                                                            attention_mask)  # input_ids_rmpad (total_nnz, ...)
+                 input_ids_rmpad = input_ids_rmpad.transpose(0, 1)  # (1, total_nnz)
+diff --git a/verl/workers/fsdp_workers.py b/verl/workers/fsdp_workers.py
+index 18e329a..be60961 100644
+--- a/verl/workers/fsdp_workers.py
++++ b/verl/workers/fsdp_workers.py
+@@ -280,7 +280,7 @@ class ActorRolloutRefWorker(Worker):
+             actor_module = AutoModelForCausalLM.from_pretrained(pretrained_model_name_or_path=local_path,
+                                                                 torch_dtype=torch_dtype,
+                                                                 config=actor_model_config,
+-                                                                attn_implementation='flash_attention_2',
++                                                                attn_implementation='sdpa',
+                                                                 trust_remote_code=trust_remote_code)
+             # Apply Liger kernel to the model if use_liger is set to True
+             if use_liger:
+@@ -797,7 +797,7 @@ class CriticWorker(Worker):
+             critic_module = AutoModelForTokenClassification.from_pretrained(pretrained_model_name_or_path=local_path,
+                                                                             torch_dtype=torch_dtype,
+                                                                             config=critic_model_config,
+-                                                                            attn_implementation='flash_attention_2',
++                                                                            attn_implementation='sdpa',
+                                                                             trust_remote_code=trust_remote_code)
+ 
+             # some parameters may not in torch_dtype
+@@ -1083,7 +1083,7 @@ class RewardModelWorker(Worker):
+             reward_module = AutoModelForTokenClassification.from_pretrained(pretrained_model_name_or_path=local_path,
+                                                                             config=model_config,
+                                                                             torch_dtype=torch.bfloat16,
+-                                                                            attn_implementation='flash_attention_2',
++                                                                            attn_implementation='sdpa',
+                                                                             trust_remote_code=trust_remote_code)
+             reward_module.to(torch.bfloat16)
+         auto_wrap_policy = get_fsdp_wrap_policy(module=reward_module, config=self.config.model.fsdp_config)

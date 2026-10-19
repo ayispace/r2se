@@ -1,0 +1,638 @@
+diff --git a/scripts/data_process/qa_search_test_merge.py b/scripts/data_process/qa_search_test_merge.py
+index 1b6ed2f..e7d0c0c 100644
+--- a/scripts/data_process/qa_search_test_merge.py
++++ b/scripts/data_process/qa_search_test_merge.py
+@@ -19,7 +19,7 @@ import re
+ import os
+ import datasets
+ 
+-from verl.utils.hdfs_io import copy, makedirs
++# HDFS utilities are imported only when needed.
+ import argparse
+ 
+ 
+@@ -129,6 +129,7 @@ if __name__ == '__main__':
+     all_test_dataset.to_parquet(os.path.join(local_dir, f'{args.filename}.parquet'))
+ 
+     if hdfs_dir is not None:
++        from verl.utils.hdfs_io import copy, makedirs
+         makedirs(hdfs_dir)
+ 
+         copy(src=local_dir, dst=hdfs_dir)
+diff --git a/scripts/data_process/qa_search_train_merge.py b/scripts/data_process/qa_search_train_merge.py
+index 1088da6..9ed54c4 100644
+--- a/scripts/data_process/qa_search_train_merge.py
++++ b/scripts/data_process/qa_search_train_merge.py
+@@ -19,7 +19,7 @@ import re
+ import os
+ import datasets
+ 
+-from verl.utils.hdfs_io import copy, makedirs
++# HDFS utilities are imported only when needed.
+ import argparse
+ 
+ 
+@@ -110,6 +110,7 @@ if __name__ == '__main__':
+     all_train_dataset.to_parquet(os.path.join(local_dir, 'train.parquet'))
+ 
+     if hdfs_dir is not None:
++        from verl.utils.hdfs_io import copy, makedirs
+         makedirs(hdfs_dir)
+ 
+         copy(src=local_dir, dst=hdfs_dir)
+diff --git a/search_r1/__pycache__/__init__.cpython-312.pyc b/search_r1/__pycache__/__init__.cpython-312.pyc
+index 289d0be..be96f9f 100644
+Binary files a/search_r1/__pycache__/__init__.cpython-312.pyc and b/search_r1/__pycache__/__init__.cpython-312.pyc differ
+diff --git a/search_r1/llm_agent/__pycache__/__init__.cpython-312.pyc b/search_r1/llm_agent/__pycache__/__init__.cpython-312.pyc
+index e2c6cf3..b826973 100644
+Binary files a/search_r1/llm_agent/__pycache__/__init__.cpython-312.pyc and b/search_r1/llm_agent/__pycache__/__init__.cpython-312.pyc differ
+diff --git a/search_r1/llm_agent/__pycache__/generation_ts.cpython-312.pyc b/search_r1/llm_agent/__pycache__/generation_ts.cpython-312.pyc
+index 2da7fe1..f918654 100644
+Binary files a/search_r1/llm_agent/__pycache__/generation_ts.cpython-312.pyc and b/search_r1/llm_agent/__pycache__/generation_ts.cpython-312.pyc differ
+diff --git a/search_r1/llm_agent/__pycache__/tensor_helper.cpython-312.pyc b/search_r1/llm_agent/__pycache__/tensor_helper.cpython-312.pyc
+index b328132..f5b74fc 100644
+Binary files a/search_r1/llm_agent/__pycache__/tensor_helper.cpython-312.pyc and b/search_r1/llm_agent/__pycache__/tensor_helper.cpython-312.pyc differ
+diff --git a/search_r1/llm_agent/__pycache__/tree_node.cpython-312.pyc b/search_r1/llm_agent/__pycache__/tree_node.cpython-312.pyc
+index 807c0e7..dfc8706 100644
+Binary files a/search_r1/llm_agent/__pycache__/tree_node.cpython-312.pyc and b/search_r1/llm_agent/__pycache__/tree_node.cpython-312.pyc differ
+diff --git a/search_r1/llm_agent/generation_ts.py b/search_r1/llm_agent/generation_ts.py
+index 36e1930..b6f7bb8 100644
+--- a/search_r1/llm_agent/generation_ts.py
++++ b/search_r1/llm_agent/generation_ts.py
+@@ -24,11 +24,6 @@ import asyncio
+ 
+ from .tree_node import TreeNode, DEBUG, dprint
+ 
+-API_SECRET_KEY = ""
+-BASE_URL = ""
+-
+-os.environ["OPENAI_API_KEY"] = API_SECRET_KEY
+-os.environ["OPENAI_API_BASE"] = BASE_URL
+ 
+ 
+ class DummyRetriever(BaseRetriever):
+@@ -38,9 +33,12 @@ class DummyRetriever(BaseRetriever):
+         return self.docs
+ 
+ 
+-async_client = AsyncOpenAI(api_key=API_SECRET_KEY, base_url=BASE_URL)
++async_client = None
+ 
+ async def async_generator(model_name: str, prompt: str) -> str:
++    global async_client
++    if async_client is None:
++        async_client = AsyncOpenAI()
+     resp = await async_client.chat.completions.create(
+         model=model_name,
+         messages=[
+@@ -128,6 +126,10 @@ class LLMGenerationTreeSearchManager:
+         #     print("RESPONSES:", responses_str)
+         
+         responses = self._batch_tokenize(responses_str)
++        if responses.numel() == 0:
++            responses = responses.long()
++        elif responses.dtype != torch.long:
++            raise TypeError(f"Invalid response IDs: {responses.dtype}")
+         return responses, responses_str
+ 
+     def _process_next_obs(self, next_obs: List[str]) -> torch.Tensor:
+@@ -150,6 +152,10 @@ class LLMGenerationTreeSearchManager:
+             print(f"[WARNING] OBSERVATION TOO LONG, CONSIDER CHANGING YOUR CONFIG, {next_obs_ids.shape[1]} & {self.config.max_obs_length}")            
+             next_obs_ids = next_obs_ids[:, :self.config.max_obs_length]
+ 
++        if next_obs_ids.numel() == 0:
++            next_obs_ids = next_obs_ids.long()
++        elif next_obs_ids.dtype != torch.long:
++            raise TypeError(f"Invalid observation ID dtype: {next_obs_ids.dtype}")
+         return next_obs_ids
+ 
+     def _update_rolling_state(self, rollings: DataProto, cur_responses: torch.Tensor, 
+@@ -169,10 +175,55 @@ class LLMGenerationTreeSearchManager:
+         batch_size = rollings.batch['input_ids'].size(0)
+         cleaned_input_ids_list = []
+ 
++        # V100 reproduction: validate token ID types at the rolling-state boundary.
++        def checked_token_ids(ids, name):
++            if not isinstance(ids, torch.Tensor):
++                raise TypeError(f"{name}: expected Tensor, got {type(ids)}")
++
++            if ids.dtype in (torch.float16, torch.bfloat16):
++                raise TypeError(
++                    f"{name}: token IDs became {ids.dtype}; "
++                    "precision may have been lost upstream"
++                )
++
++            if ids.dtype.is_floating_point:
++                if not torch.isfinite(ids).all().item():
++                    raise ValueError(f"{name}: non-finite token IDs")
++                if not (ids == ids.round()).all().item():
++                    raise ValueError(f"{name}: fractional token IDs")
++
++            if ids.dtype == torch.bool:
++                raise TypeError(f"{name}: boolean token IDs")
++
++            if ids.numel():
++                if (ids.min().item() < 0 or
++                        ids.max().item() >= len(self.tokenizer)):
++                    raise ValueError(f"{name}: token ID outside vocabulary")
++
++            if ids.dtype != torch.long:
++                print(
++                    f"[TOKEN-ID FIX] {name}: {ids.dtype} -> torch.int64, "
++                    f"shape={tuple(ids.shape)}",
++                    flush=True,
++                )
++
++            return ids.long()
++
++        rollings.batch['input_ids'] = checked_token_ids(
++            rollings.batch['input_ids'], "rolling.input_ids"
++        )
++        cur_responses = checked_token_ids(
++            cur_responses, "cur_responses"
++        )
++        next_obs_ids = checked_token_ids(
++            next_obs_ids, "next_obs_ids"
++        )
++
+         # Step 1: Decode cur_responses to check if it ends with </retrieved_facts>
+         cur_resp_strs = self.tokenizer.batch_decode(cur_responses, skip_special_tokens=True)
+ 
+         # Decode current rolling input_ids for cleaning
++        print("[ROLLING DTYPE]", rollings.batch["input_ids"].dtype, flush=True)
+         rolling_strs = self.tokenizer.batch_decode(rollings.batch['input_ids'], skip_special_tokens=True)
+ 
+         for i in range(batch_size):
+diff --git a/verl/__pycache__/__init__.cpython-312.pyc b/verl/__pycache__/__init__.cpython-312.pyc
+index 212c6bc..a0fef3e 100644
+Binary files a/verl/__pycache__/__init__.cpython-312.pyc and b/verl/__pycache__/__init__.cpython-312.pyc differ
+diff --git a/verl/__pycache__/protocol.cpython-312.pyc b/verl/__pycache__/protocol.cpython-312.pyc
+index 7e98ab5..9ad76f7 100644
+Binary files a/verl/__pycache__/protocol.cpython-312.pyc and b/verl/__pycache__/protocol.cpython-312.pyc differ
+diff --git a/verl/models/__pycache__/__init__.cpython-312.pyc b/verl/models/__pycache__/__init__.cpython-312.pyc
+index c55dc14..88b911b 100644
+Binary files a/verl/models/__pycache__/__init__.cpython-312.pyc and b/verl/models/__pycache__/__init__.cpython-312.pyc differ
+diff --git a/verl/models/__pycache__/registry.cpython-312.pyc b/verl/models/__pycache__/registry.cpython-312.pyc
+index d1cdf9c..9477eea 100644
+Binary files a/verl/models/__pycache__/registry.cpython-312.pyc and b/verl/models/__pycache__/registry.cpython-312.pyc differ
+diff --git a/verl/single_controller/__pycache__/__init__.cpython-312.pyc b/verl/single_controller/__pycache__/__init__.cpython-312.pyc
+index 8644796..f9fd138 100644
+Binary files a/verl/single_controller/__pycache__/__init__.cpython-312.pyc and b/verl/single_controller/__pycache__/__init__.cpython-312.pyc differ
+diff --git a/verl/single_controller/base/__pycache__/__init__.cpython-312.pyc b/verl/single_controller/base/__pycache__/__init__.cpython-312.pyc
+index 4366e36..46077bc 100644
+Binary files a/verl/single_controller/base/__pycache__/__init__.cpython-312.pyc and b/verl/single_controller/base/__pycache__/__init__.cpython-312.pyc differ
+diff --git a/verl/single_controller/base/__pycache__/decorator.cpython-312.pyc b/verl/single_controller/base/__pycache__/decorator.cpython-312.pyc
+index 7dec3d8..4509c3f 100644
+Binary files a/verl/single_controller/base/__pycache__/decorator.cpython-312.pyc and b/verl/single_controller/base/__pycache__/decorator.cpython-312.pyc differ
+diff --git a/verl/single_controller/base/__pycache__/worker.cpython-312.pyc b/verl/single_controller/base/__pycache__/worker.cpython-312.pyc
+index ee461d4..5288775 100644
+Binary files a/verl/single_controller/base/__pycache__/worker.cpython-312.pyc and b/verl/single_controller/base/__pycache__/worker.cpython-312.pyc differ
+diff --git a/verl/single_controller/base/__pycache__/worker_group.cpython-312.pyc b/verl/single_controller/base/__pycache__/worker_group.cpython-312.pyc
+index 738bc2b..4b25b8e 100644
+Binary files a/verl/single_controller/base/__pycache__/worker_group.cpython-312.pyc and b/verl/single_controller/base/__pycache__/worker_group.cpython-312.pyc differ
+diff --git a/verl/single_controller/base/megatron/__pycache__/__init__.cpython-312.pyc b/verl/single_controller/base/megatron/__pycache__/__init__.cpython-312.pyc
+index f58715a..91b65a2 100644
+Binary files a/verl/single_controller/base/megatron/__pycache__/__init__.cpython-312.pyc and b/verl/single_controller/base/megatron/__pycache__/__init__.cpython-312.pyc differ
+diff --git a/verl/single_controller/base/megatron/__pycache__/worker.cpython-312.pyc b/verl/single_controller/base/megatron/__pycache__/worker.cpython-312.pyc
+index 3e37421..154ce5b 100644
+Binary files a/verl/single_controller/base/megatron/__pycache__/worker.cpython-312.pyc and b/verl/single_controller/base/megatron/__pycache__/worker.cpython-312.pyc differ
+diff --git a/verl/single_controller/base/megatron/__pycache__/worker_group.cpython-312.pyc b/verl/single_controller/base/megatron/__pycache__/worker_group.cpython-312.pyc
+index d8fe30f..2a51650 100644
+Binary files a/verl/single_controller/base/megatron/__pycache__/worker_group.cpython-312.pyc and b/verl/single_controller/base/megatron/__pycache__/worker_group.cpython-312.pyc differ
+diff --git a/verl/single_controller/base/register_center/__pycache__/__init__.cpython-312.pyc b/verl/single_controller/base/register_center/__pycache__/__init__.cpython-312.pyc
+index eaaf853..2f4648a 100644
+Binary files a/verl/single_controller/base/register_center/__pycache__/__init__.cpython-312.pyc and b/verl/single_controller/base/register_center/__pycache__/__init__.cpython-312.pyc differ
+diff --git a/verl/single_controller/base/register_center/__pycache__/ray.cpython-312.pyc b/verl/single_controller/base/register_center/__pycache__/ray.cpython-312.pyc
+index 2ced1e0..37977cd 100644
+Binary files a/verl/single_controller/base/register_center/__pycache__/ray.cpython-312.pyc and b/verl/single_controller/base/register_center/__pycache__/ray.cpython-312.pyc differ
+diff --git a/verl/single_controller/ray/__pycache__/__init__.cpython-312.pyc b/verl/single_controller/ray/__pycache__/__init__.cpython-312.pyc
+index 7482915..8ba3a5c 100644
+Binary files a/verl/single_controller/ray/__pycache__/__init__.cpython-312.pyc and b/verl/single_controller/ray/__pycache__/__init__.cpython-312.pyc differ
+diff --git a/verl/single_controller/ray/__pycache__/base.cpython-312.pyc b/verl/single_controller/ray/__pycache__/base.cpython-312.pyc
+index 272a07e..b5f201e 100644
+Binary files a/verl/single_controller/ray/__pycache__/base.cpython-312.pyc and b/verl/single_controller/ray/__pycache__/base.cpython-312.pyc differ
+diff --git a/verl/single_controller/ray/__pycache__/megatron.cpython-312.pyc b/verl/single_controller/ray/__pycache__/megatron.cpython-312.pyc
+index 03678bd..e4d25d1 100644
+Binary files a/verl/single_controller/ray/__pycache__/megatron.cpython-312.pyc and b/verl/single_controller/ray/__pycache__/megatron.cpython-312.pyc differ
+diff --git a/verl/third_party/__pycache__/__init__.cpython-312.pyc b/verl/third_party/__pycache__/__init__.cpython-312.pyc
+index 4775694..0a3238f 100644
+Binary files a/verl/third_party/__pycache__/__init__.cpython-312.pyc and b/verl/third_party/__pycache__/__init__.cpython-312.pyc differ
+diff --git a/verl/third_party/vllm/__pycache__/__init__.cpython-312.pyc b/verl/third_party/vllm/__pycache__/__init__.cpython-312.pyc
+index c89f76b..0f56349 100644
+Binary files a/verl/third_party/vllm/__pycache__/__init__.cpython-312.pyc and b/verl/third_party/vllm/__pycache__/__init__.cpython-312.pyc differ
+diff --git a/verl/third_party/vllm/vllm_spmd/__pycache__/__init__.cpython-312.pyc b/verl/third_party/vllm/vllm_spmd/__pycache__/__init__.cpython-312.pyc
+index d969522..e15d731 100644
+Binary files a/verl/third_party/vllm/vllm_spmd/__pycache__/__init__.cpython-312.pyc and b/verl/third_party/vllm/vllm_spmd/__pycache__/__init__.cpython-312.pyc differ
+diff --git a/verl/third_party/vllm/vllm_spmd/__pycache__/dtensor_weight_loaders.cpython-312.pyc b/verl/third_party/vllm/vllm_spmd/__pycache__/dtensor_weight_loaders.cpython-312.pyc
+index c881eba..65d0261 100644
+Binary files a/verl/third_party/vllm/vllm_spmd/__pycache__/dtensor_weight_loaders.cpython-312.pyc and b/verl/third_party/vllm/vllm_spmd/__pycache__/dtensor_weight_loaders.cpython-312.pyc differ
+diff --git a/verl/trainer/__pycache__/__init__.cpython-312.pyc b/verl/trainer/__pycache__/__init__.cpython-312.pyc
+index 7ec757e..024b652 100644
+Binary files a/verl/trainer/__pycache__/__init__.cpython-312.pyc and b/verl/trainer/__pycache__/__init__.cpython-312.pyc differ
+diff --git a/verl/trainer/__pycache__/main_ppo_format_ts.cpython-312.pyc b/verl/trainer/__pycache__/main_ppo_format_ts.cpython-312.pyc
+index c8f19a6..1b65a88 100644
+Binary files a/verl/trainer/__pycache__/main_ppo_format_ts.cpython-312.pyc and b/verl/trainer/__pycache__/main_ppo_format_ts.cpython-312.pyc differ
+diff --git a/verl/trainer/main_ppo_format_ts.py b/verl/trainer/main_ppo_format_ts.py
+index 457a031..2dbf995 100644
+--- a/verl/trainer/main_ppo_format_ts.py
++++ b/verl/trainer/main_ppo_format_ts.py
+@@ -180,12 +180,12 @@ def main(config):
+     if not ray.is_initialized():
+         # this is for local ray cluster
+         print("Ray is not initialized! run ray.init()...")
+-        ray.init(runtime_env={'env_vars': {'TOKENIZERS_PARALLELISM': 'true', 'NCCL_DEBUG': 'WARN'}})
++        ray.init(runtime_env={'env_vars': {'TOKENIZERS_PARALLELISM': 'true', 'NCCL_DEBUG': 'WARN', 'NCCL_P2P_DISABLE': '1'}})
+     print("Ray already initialized. Get remote ...")
+     ray.get(main_task.remote(config))
+ 
+ 
+-@ray.remote
++@ray.remote(max_retries=0)
+ def main_task(config):
+     from verl.utils.fs import copy_local_path_from_hdfs
+     from transformers import AutoTokenizer
+@@ -229,7 +229,7 @@ def main_task(config):
+         Role.RefPolicy: ray.remote(ActorRolloutRefWorker),
+     }
+ 
+-    global_pool_id = 'global_pool'
++    global_pool_id = 'global_pool_' + __import__('uuid').uuid4().hex[:12]
+     resource_pool_spec = {
+         global_pool_id: [config.trainer.n_gpus_per_node] * config.trainer.nnodes,
+     }
+diff --git a/verl/trainer/ppo/__pycache__/__init__.cpython-312.pyc b/verl/trainer/ppo/__pycache__/__init__.cpython-312.pyc
+index 1eb2cd2..65d29b8 100644
+Binary files a/verl/trainer/ppo/__pycache__/__init__.cpython-312.pyc and b/verl/trainer/ppo/__pycache__/__init__.cpython-312.pyc differ
+diff --git a/verl/trainer/ppo/__pycache__/core_algos.cpython-312.pyc b/verl/trainer/ppo/__pycache__/core_algos.cpython-312.pyc
+index 9194b6c..318b24b 100644
+Binary files a/verl/trainer/ppo/__pycache__/core_algos.cpython-312.pyc and b/verl/trainer/ppo/__pycache__/core_algos.cpython-312.pyc differ
+diff --git a/verl/trainer/ppo/__pycache__/ray_trainer_ts.cpython-312.pyc b/verl/trainer/ppo/__pycache__/ray_trainer_ts.cpython-312.pyc
+index 6219677..f566cc7 100644
+Binary files a/verl/trainer/ppo/__pycache__/ray_trainer_ts.cpython-312.pyc and b/verl/trainer/ppo/__pycache__/ray_trainer_ts.cpython-312.pyc differ
+diff --git a/verl/trainer/ppo/ray_trainer_ts.py b/verl/trainer/ppo/ray_trainer_ts.py
+index b4a3b4b..aa33b24 100644
+--- a/verl/trainer/ppo/ray_trainer_ts.py
++++ b/verl/trainer/ppo/ray_trainer_ts.py
+@@ -42,7 +42,6 @@ from verl.utils.seqlen_balancing import get_seqlen_balanced_partitions, log_seql
+ import re
+ import shutil
+ from search_r1.llm_agent.generation_ts import LLMGenerationTreeSearchManager, GenerationTreeSearchConfig
+-from search_r1.llm_agent.generation import LLMGenerationManager, GenerationConfig
+ 
+ WorkerType = Type[Worker]
+ 
+@@ -767,19 +766,24 @@ class RayPPOTrainer(object):
+ 
+         metric_dict.update(extra_metric_dict)
+ 
+-        metric_readout_dict={}
+-        for metric_name in metric_dict.keys():
+-            # e.g., root = 'val/test_score/'
+-            root = '/'.join(metric_name.split('/')[:-1])
+-            root_single = f'{root}/single'
+-            root_multi = f'{root}/multi'
+-            root_mean = f'{root}/mean'
+-            if root_mean not in metric_readout_dict:
+-                metric_readout_dict[root_mean] = np.mean([metric_dict[f'{root}/{data_source}'] for data_source in ALL_DATA_SOURCES])
+-            if root_single not in metric_readout_dict:
+-                metric_readout_dict[root_single] = np.mean([metric_dict[f'{root}/{data_source}'] for data_source in SINGLE_DATA_SOURCES])
+-            if root_multi not in metric_readout_dict:
+-                metric_readout_dict[root_multi] = np.mean([metric_dict[f'{root}/{data_source}'] for data_source in MULTI_DATA_SOURCES])
++        metric_readout_dict = {}
++        groups = {
++            'mean': ALL_DATA_SOURCES,
++            'single': SINGLE_DATA_SOURCES,
++            'multi': MULTI_DATA_SOURCES,
++        }
++        roots = {key.rsplit('/', 1)[0] for key in metric_dict}
++        for root in roots:
++            for group, sources in groups.items():
++                values = [
++                    metric_dict[f'{root}/{ds}']
++                    for ds in sources
++                    if f'{root}/{ds}' in metric_dict
++                ]
++                if not values:
++                    continue
++                suffix = group if len(values) == len(sources) else group + '_observed'
++                metric_readout_dict[f'{root}/{suffix}'] = float(np.mean(values))
+         metric_dict.update(metric_readout_dict)
+ 
+         return metric_dict
+@@ -1141,12 +1145,12 @@ class RayPPOTrainer(object):
+                 metrics.update(compute_timing_metrics(batch=batch, timing_raw=timing_raw))
+                 print(self.global_steps, metrics)
+ 
+-                if metrics['critic/rewards/mean'] > self.best_reward:
++                if not self.config.trainer.get('smoke_skip_saving', False) and metrics['critic/rewards/mean'] > self.best_reward:
+                     with _timer('save_best_checkpoint', timing_raw):
+                         self._save_checkpoint_best()
+                     self.best_reward = max(self.best_reward, metrics['critic/rewards/mean'])
+ 
+-                if 'val/test_score/mean' in metrics and metrics['val/test_score/mean'] > self.best_val:
++                if not self.config.trainer.get('smoke_skip_saving', False) and 'val/test_score/mean' in metrics and metrics['val/test_score/mean'] > self.best_val:
+                     with _timer('save_best_checkpoint', timing_raw):
+                         self._save_checkpoint_best_val()
+                     self.best_val = max(self.best_val, metrics['val/test_score/mean'])
+@@ -1157,6 +1161,9 @@ class RayPPOTrainer(object):
+                 self.global_steps += 1
+ 
+                 if self.global_steps >= self.total_training_steps:
++                    if self.config.trainer.get('smoke_skip_saving', False):
++                        print('SMOKE_STEP_FINISHED_NO_CHECKPOINT', flush=True)
++                        return
+ 
+                     # perform validation after training
+                     if self.val_reward_fn is not None:
+diff --git a/verl/utils/__pycache__/__init__.cpython-312.pyc b/verl/utils/__pycache__/__init__.cpython-312.pyc
+index f0fb731..9203eeb 100644
+Binary files a/verl/utils/__pycache__/__init__.cpython-312.pyc and b/verl/utils/__pycache__/__init__.cpython-312.pyc differ
+diff --git a/verl/utils/__pycache__/flops_counter.cpython-312.pyc b/verl/utils/__pycache__/flops_counter.cpython-312.pyc
+index 49acb6d..cd17338 100644
+Binary files a/verl/utils/__pycache__/flops_counter.cpython-312.pyc and b/verl/utils/__pycache__/flops_counter.cpython-312.pyc differ
+diff --git a/verl/utils/__pycache__/fs.cpython-312.pyc b/verl/utils/__pycache__/fs.cpython-312.pyc
+index 17653c0..f25ed6e 100644
+Binary files a/verl/utils/__pycache__/fs.cpython-312.pyc and b/verl/utils/__pycache__/fs.cpython-312.pyc differ
+diff --git a/verl/utils/__pycache__/fsdp_utils.cpython-312.pyc b/verl/utils/__pycache__/fsdp_utils.cpython-312.pyc
+index 0cfdcca..08263b9 100644
+Binary files a/verl/utils/__pycache__/fsdp_utils.cpython-312.pyc and b/verl/utils/__pycache__/fsdp_utils.cpython-312.pyc differ
+diff --git a/verl/utils/__pycache__/hdfs_io.cpython-312.pyc b/verl/utils/__pycache__/hdfs_io.cpython-312.pyc
+index 17192cc..ac31efc 100644
+Binary files a/verl/utils/__pycache__/hdfs_io.cpython-312.pyc and b/verl/utils/__pycache__/hdfs_io.cpython-312.pyc differ
+diff --git a/verl/utils/__pycache__/import_utils.cpython-312.pyc b/verl/utils/__pycache__/import_utils.cpython-312.pyc
+index 573724a..e9d7dfe 100644
+Binary files a/verl/utils/__pycache__/import_utils.cpython-312.pyc and b/verl/utils/__pycache__/import_utils.cpython-312.pyc differ
+diff --git a/verl/utils/__pycache__/logging_utils.cpython-312.pyc b/verl/utils/__pycache__/logging_utils.cpython-312.pyc
+index 0cef4de..37a6416 100644
+Binary files a/verl/utils/__pycache__/logging_utils.cpython-312.pyc and b/verl/utils/__pycache__/logging_utils.cpython-312.pyc differ
+diff --git a/verl/utils/__pycache__/model.cpython-312.pyc b/verl/utils/__pycache__/model.cpython-312.pyc
+index bae357d..cb9a668 100644
+Binary files a/verl/utils/__pycache__/model.cpython-312.pyc and b/verl/utils/__pycache__/model.cpython-312.pyc differ
+diff --git a/verl/utils/__pycache__/py_functional.cpython-312.pyc b/verl/utils/__pycache__/py_functional.cpython-312.pyc
+index 4b368d0..af5e13f 100644
+Binary files a/verl/utils/__pycache__/py_functional.cpython-312.pyc and b/verl/utils/__pycache__/py_functional.cpython-312.pyc differ
+diff --git a/verl/utils/__pycache__/seqlen_balancing.cpython-312.pyc b/verl/utils/__pycache__/seqlen_balancing.cpython-312.pyc
+index 0704086..d701629 100644
+Binary files a/verl/utils/__pycache__/seqlen_balancing.cpython-312.pyc and b/verl/utils/__pycache__/seqlen_balancing.cpython-312.pyc differ
+diff --git a/verl/utils/__pycache__/tokenizer.cpython-312.pyc b/verl/utils/__pycache__/tokenizer.cpython-312.pyc
+index 3376f93..3fcf569 100644
+Binary files a/verl/utils/__pycache__/tokenizer.cpython-312.pyc and b/verl/utils/__pycache__/tokenizer.cpython-312.pyc differ
+diff --git a/verl/utils/__pycache__/torch_dtypes.cpython-312.pyc b/verl/utils/__pycache__/torch_dtypes.cpython-312.pyc
+index e3851ab..0cdea06 100644
+Binary files a/verl/utils/__pycache__/torch_dtypes.cpython-312.pyc and b/verl/utils/__pycache__/torch_dtypes.cpython-312.pyc differ
+diff --git a/verl/utils/__pycache__/torch_functional.cpython-312.pyc b/verl/utils/__pycache__/torch_functional.cpython-312.pyc
+index d919c62..3c1c774 100644
+Binary files a/verl/utils/__pycache__/torch_functional.cpython-312.pyc and b/verl/utils/__pycache__/torch_functional.cpython-312.pyc differ
+diff --git a/verl/utils/__pycache__/tracking.cpython-312.pyc b/verl/utils/__pycache__/tracking.cpython-312.pyc
+index 8ed7939..427fd9d 100644
+Binary files a/verl/utils/__pycache__/tracking.cpython-312.pyc and b/verl/utils/__pycache__/tracking.cpython-312.pyc differ
+diff --git a/verl/utils/__pycache__/ulysses.cpython-312.pyc b/verl/utils/__pycache__/ulysses.cpython-312.pyc
+index 8e35941..f3162ab 100644
+Binary files a/verl/utils/__pycache__/ulysses.cpython-312.pyc and b/verl/utils/__pycache__/ulysses.cpython-312.pyc differ
+diff --git a/verl/utils/checkpoint/__pycache__/__init__.cpython-312.pyc b/verl/utils/checkpoint/__pycache__/__init__.cpython-312.pyc
+index 6d423c6..d8fa05c 100644
+Binary files a/verl/utils/checkpoint/__pycache__/__init__.cpython-312.pyc and b/verl/utils/checkpoint/__pycache__/__init__.cpython-312.pyc differ
+diff --git a/verl/utils/checkpoint/__pycache__/checkpoint_manager.cpython-312.pyc b/verl/utils/checkpoint/__pycache__/checkpoint_manager.cpython-312.pyc
+index a813c25..2f11133 100644
+Binary files a/verl/utils/checkpoint/__pycache__/checkpoint_manager.cpython-312.pyc and b/verl/utils/checkpoint/__pycache__/checkpoint_manager.cpython-312.pyc differ
+diff --git a/verl/utils/checkpoint/__pycache__/fsdp_checkpoint_manager.cpython-312.pyc b/verl/utils/checkpoint/__pycache__/fsdp_checkpoint_manager.cpython-312.pyc
+index 075af60..f5d4775 100644
+Binary files a/verl/utils/checkpoint/__pycache__/fsdp_checkpoint_manager.cpython-312.pyc and b/verl/utils/checkpoint/__pycache__/fsdp_checkpoint_manager.cpython-312.pyc differ
+diff --git a/verl/utils/dataset/__pycache__/__init__.cpython-312.pyc b/verl/utils/dataset/__pycache__/__init__.cpython-312.pyc
+index 70cba73..18af83e 100644
+Binary files a/verl/utils/dataset/__pycache__/__init__.cpython-312.pyc and b/verl/utils/dataset/__pycache__/__init__.cpython-312.pyc differ
+diff --git a/verl/utils/dataset/__pycache__/rl_dataset.cpython-312.pyc b/verl/utils/dataset/__pycache__/rl_dataset.cpython-312.pyc
+index 13ba414..2215e25 100644
+Binary files a/verl/utils/dataset/__pycache__/rl_dataset.cpython-312.pyc and b/verl/utils/dataset/__pycache__/rl_dataset.cpython-312.pyc differ
+diff --git a/verl/utils/dataset/__pycache__/rm_dataset.cpython-312.pyc b/verl/utils/dataset/__pycache__/rm_dataset.cpython-312.pyc
+index 6af1070..af9f605 100644
+Binary files a/verl/utils/dataset/__pycache__/rm_dataset.cpython-312.pyc and b/verl/utils/dataset/__pycache__/rm_dataset.cpython-312.pyc differ
+diff --git a/verl/utils/debug/__pycache__/__init__.cpython-312.pyc b/verl/utils/debug/__pycache__/__init__.cpython-312.pyc
+index 4a179a3..f45716b 100644
+Binary files a/verl/utils/debug/__pycache__/__init__.cpython-312.pyc and b/verl/utils/debug/__pycache__/__init__.cpython-312.pyc differ
+diff --git a/verl/utils/debug/__pycache__/performance.cpython-312.pyc b/verl/utils/debug/__pycache__/performance.cpython-312.pyc
+index b4a4491..b9acd56 100644
+Binary files a/verl/utils/debug/__pycache__/performance.cpython-312.pyc and b/verl/utils/debug/__pycache__/performance.cpython-312.pyc differ
+diff --git a/verl/utils/logger/__pycache__/__init__.cpython-312.pyc b/verl/utils/logger/__pycache__/__init__.cpython-312.pyc
+index 40a352c..2a31c38 100644
+Binary files a/verl/utils/logger/__pycache__/__init__.cpython-312.pyc and b/verl/utils/logger/__pycache__/__init__.cpython-312.pyc differ
+diff --git a/verl/utils/logger/__pycache__/aggregate_logger.cpython-312.pyc b/verl/utils/logger/__pycache__/aggregate_logger.cpython-312.pyc
+index a5069ae..c77db8b 100644
+Binary files a/verl/utils/logger/__pycache__/aggregate_logger.cpython-312.pyc and b/verl/utils/logger/__pycache__/aggregate_logger.cpython-312.pyc differ
+diff --git a/verl/utils/reward_score/__pycache__/__init__.cpython-312.pyc b/verl/utils/reward_score/__pycache__/__init__.cpython-312.pyc
+index 4ce92e4..f773f06 100644
+Binary files a/verl/utils/reward_score/__pycache__/__init__.cpython-312.pyc and b/verl/utils/reward_score/__pycache__/__init__.cpython-312.pyc differ
+diff --git a/verl/utils/reward_score/__pycache__/qa_em.cpython-312.pyc b/verl/utils/reward_score/__pycache__/qa_em.cpython-312.pyc
+index 8575f06..febaa7a 100644
+Binary files a/verl/utils/reward_score/__pycache__/qa_em.cpython-312.pyc and b/verl/utils/reward_score/__pycache__/qa_em.cpython-312.pyc differ
+diff --git a/verl/utils/reward_score/__pycache__/qa_em_format.cpython-312.pyc b/verl/utils/reward_score/__pycache__/qa_em_format.cpython-312.pyc
+index db5d687..efb1676 100644
+Binary files a/verl/utils/reward_score/__pycache__/qa_em_format.cpython-312.pyc and b/verl/utils/reward_score/__pycache__/qa_em_format.cpython-312.pyc differ
+diff --git a/verl/utils/reward_score/__pycache__/qa_f1_format.cpython-312.pyc b/verl/utils/reward_score/__pycache__/qa_f1_format.cpython-312.pyc
+index f90a1f7..1464a4d 100644
+Binary files a/verl/utils/reward_score/__pycache__/qa_f1_format.cpython-312.pyc and b/verl/utils/reward_score/__pycache__/qa_f1_format.cpython-312.pyc differ
+diff --git a/verl/utils/reward_score/qa_em_format.py b/verl/utils/reward_score/qa_em_format.py
+index 47db444..866036c 100644
+--- a/verl/utils/reward_score/qa_em_format.py
++++ b/verl/utils/reward_score/qa_em_format.py
+@@ -16,6 +16,7 @@ import re
+ import string
+ import random
+ from collections import Counter
++from .qa_em2 import vocab_overlap_reward
+ 
+ def normalize_answer(s):
+     def remove_articles(text):
+diff --git a/verl/workers/__pycache__/__init__.cpython-312.pyc b/verl/workers/__pycache__/__init__.cpython-312.pyc
+index 8e55997..dcb67aa 100644
+Binary files a/verl/workers/__pycache__/__init__.cpython-312.pyc and b/verl/workers/__pycache__/__init__.cpython-312.pyc differ
+diff --git a/verl/workers/__pycache__/fsdp_workers.cpython-312.pyc b/verl/workers/__pycache__/fsdp_workers.cpython-312.pyc
+index 906a576..7db0ccc 100644
+Binary files a/verl/workers/__pycache__/fsdp_workers.cpython-312.pyc and b/verl/workers/__pycache__/fsdp_workers.cpython-312.pyc differ
+diff --git a/verl/workers/actor/__pycache__/__init__.cpython-312.pyc b/verl/workers/actor/__pycache__/__init__.cpython-312.pyc
+index 34b4a4c..ec9c2f8 100644
+Binary files a/verl/workers/actor/__pycache__/__init__.cpython-312.pyc and b/verl/workers/actor/__pycache__/__init__.cpython-312.pyc differ
+diff --git a/verl/workers/actor/__pycache__/base.cpython-312.pyc b/verl/workers/actor/__pycache__/base.cpython-312.pyc
+index 5513db2..77d27d2 100644
+Binary files a/verl/workers/actor/__pycache__/base.cpython-312.pyc and b/verl/workers/actor/__pycache__/base.cpython-312.pyc differ
+diff --git a/verl/workers/actor/__pycache__/dp_actor.cpython-312.pyc b/verl/workers/actor/__pycache__/dp_actor.cpython-312.pyc
+index d85d674..254ea3e 100644
+Binary files a/verl/workers/actor/__pycache__/dp_actor.cpython-312.pyc and b/verl/workers/actor/__pycache__/dp_actor.cpython-312.pyc differ
+diff --git a/verl/workers/actor/dp_actor.py b/verl/workers/actor/dp_actor.py
+index e7f24c7..bc3a0e8 100644
+--- a/verl/workers/actor/dp_actor.py
++++ b/verl/workers/actor/dp_actor.py
+@@ -31,7 +31,10 @@ from verl.utils.ulysses import ulysses_pad_and_slice_inputs, gather_outpus_and_u
+ from verl.utils.seqlen_balancing import rearrange_micro_batches, get_reverse_idx
+ import verl.utils.torch_functional as verl_F
+ 
+-from flash_attn.bert_padding import pad_input, unpad_input, rearrange, index_first_axis
++try:
++    from flash_attn.bert_padding import pad_input, unpad_input, rearrange, index_first_axis
++except ImportError:
++    pad_input = unpad_input = rearrange = index_first_axis = None
+ 
+ __all__ = ['DataParallelPPOActor']
+ 
+@@ -63,7 +66,7 @@ class DataParallelPPOActor(BasePPOActor):
+         """
+         response_length = micro_batch["responses"].size(-1)
+ 
+-        with torch.autocast(device_type='cuda', dtype=torch.bfloat16):
++        with torch.autocast(device_type='cuda', dtype=torch.float16):
+             input_ids = micro_batch["input_ids"]
+             batch_size, seqlen = input_ids.shape
+             attention_mask = micro_batch["attention_mask"]
+@@ -74,6 +77,11 @@ class DataParallelPPOActor(BasePPOActor):
+                 position_ids = position_ids.transpose(0, 1)  # (bsz, 3, seqlen) -> (3, bsz, seqlen)
+ 
+             if self.use_remove_padding:
++                if unpad_input is None:
++                    raise RuntimeError(
++                        "Remove Padding requires flash_attn; "
++                        "set use_remove_padding=false on V100."
++                    )
+                 input_ids_rmpad, indices, *_ = unpad_input(input_ids.unsqueeze(-1), attention_mask)  # input_ids_rmpad (total_nnz, ...)
+                 input_ids_rmpad = input_ids_rmpad.transpose(0, 1)  # (1, total_nnz)
+ 
+diff --git a/verl/workers/critic/dp_critic.py b/verl/workers/critic/dp_critic.py
+index 199fd71..9119f7f 100644
+--- a/verl/workers/critic/dp_critic.py
++++ b/verl/workers/critic/dp_critic.py
+@@ -31,7 +31,10 @@ from verl.utils.torch_functional import masked_mean
+ from verl.utils.ulysses import ulysses_pad_and_slice_inputs, gather_outpus_and_unpad
+ from verl.utils.seqlen_balancing import rearrange_micro_batches, get_reverse_idx
+ 
+-from flash_attn.bert_padding import pad_input, unpad_input, rearrange, index_first_axis
++try:
++    from flash_attn.bert_padding import pad_input, unpad_input, rearrange, index_first_axis
++except ImportError:
++    pad_input = unpad_input = rearrange = index_first_axis = None
+ 
+ __all__ = ['DataParallelPPOCritic']
+ 
+@@ -52,13 +55,18 @@ class DataParallelPPOCritic(BasePPOCritic):
+ 
+     def _forward_micro_batch(self, micro_batch):
+         response_length = micro_batch['responses'].size(-1)
+-        with torch.autocast(device_type='cuda', dtype=torch.bfloat16):
++        with torch.autocast(device_type='cuda', dtype=torch.float16):
+             input_ids = micro_batch['input_ids']
+             batch, seqlen = input_ids.shape
+             attention_mask = micro_batch['attention_mask']
+             position_ids = micro_batch['position_ids']
+ 
+             if self.use_remove_padding:
++                if unpad_input is None:
++                    raise RuntimeError(
++                        "Remove Padding requires flash_attn; "
++                        "set use_remove_padding=false on V100."
++                    )
+                 input_ids_rmpad, indices, *_ = unpad_input(input_ids.unsqueeze(-1),
+                                                            attention_mask)  # input_ids_rmpad (total_nnz, ...)
+                 input_ids_rmpad = input_ids_rmpad.transpose(0, 1)  # (1, total_nnz)
+diff --git a/verl/workers/fsdp_workers.py b/verl/workers/fsdp_workers.py
+index 18e329a..d018148 100644
+--- a/verl/workers/fsdp_workers.py
++++ b/verl/workers/fsdp_workers.py
+@@ -153,22 +153,24 @@ class ActorRolloutRefWorker(Worker):
+             self._config_rollout_log_prob_micro_batch_size = self.config.rollout.log_prob_micro_batch_size
+             print(f"before normalize, \
+                     rollout.log_prob_micro_batch_size={self.config.rollout.log_prob_micro_batch_size}")
+-            self.config.rollout.log_prob_micro_batch_size //= (self.device_mesh.shape[0] //
+-                                                               self.ulysses_sequence_parallel_size)
+             if self.config.rollout.tree_search:
+                 self.config.rollout.log_prob_micro_batch_size *= self.config.rollout.ts_m * self.config.rollout.ts_k // 2
+             else:
+                 self.config.rollout.log_prob_micro_batch_size *= self.config.rollout.n_agent
++            self.config.rollout.log_prob_micro_batch_size //= (self.device_mesh.shape[0] //
++                                                               self.ulysses_sequence_parallel_size)
++            assert self.config.rollout.log_prob_micro_batch_size >= 1, "rollout micro-batch must be >= 1"
+             print(f"rollout log_prob_micro_batch_size={self.config.rollout.log_prob_micro_batch_size}")
+         # normalize ref config
+         if self._is_ref and self.config.ref.log_prob_micro_batch_size is not None:
+             self._config_ref_log_prob_micro_batch_size = self.config.ref.log_prob_micro_batch_size
+-            self.config.ref.log_prob_micro_batch_size //= (self.device_mesh.shape[0] //
+-                                                           self.ulysses_sequence_parallel_size)
+             if self.config.rollout.tree_search:
+                 self.config.ref.log_prob_micro_batch_size *= self.config.rollout.ts_m * self.config.rollout.ts_k // 2
+             else:
+                 self.config.ref.log_prob_micro_batch_size *= self.config.rollout.n_agent
++            self.config.ref.log_prob_micro_batch_size //= (self.device_mesh.shape[0] //
++                                                           self.ulysses_sequence_parallel_size)
++            assert self.config.ref.log_prob_micro_batch_size >= 1, "ref micro-batch must be >= 1"
+             print(f"ref log_prob_micro_batch_size={self.config.ref.log_prob_micro_batch_size}")
+ 
+     @register(dispatch_mode=Dispatch.ONE_TO_ALL)
+@@ -280,7 +282,7 @@ class ActorRolloutRefWorker(Worker):
+             actor_module = AutoModelForCausalLM.from_pretrained(pretrained_model_name_or_path=local_path,
+                                                                 torch_dtype=torch_dtype,
+                                                                 config=actor_model_config,
+-                                                                attn_implementation='flash_attention_2',
++                                                                attn_implementation='sdpa',
+                                                                 trust_remote_code=trust_remote_code)
+             # Apply Liger kernel to the model if use_liger is set to True
+             if use_liger:
+@@ -326,7 +328,7 @@ class ActorRolloutRefWorker(Worker):
+         # TODO: add transformer policy
+         # We force reference policy to use CPUOffload to save memory.
+         # We force turn off CPUOffload for actor because it causes incorrect results when using grad accumulation
+-        cpu_offload = None if role == 'actor' else CPUOffload(offload_params=True)
++        cpu_offload = None if (role == 'actor' or (role == 'ref' and fsdp_config.get('ref_gpu_resident', False))) else CPUOffload(offload_params=True)
+         actor_module_fsdp = FSDP(
+             actor_module,
+             cpu_offload=cpu_offload,
+@@ -797,7 +799,7 @@ class CriticWorker(Worker):
+             critic_module = AutoModelForTokenClassification.from_pretrained(pretrained_model_name_or_path=local_path,
+                                                                             torch_dtype=torch_dtype,
+                                                                             config=critic_model_config,
+-                                                                            attn_implementation='flash_attention_2',
++                                                                            attn_implementation='sdpa',
+                                                                             trust_remote_code=trust_remote_code)
+ 
+             # some parameters may not in torch_dtype
+@@ -1083,7 +1085,7 @@ class RewardModelWorker(Worker):
+             reward_module = AutoModelForTokenClassification.from_pretrained(pretrained_model_name_or_path=local_path,
+                                                                             config=model_config,
+                                                                             torch_dtype=torch.bfloat16,
+-                                                                            attn_implementation='flash_attention_2',
++                                                                            attn_implementation='sdpa',
+                                                                             trust_remote_code=trust_remote_code)
+             reward_module.to(torch.bfloat16)
+         auto_wrap_policy = get_fsdp_wrap_policy(module=reward_module, config=self.config.model.fsdp_config)
+diff --git a/verl/workers/rollout/__pycache__/__init__.cpython-312.pyc b/verl/workers/rollout/__pycache__/__init__.cpython-312.pyc
+index fb6ce69..7f910fd 100644
+Binary files a/verl/workers/rollout/__pycache__/__init__.cpython-312.pyc and b/verl/workers/rollout/__pycache__/__init__.cpython-312.pyc differ
+diff --git a/verl/workers/rollout/__pycache__/base.cpython-312.pyc b/verl/workers/rollout/__pycache__/base.cpython-312.pyc
+index a48bbed..0914465 100644
+Binary files a/verl/workers/rollout/__pycache__/base.cpython-312.pyc and b/verl/workers/rollout/__pycache__/base.cpython-312.pyc differ
+diff --git a/verl/workers/rollout/__pycache__/hf_rollout.cpython-312.pyc b/verl/workers/rollout/__pycache__/hf_rollout.cpython-312.pyc
+index b9480cf..01f737b 100644
+Binary files a/verl/workers/rollout/__pycache__/hf_rollout.cpython-312.pyc and b/verl/workers/rollout/__pycache__/hf_rollout.cpython-312.pyc differ
+diff --git a/verl/workers/rollout/naive/__pycache__/__init__.cpython-312.pyc b/verl/workers/rollout/naive/__pycache__/__init__.cpython-312.pyc
+index 4bc53c8..ce06808 100644
+Binary files a/verl/workers/rollout/naive/__pycache__/__init__.cpython-312.pyc and b/verl/workers/rollout/naive/__pycache__/__init__.cpython-312.pyc differ
+diff --git a/verl/workers/rollout/naive/__pycache__/naive_rollout.cpython-312.pyc b/verl/workers/rollout/naive/__pycache__/naive_rollout.cpython-312.pyc
+index 4b92b5a..205afc0 100644
+Binary files a/verl/workers/rollout/naive/__pycache__/naive_rollout.cpython-312.pyc and b/verl/workers/rollout/naive/__pycache__/naive_rollout.cpython-312.pyc differ
+diff --git a/verl/workers/rollout/vllm_rollout/__pycache__/__init__.cpython-312.pyc b/verl/workers/rollout/vllm_rollout/__pycache__/__init__.cpython-312.pyc
+index a4ede1b..61ec6ac 100644
+Binary files a/verl/workers/rollout/vllm_rollout/__pycache__/__init__.cpython-312.pyc and b/verl/workers/rollout/vllm_rollout/__pycache__/__init__.cpython-312.pyc differ
+diff --git a/verl/workers/rollout/vllm_rollout/__pycache__/vllm_rollout_spmd.cpython-312.pyc b/verl/workers/rollout/vllm_rollout/__pycache__/vllm_rollout_spmd.cpython-312.pyc
+index 1c418e0..ba7279b 100644
+Binary files a/verl/workers/rollout/vllm_rollout/__pycache__/vllm_rollout_spmd.cpython-312.pyc and b/verl/workers/rollout/vllm_rollout/__pycache__/vllm_rollout_spmd.cpython-312.pyc differ
+diff --git a/verl/workers/rollout/vllm_rollout/__pycache__/vllm_rollout_spmd_ts.cpython-312.pyc b/verl/workers/rollout/vllm_rollout/__pycache__/vllm_rollout_spmd_ts.cpython-312.pyc
+index 9c29297..c5786d6 100644
+Binary files a/verl/workers/rollout/vllm_rollout/__pycache__/vllm_rollout_spmd_ts.cpython-312.pyc and b/verl/workers/rollout/vllm_rollout/__pycache__/vllm_rollout_spmd_ts.cpython-312.pyc differ
+diff --git a/verl/workers/sharding_manager/__pycache__/__init__.cpython-312.pyc b/verl/workers/sharding_manager/__pycache__/__init__.cpython-312.pyc
+index eb9caf2..7c8c154 100644
+Binary files a/verl/workers/sharding_manager/__pycache__/__init__.cpython-312.pyc and b/verl/workers/sharding_manager/__pycache__/__init__.cpython-312.pyc differ
+diff --git a/verl/workers/sharding_manager/__pycache__/base.cpython-312.pyc b/verl/workers/sharding_manager/__pycache__/base.cpython-312.pyc
+index 8bf1e69..ba1b8e2 100644
+Binary files a/verl/workers/sharding_manager/__pycache__/base.cpython-312.pyc and b/verl/workers/sharding_manager/__pycache__/base.cpython-312.pyc differ
+diff --git a/verl/workers/sharding_manager/__pycache__/fsdp_ulysses.cpython-312.pyc b/verl/workers/sharding_manager/__pycache__/fsdp_ulysses.cpython-312.pyc
+index 755228b..0a7c6a9 100644
+Binary files a/verl/workers/sharding_manager/__pycache__/fsdp_ulysses.cpython-312.pyc and b/verl/workers/sharding_manager/__pycache__/fsdp_ulysses.cpython-312.pyc differ
+diff --git a/verl/workers/sharding_manager/__pycache__/fsdp_vllm.cpython-312.pyc b/verl/workers/sharding_manager/__pycache__/fsdp_vllm.cpython-312.pyc
+index f2c7adc..3ecc359 100644
+Binary files a/verl/workers/sharding_manager/__pycache__/fsdp_vllm.cpython-312.pyc and b/verl/workers/sharding_manager/__pycache__/fsdp_vllm.cpython-312.pyc differ

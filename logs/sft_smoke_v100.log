@@ -1,0 +1,15 @@
+SFT_COUNT= 1617
+TYPE_DISTRIBUTION= {'B': 837, 'unknown': 780}
+TRAIN_ROWS=32 VAL_ROWS=8
+TOKENIZATION_OK
+Sliding Window Attention is enabled but not implemented for `sdpa`; unexpected results may be encountered.
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.34it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.69it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.63it/s]
+trainable params: 29,933,568 || all params: 3,115,872,256 || trainable%: 0.9607
+No label_names provided for model class `PeftModelForCausalLM`. Since `PeftModel` hides base models input arguments, if label_names is not given, label_names can't be set automatically within `Trainer`. Note that empty label_names list will be used instead.
+START_SFT smoke
+  0%|          | 0/2 [00:00<?, ?it/s] 50%|█████     | 1/2 [00:13<00:13, 13.91s/it]                                             {'loss': 1.2884, 'grad_norm': 1.3264809846878052, 'learning_rate': 0.0001, 'epoch': 0.5}
+ 50%|█████     | 1/2 [00:13<00:13, 13.91s/it]100%|██████████| 2/2 [00:24<00:00, 12.19s/it]                                             {'loss': 1.0881, 'grad_norm': 1.0597482919692993, 'learning_rate': 5e-05, 'epoch': 1.0}
+100%|██████████| 2/2 [00:24<00:00, 12.19s/it]                                             {'train_runtime': 24.9023, 'train_samples_per_second': 1.285, 'train_steps_per_second': 0.08, 'train_loss': 1.1882352232933044, 'epoch': 1.0}
+100%|██████████| 2/2 [00:24<00:00, 12.19s/it]100%|██████████| 2/2 [00:24<00:00, 12.45s/it]
+TRAIN_FINISHED {'train_runtime': 24.9023, 'train_samples_per_second': 1.285, 'train_steps_per_second': 0.08, 'total_flos': 456651228315648.0, 'train_loss': 1.1882352232933044, 'epoch': 1.0}
+SFT_ADAPTER_SAVE_OK: /mnt/data/workspace/wzy/r2searcher/R2-Searcher/outputs/sft_smoke_v100/final_adapter

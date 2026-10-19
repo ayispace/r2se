@@ -1,0 +1,6 @@
+/mnt/data/workspace/wzy/r2searcher/R2-Searcher/experiments/model_merger_fp16.py:173: SyntaxWarning: invalid escape sequence '\d'
+  raise FileNotFoundError(f"Could not determine world size. No file matching 'model_world_size_(\d+)_rank_0.pt' found in {self.config.local_dir}")
+Traceback (most recent call last):
+  File "/mnt/data/workspace/wzy/r2searcher/R2-Searcher/experiments/model_merger_fp16.py", line 71, in <module>
+    from verl.utils import hf_processor, hf_tokenizer
+ImportError: cannot import name 'hf_processor' from 'verl.utils' (/home/wzy/workspace/r2searcher/R2-Searcher/verl/utils/__init__.py)

@@ -1,0 +1,33 @@
+ M scripts/data_process/qa_search_test_merge.py
+ M scripts/data_process/qa_search_train_merge.py
+ M search_r1/llm_agent/__pycache__/generation_ts.cpython-312.pyc
+ M search_r1/llm_agent/generation_ts.py
+ M verl/trainer/main_ppo_format_ts.py
+ M verl/trainer/ppo/__pycache__/ray_trainer_ts.cpython-312.pyc
+ M verl/trainer/ppo/ray_trainer_ts.py
+ M verl/utils/reward_score/qa_em_format.py
+ M verl/workers/actor/dp_actor.py
+ M verl/workers/critic/dp_critic.py
+ M verl/workers/fsdp_workers.py
+?? BASELINE_COMMIT.txt
+?? data/
+?? experiments/
+?? log/
+?? logs/
+?? models/
+?? outputs/
+?? results/
+?? scripts/data_process/__pycache__/
+?? scripts/data_process/qa_search_test_merge.py.bak
+?? scripts/data_process/qa_search_train_merge.py.bak
+?? search_r1/llm_agent/generation_ts.py.bak
+?? search_r1/llm_agent/generation_ts.py.before_dtype_fix
+?? verl/__pycache__/__init__.cpython-310.pyc
+?? verl/__pycache__/protocol.cpython-310.pyc
+?? verl/trainer/ppo/ray_trainer_ts.py.bak
+?? verl/trainer/ppo/ray_trainer_ts.py.before_metric_fix
+?? verl/utils/reward_score/qa_em_format.py.before_overlap_fix
+?? verl/workers/actor/dp_actor.py.bak
+?? verl/workers/critic/__pycache__/
+?? verl/workers/critic/dp_critic.py.bak
+?? verl/workers/fsdp_workers.py.bak

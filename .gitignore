@@ -1,0 +1,20 @@
+
+# 忽略模型和数据集目录
+models/
+data/
+
+# 忽略常见的大模型权重与数据压缩包后缀
+*.pt
+*.pth
+*.bin
+*.safetensors
+*.onnx
+*.ckpt
+*.tar.gz
+*.zip
+
+# 忽略训练输出、检查点与実験日志目录
+outputs/
+wandb/
+runs/
+checkpoints/

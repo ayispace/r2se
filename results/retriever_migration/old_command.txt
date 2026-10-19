@@ -1,0 +1,1 @@
+python -u search_r1/search/retrieval_server.py --index_path ./data/e5_Flat.index --corpus_path ./data/wiki-18.jsonl --topk 3 --retriever_name e5 --retriever_model /home/wzy/workspace/r2searcher/R2-Searcher/models/e5-base-v2

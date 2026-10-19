@@ -1,0 +1,196 @@
+RUN_ID=r2_tree_rl_formal_v1_20261018_160049
+DATE=2026-10-18T16:00:49+08:00
+GIT_COMMIT=8556739c6a02db61b181762d52fb6c8a0370db88
+=== GIT STATUS ===
+ M scripts/data_process/qa_search_test_merge.py
+ M scripts/data_process/qa_search_train_merge.py
+ M search_r1/__pycache__/__init__.cpython-312.pyc
+ M search_r1/llm_agent/__pycache__/__init__.cpython-312.pyc
+ M search_r1/llm_agent/__pycache__/generation_ts.cpython-312.pyc
+ M search_r1/llm_agent/__pycache__/tensor_helper.cpython-312.pyc
+ M search_r1/llm_agent/__pycache__/tree_node.cpython-312.pyc
+ M search_r1/llm_agent/generation_ts.py
+ M verl/__pycache__/__init__.cpython-312.pyc
+ M verl/__pycache__/protocol.cpython-312.pyc
+ M verl/models/__pycache__/__init__.cpython-312.pyc
+ M verl/models/__pycache__/registry.cpython-312.pyc
+ M verl/single_controller/__pycache__/__init__.cpython-312.pyc
+ M verl/single_controller/base/__pycache__/__init__.cpython-312.pyc
+ M verl/single_controller/base/__pycache__/decorator.cpython-312.pyc
+ M verl/single_controller/base/__pycache__/worker.cpython-312.pyc
+ M verl/single_controller/base/__pycache__/worker_group.cpython-312.pyc
+ M verl/single_controller/base/megatron/__pycache__/__init__.cpython-312.pyc
+ M verl/single_controller/base/megatron/__pycache__/worker.cpython-312.pyc
+ M verl/single_controller/base/megatron/__pycache__/worker_group.cpython-312.pyc
+ M verl/single_controller/base/register_center/__pycache__/__init__.cpython-312.pyc
+ M verl/single_controller/base/register_center/__pycache__/ray.cpython-312.pyc
+ M verl/single_controller/ray/__pycache__/__init__.cpython-312.pyc
+ M verl/single_controller/ray/__pycache__/base.cpython-312.pyc
+ M verl/single_controller/ray/__pycache__/megatron.cpython-312.pyc
+ M verl/third_party/__pycache__/__init__.cpython-312.pyc
+ M verl/third_party/vllm/__pycache__/__init__.cpython-312.pyc
+ M verl/third_party/vllm/vllm_spmd/__pycache__/__init__.cpython-312.pyc
+ M verl/third_party/vllm/vllm_spmd/__pycache__/dtensor_weight_loaders.cpython-312.pyc
+ M verl/trainer/__pycache__/__init__.cpython-312.pyc
+ M verl/trainer/__pycache__/main_ppo_format_ts.cpython-312.pyc
+ M verl/trainer/main_ppo_format_ts.py
+ M verl/trainer/ppo/__pycache__/__init__.cpython-312.pyc
+ M verl/trainer/ppo/__pycache__/core_algos.cpython-312.pyc
+ M verl/trainer/ppo/__pycache__/ray_trainer_ts.cpython-312.pyc
+ M verl/trainer/ppo/ray_trainer_ts.py
+ M verl/utils/__pycache__/__init__.cpython-312.pyc
+ M verl/utils/__pycache__/flops_counter.cpython-312.pyc
+ M verl/utils/__pycache__/fs.cpython-312.pyc
+ M verl/utils/__pycache__/fsdp_utils.cpython-312.pyc
+ M verl/utils/__pycache__/hdfs_io.cpython-312.pyc
+ M verl/utils/__pycache__/import_utils.cpython-312.pyc
+ M verl/utils/__pycache__/logging_utils.cpython-312.pyc
+ M verl/utils/__pycache__/model.cpython-312.pyc
+ M verl/utils/__pycache__/py_functional.cpython-312.pyc
+ M verl/utils/__pycache__/seqlen_balancing.cpython-312.pyc
+ M verl/utils/__pycache__/tokenizer.cpython-312.pyc
+ M verl/utils/__pycache__/torch_dtypes.cpython-312.pyc
+ M verl/utils/__pycache__/torch_functional.cpython-312.pyc
+ M verl/utils/__pycache__/tracking.cpython-312.pyc
+ M verl/utils/__pycache__/ulysses.cpython-312.pyc
+ M verl/utils/checkpoint/__pycache__/__init__.cpython-312.pyc
+ M verl/utils/checkpoint/__pycache__/checkpoint_manager.cpython-312.pyc
+ M verl/utils/checkpoint/__pycache__/fsdp_checkpoint_manager.cpython-312.pyc
+ M verl/utils/dataset/__pycache__/__init__.cpython-312.pyc
+ M verl/utils/dataset/__pycache__/rl_dataset.cpython-312.pyc
+ M verl/utils/dataset/__pycache__/rm_dataset.cpython-312.pyc
+ M verl/utils/debug/__pycache__/__init__.cpython-312.pyc
+ M verl/utils/debug/__pycache__/performance.cpython-312.pyc
+ M verl/utils/logger/__pycache__/__init__.cpython-312.pyc
+ M verl/utils/logger/__pycache__/aggregate_logger.cpython-312.pyc
+ M verl/utils/reward_score/__pycache__/__init__.cpython-312.pyc
+ M verl/utils/reward_score/__pycache__/qa_em.cpython-312.pyc
+ M verl/utils/reward_score/__pycache__/qa_em_format.cpython-312.pyc
+ M verl/utils/reward_score/__pycache__/qa_f1_format.cpython-312.pyc
+ M verl/utils/reward_score/qa_em_format.py
+ M verl/workers/__pycache__/__init__.cpython-312.pyc
+ M verl/workers/__pycache__/fsdp_workers.cpython-312.pyc
+ M verl/workers/actor/__pycache__/__init__.cpython-312.pyc
+ M verl/workers/actor/__pycache__/base.cpython-312.pyc
+ M verl/workers/actor/__pycache__/dp_actor.cpython-312.pyc
+ M verl/workers/actor/dp_actor.py
+ M verl/workers/critic/dp_critic.py
+ M verl/workers/fsdp_workers.py
+ M verl/workers/rollout/__pycache__/__init__.cpython-312.pyc
+ M verl/workers/rollout/__pycache__/base.cpython-312.pyc
+ M verl/workers/rollout/__pycache__/hf_rollout.cpython-312.pyc
+ M verl/workers/rollout/naive/__pycache__/__init__.cpython-312.pyc
+ M verl/workers/rollout/naive/__pycache__/naive_rollout.cpython-312.pyc
+ M verl/workers/rollout/vllm_rollout/__pycache__/__init__.cpython-312.pyc
+ M verl/workers/rollout/vllm_rollout/__pycache__/vllm_rollout_spmd.cpython-312.pyc
+ M verl/workers/rollout/vllm_rollout/__pycache__/vllm_rollout_spmd_ts.cpython-312.pyc
+ M verl/workers/sharding_manager/__pycache__/__init__.cpython-312.pyc
+ M verl/workers/sharding_manager/__pycache__/base.cpython-312.pyc
+ M verl/workers/sharding_manager/__pycache__/fsdp_ulysses.cpython-312.pyc
+ M verl/workers/sharding_manager/__pycache__/fsdp_vllm.cpython-312.pyc
+?? BASELINE_COMMIT.txt
+?? data/
+?? experiments/
+?? fix.py
+?? fix_smoke_save.py
+?? log/
+?? logs/
+?? models/
+?? outputs/
+?? patch_export_gpu_serial.py
+?? patch_r2_full_resume_experimental.py
+?? patch_r2_model_only.py
+?? patch_r2_nondestructive_snapshot.py
+?? patch_r2_nondestructive_snapshot_fixed.py
+?? patch_r2_validation_best_v2.py
+?? prepare_r2_validation.py
+?? r2_resume_audit.py
+?? r2_snapshot_audit.py
+?? results/
+?? scripts/data_process/__pycache__/
+?? scripts/data_process/qa_search_test_merge.py.bak
+?? scripts/data_process/qa_search_train_merge.py.bak
+?? search_r1/llm_agent/generation_ts.py.bak
+?? search_r1/llm_agent/generation_ts.py.before_dtype_fix
+?? search_r1/llm_agent/generation_ts.py.before_final_obs_fix.bak
+?? search_r1/llm_agent/generation_ts.py.pre_dedupe
+?? verl/__pycache__/__init__.cpython-310.pyc
+?? verl/__pycache__/protocol.cpython-310.pyc
+?? verl/trainer/main_ppo_format_ts.py.before_ray_fix
+?? verl/trainer/ppo/ray_trainer_ts.py.bak
+?? verl/trainer/ppo/ray_trainer_ts.py.before_full_resume_experimental_v1.bak
+?? verl/trainer/ppo/ray_trainer_ts.py.before_metric_fix
+?? verl/trainer/ppo/ray_trainer_ts.py.before_model_only_export.bak
+?? verl/trainer/ppo/ray_trainer_ts.py.before_nondestructive_snapshot.bak
+?? verl/trainer/ppo/ray_trainer_ts.py.before_smoke_save_fix
+?? verl/trainer/ppo/ray_trainer_ts.py.before_validation_best_v3.bak
+?? verl/utils/reward_score/__pycache__/qa_em2.cpython-312.pyc
+?? verl/utils/reward_score/qa_em_format.py.before_overlap_fix
+?? verl/workers/actor/dp_actor.py.bak
+?? verl/workers/critic/__pycache__/
+?? verl/workers/critic/dp_critic.py.bak
+?? verl/workers/fsdp_workers.py.bak
+?? verl/workers/fsdp_workers.py.before_full_resume_experimental_v1.bak
+?? verl/workers/fsdp_workers.py.before_gpu_serial_export.bak
+?? verl/workers/fsdp_workers.py.before_import_fix.bak
+?? verl/workers/fsdp_workers.py.before_microbatch_fix
+?? verl/workers/fsdp_workers.py.before_model_only_export.bak
+?? verl/workers/fsdp_workers.py.before_nondestructive_snapshot.bak
+?? verl/workers/fsdp_workers.py.before_ref_gpu
+?? verl/workers/sharding_manager/fsdp_vllm.py.before_sleep2
+=== DATA AND MODEL HASHES ===
+2ab5847727573e2c3619224dd121a75e578f7b7ed89f7e824040078e38800b4e  data/train.parquet
+753547a3df74f2e630050f94452c938e4b674d9a30bed860f4d0aafbb18d2563  data/valid_500.parquet
+ee73f991e0df2b5cb6ea729d0b1198d55ffb21ca7b45d508a0c952db7488ef26  models/Qwen2.5-3B-R2-SFT-E5/config.json
+=== GPU ===
+Sun Oct 18 16:00:50 2026       
++---------------------------------------------------------------------------------------+
+| NVIDIA-SMI 535.288.01             Driver Version: 535.288.01   CUDA Version: 12.2     |
+|-----------------------------------------+----------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |         Memory-Usage | GPU-Util  Compute M. |
+|                                         |                      |               MIG M. |
+|=========================================+======================+======================|
+|   0  Tesla V100-PCIE-32GB           Off | 00000000:0B:00.0 Off |                    0 |
+| N/A   54C    P0              28W / 250W |     11MiB / 32768MiB |      0%      Default |
+|                                         |                      |                  N/A |
++-----------------------------------------+----------------------+----------------------+
+|   1  Tesla V100-PCIE-32GB           Off | 00000000:0C:00.0 Off |                    0 |
+| N/A   53C    P0              30W / 250W |      5MiB / 32768MiB |      0%      Default |
+|                                         |                      |                  N/A |
++-----------------------------------------+----------------------+----------------------+
+|   2  Tesla V100-PCIE-32GB           Off | 00000000:0D:00.0 Off |                    0 |
+| N/A   59C    P0              40W / 250W |  22870MiB / 32768MiB |      0%      Default |
+|                                         |                      |                  N/A |
++-----------------------------------------+----------------------+----------------------+
+|   3  Tesla V100-PCIE-32GB           Off | 00000000:0E:00.0 Off |                    0 |
+| N/A   57C    P0              45W / 250W |  22416MiB / 32768MiB |      0%      Default |
+|                                         |                      |                  N/A |
++-----------------------------------------+----------------------+----------------------+
+|   4  Tesla V100-PCIE-32GB           Off | 00000000:0F:00.0 Off |                    0 |
+| N/A   60C    P0              38W / 250W |  22416MiB / 32768MiB |      0%      Default |
+|                                         |                      |                  N/A |
++-----------------------------------------+----------------------+----------------------+
+                                                                                         
++---------------------------------------------------------------------------------------+
+| Processes:                                                                            |
+|  GPU   GI   CI        PID   Type   Process name                            GPU Memory |
+|        ID   ID                                                             Usage      |
+|=======================================================================================|
+|    0   N/A  N/A      2275      G   /usr/lib/xorg/Xorg                            4MiB |
+|    0   N/A  N/A      4388      G   /usr/bin/clash-verge                          5MiB |
+|    1   N/A  N/A      2275      G   /usr/lib/xorg/Xorg                            4MiB |
+|    2   N/A  N/A      2275      G   /usr/lib/xorg/Xorg                            4MiB |
+|    2   N/A  N/A   3020288      C   python                                    22860MiB |
+|    3   N/A  N/A      2275      G   /usr/lib/xorg/Xorg                            4MiB |
+|    3   N/A  N/A   3020288      C   python                                    22406MiB |
+|    4   N/A  N/A      2275      G   /usr/lib/xorg/Xorg                            4MiB |
+|    4   N/A  N/A   3020288      C   python                                    22406MiB |
++---------------------------------------------------------------------------------------+
+=== HOST MEMORY ===
+               total        used        free      shared  buff/cache   available
+内存：         125Gi        10Gi        94Gi       880Mi        22Gi       114Gi
+交换：         8.0Gi       7.0Gi       1.0Gi
+=== DISK ===
+文件系统        大小  已用  可用 已用% 挂载点
+/dev/sda1       7.0T  2.9T  3.7T   44% /mnt/data

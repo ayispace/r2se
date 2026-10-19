@@ -1,0 +1,42 @@
+{
+  "question": "In which city was Microsoft co-founder Paul Allen born?",
+  "search_count": 1,
+  "answer": "Seattle",
+  "trace": [
+    {
+      "turn": 1,
+      "action": "search",
+      "content": "Paul Allen birthplace",
+      "raw": "<search>Paul Allen birthplace</search>",
+      "docs": [
+        {
+          "score": 0.850246250629425,
+          "document": {
+            "id": "10494450",
+            "contents": "\"Paul Allen\"\neducation, wildlife and environmental conservation, the arts, healthcare, community services, and more. He received numerous awards and honors in several different professions, and was listed among the \"\"Time\"\" 100 Most Influential People in the World in both 2007 and 2008. Allen was born on January 21, 1953, in Seattle, Washington, to Kenneth Sam Allen and Edna Faye (née Gardner) Allen. Allen attended Lakeside School, a private school in Seattle, where he befriended the two-years-younger Bill Gates, with whom he shared an enthusiasm for computers. They used Lakeside's Teletype terminal to develop their programming skills on several time-sharing computer systems. They"
+          }
+        },
+        {
+          "score": 0.8274674415588379,
+          "document": {
+            "id": "3466046",
+            "contents": "\"Paul Allen\"\nAllen was diagnosed with non-Hodgkin lymphoma in 2009. Likewise, the cancer was successfully treated until it returned in 2018, which ultimately caused his death by septic shock on October 15, 2018. He was 65 years old. Following his death, Allen's sister Jody Allen was named executor and trustee of all of Paul Allen’s estate, pursuant to his instructions, giving her responsibility for overseeing the execution of his will and settling his affairs with tax authorities and parties with an interest in his projects. Several Seattle-area landmarks, including the Space Needle, Columbia Center and CenturyLink Field, as well as various Microsoft"
+          }
+        },
+        {
+          "score": 0.8245284557342529,
+          "document": {
+            "id": "8055611",
+            "contents": "\"Edgar Van Nuys Allen\"\nII, he served as an Army officer in the Medical Corps. Allen was born on June 22, 1900 in Cozad, Nebraska to Charles Edgar Allen and Sue Morrow. He attended the University of Nebraska and graduated with a Bachelor of Science degree in 1923 and a Masters of Arts degree in 1923. He began his career at the Mayo Clinic in 1930. He took a military leave of absence from the Mayo Clinic in 1942. In August 1942, he was commissioned as a lieutenant colonel with the United States Army's Medical Corps. He was promoted to colonel in February 1944."
+          }
+        }
+      ]
+    },
+    {
+      "turn": 2,
+      "action": "answer",
+      "content": "Seattle",
+      "raw": "<retrieved_facts>\n- Paul Allen was born on January 21, 1953, in Seattle, Washington.\n</retrieved_facts>\n\n<analysis>\nThe retrieved facts directly answer the question. They state that Paul Allen was born in Seattle, Washington.\n</analysis>\n\n<answer>Seattle</answer>"
+    }
+  ]
+}

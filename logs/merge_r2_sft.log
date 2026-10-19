@@ -1,0 +1,10 @@
+Adapter base: /mnt/data/workspace/wzy/r2searcher/R2-Searcher/models/Qwen2.5-3B-Instruct
+LoRA rank: 16
+Loading base model...
+Sliding Window Attention is enabled but not implemented for `sdpa`; unexpected results may be encountered.
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:01<00:01,  1.46s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:02<00:00,  1.02it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:02<00:00,  1.05s/it]
+Loading LoRA adapter...
+Merging LoRA...
+Saving merged model...
+MERGE_SUCCESS
+MODEL_PATH: /mnt/data/workspace/wzy/r2searcher/R2-Searcher/models/Qwen2.5-3B-R2-SFT-E5

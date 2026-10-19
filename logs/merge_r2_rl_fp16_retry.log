@@ -1,0 +1,9 @@
+/mnt/data/workspace/wzy/r2searcher/R2-Searcher/experiments/model_merger_fp16.py:173: SyntaxWarning: invalid escape sequence '\d'
+  raise FileNotFoundError(f"Could not determine world size. No file matching 'model_world_size_(\d+)_rank_0.pt' found in {self.config.local_dir}")
+Warning: --hf_model_path is deprecated and will be removed in a future version. Currently verl will save huggingface model configuration files into checkpoint directories. Therefore, there is no need to provide --hf_model_path. 
+Got device mesh tensor([0, 1], dtype=torch.int32), mesh_dim_names ('fsdp',)
+Processing model shards with 2 (2,) in total
+Loading 2 FSDP shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading 2 FSDP shards:  50%|█████     | 1/2 [00:04<00:04,  4.79s/it]Loading 2 FSDP shards: 100%|██████████| 2/2 [00:04<00:00,  2.40s/it]
+Sliding Window Attention is enabled but not implemented for `sdpa`; unexpected results may be encountered.
+Saving model to /home/wzy/workspace/r2searcher/R2-Searcher/models/Qwen2.5-3B-R2-SFT-RL1
+Saving tokenizer to /home/wzy/workspace/r2searcher/R2-Searcher/models/Qwen2.5-3B-R2-SFT-RL1

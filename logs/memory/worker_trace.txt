@@ -1,0 +1,1204 @@
+=== 2026-10-10 14:15:34 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787        9974      109417         853       11490      118813
+交换：          8191        6989        1202
+=== 2026-10-10 14:15:44 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787        9986      109405         853       11490      118801
+交换：          8191        6989        1202
+=== 2026-10-10 14:15:54 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787       10014      109376         854       11491      118772
+交换：          8191        6989        1202
+=== 2026-10-10 14:16:04 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787        9999      109391         854       11491      118788
+交换：          8191        6989        1202
+=== 2026-10-10 14:16:14 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787       10364      108916         854       11602      118423
+交换：          8191        6989        1202
+=== 2026-10-10 14:16:24 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787       11466      107772         854       11645      117321
+交换：          8191        6989        1202
+=== 2026-10-10 14:16:34 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787       13133      106080         854       11669      115654
+交换：          8191        6989        1202
+=== 2026-10-10 14:16:44 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787       14157      104649         854       12077      114630
+交换：          8191        6989        1202
+=== 2026-10-10 14:16:54 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787       15040      103765         855       12079      113747
+交换：          8191        6989        1202
+=== 2026-10-10 14:17:04 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787       15426      103378         854       12078      113361
+交换：          8191        6989        1202
+=== 2026-10-10 14:17:14 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787       18597       99892         854       12393      110190
+交换：          8191        6989        1202
+PID=279543
+Rss:             3885260 kB
+Pss:             2876263 kB
+Private_Dirty:   2052136 kB
+Anonymous:       2052132 kB
+Swap:                  0 kB
+PID=281318
+Rss:             3927752 kB
+Pss:             2909528 kB
+Private_Dirty:   2075916 kB
+Anonymous:       2075912 kB
+Swap:                  0 kB
+=== 2026-10-10 14:17:25 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787       24917       92688         854       13278      103870
+交换：          8191        6989        1202
+PID=279543
+Rss:             6364140 kB
+Pss:             5703487 kB
+Private_Dirty:   5227712 kB
+Anonymous:       5227708 kB
+Swap:                  0 kB
+PID=281318
+Rss:             6446428 kB
+Pss:             5774437 kB
+Private_Dirty:   5273112 kB
+Anonymous:       5273108 kB
+Swap:                  0 kB
+=== 2026-10-10 14:17:35 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787       25230       92161        1007       13644      103557
+交换：          8191        6989        1202
+PID=279543
+Rss:             5534728 kB
+Pss:             5239424 kB
+Private_Dirty:   5024240 kB
+Anonymous:       4957924 kB
+Swap:                  0 kB
+PID=281318
+Rss:             5435088 kB
+Pss:             5139862 kB
+Private_Dirty:   4924408 kB
+Anonymous:       4858140 kB
+Swap:                  0 kB
+=== 2026-10-10 14:17:45 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787       46182       71208        1007       13645       82605
+交换：          8191        6989        1202
+PID=279543
+Rss:            18564200 kB
+Pss:            17277001 kB
+Private_Dirty:  16069996 kB
+Anonymous:      16003592 kB
+Swap:                  0 kB
+PID=281318
+Rss:            19018344 kB
+Pss:            17699179 kB
+Private_Dirty:  16373112 kB
+Anonymous:      16306832 kB
+Swap:                  0 kB
+=== 2026-10-10 14:17:56 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787       27182       90208        1008       13646      101605
+交换：          8191        6989        1202
+PID=279543
+Rss:             6183952 kB
+Pss:             5870167 kB
+Private_Dirty:   5674144 kB
+Anonymous:       5607020 kB
+Swap:                  0 kB
+PID=281318
+Rss:             6190484 kB
+Pss:             5876625 kB
+Private_Dirty:   5679888 kB
+Anonymous:       5613244 kB
+Swap:                  0 kB
+=== 2026-10-10 14:18:06 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787       27233       90152        1008       13650      101554
+交换：          8191        6989        1202
+PID=279543
+Rss:             8749084 kB
+Pss:             7182097 kB
+Private_Dirty:   5696072 kB
+Anonymous:       5628948 kB
+Swap:                  0 kB
+PID=281318
+Rss:             8971184 kB
+Pss:             7298205 kB
+Private_Dirty:   5701936 kB
+Anonymous:       5635292 kB
+Swap:                  0 kB
+=== 2026-10-10 14:18:16 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787       37929       79456       11947       24591       90858
+交换：          8191        6989        1202
+PID=279543
+Rss:            11907964 kB
+Pss:            11592440 kB
+Private_Dirty:  11357968 kB
+Anonymous:       5640984 kB
+Swap:                  0 kB
+PID=281318
+Rss:            12116184 kB
+Pss:            11800462 kB
+Private_Dirty:  11565124 kB
+Anonymous:       5647316 kB
+Swap:                  0 kB
+=== 2026-10-10 14:18:27 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787       54433       62942       28468       41122       74354
+交换：          8191        6989        1202
+PID=279543
+Rss:            20321288 kB
+Pss:            20004459 kB
+Private_Dirty:  19769860 kB
+Anonymous:       5643156 kB
+Swap:                  0 kB
+PID=281318
+Rss:            20327892 kB
+Pss:            20010975 kB
+Private_Dirty:  19776036 kB
+Anonymous:       5649428 kB
+Swap:                  0 kB
+=== 2026-10-10 14:18:37 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787       54247       63127       28546       41200       74540
+交换：          8191        6989        1202
+PID=279543
+Rss:            20389984 kB
+Pss:            20062522 kB
+Private_Dirty:  19811184 kB
+Anonymous:       5644000 kB
+Swap:                  0 kB
+PID=281318
+Rss:            20390128 kB
+Pss:            20062365 kB
+Private_Dirty:  19816976 kB
+Anonymous:       5650276 kB
+Swap:                  0 kB
+=== 2026-10-10 14:18:48 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787       54220       63150       28546       41205       74567
+交换：          8191        6989        1202
+PID=279543
+Rss:            20390504 kB
+Pss:            20059405 kB
+Private_Dirty:  19811968 kB
+Anonymous:       5644264 kB
+Swap:                  0 kB
+PID=281318
+Rss:            20397008 kB
+Pss:            20065821 kB
+Private_Dirty:  19817656 kB
+Anonymous:       5650436 kB
+Swap:                  0 kB
+=== 2026-10-10 14:18:58 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787       54227       63142       28546       41205       74560
+交换：          8191        6989        1202
+PID=279543
+Rss:            20390664 kB
+Pss:            20059564 kB
+Private_Dirty:  19812608 kB
+Anonymous:       5644424 kB
+Swap:                  0 kB
+PID=281318
+Rss:            20397212 kB
+Pss:            20066025 kB
+Private_Dirty:  19818344 kB
+Anonymous:       5650640 kB
+Swap:                  0 kB
+=== 2026-10-10 14:19:09 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787       54224       63145       28546       41205       74563
+交换：          8191        6989        1202
+PID=279543
+Rss:            20390728 kB
+Pss:            20059628 kB
+Private_Dirty:  19812744 kB
+Anonymous:       5644488 kB
+Swap:                  0 kB
+PID=281318
+Rss:            20397296 kB
+Pss:            20066109 kB
+Private_Dirty:  19818504 kB
+Anonymous:       5650724 kB
+Swap:                  0 kB
+=== 2026-10-10 14:19:19 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787       54222       63147       28546       41205       74565
+交换：          8191        6989        1202
+PID=279543
+Rss:            20390788 kB
+Pss:            20059678 kB
+Private_Dirty:  19813776 kB
+Anonymous:       5644548 kB
+Swap:                  0 kB
+PID=281318
+Rss:            20397452 kB
+Pss:            20066254 kB
+Private_Dirty:  19819628 kB
+Anonymous:       5650880 kB
+Swap:                  0 kB
+=== 2026-10-10 14:19:30 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787       54217       63152       28547       41206       74570
+交换：          8191        6989        1202
+PID=279543
+Rss:            20390812 kB
+Pss:            20059702 kB
+Private_Dirty:  19813856 kB
+Anonymous:       5644572 kB
+Swap:                  0 kB
+PID=281318
+Rss:            20397488 kB
+Pss:            20066290 kB
+Private_Dirty:  19819724 kB
+Anonymous:       5650916 kB
+Swap:                  0 kB
+=== 2026-10-10 14:19:40 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787       54226       63143       28547       41206       74561
+交换：          8191        6989        1202
+PID=279543
+Rss:            20390812 kB
+Pss:            20059702 kB
+Private_Dirty:  19814364 kB
+Anonymous:       5644572 kB
+Swap:                  0 kB
+PID=281318
+Rss:            20397488 kB
+Pss:            20066291 kB
+Private_Dirty:  19820232 kB
+Anonymous:       5650916 kB
+Swap:                  0 kB
+=== 2026-10-10 14:19:51 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787       54202       63166       28547       41207       74585
+交换：          8191        6989        1202
+PID=279543
+Rss:            20390912 kB
+Pss:            20059802 kB
+Private_Dirty:  19814988 kB
+Anonymous:       5644672 kB
+Swap:                  0 kB
+PID=281318
+Rss:            20397540 kB
+Pss:            20066343 kB
+Private_Dirty:  19820804 kB
+Anonymous:       5650968 kB
+Swap:                  0 kB
+=== 2026-10-10 14:20:01 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787       54210       63158       28547       41207       74577
+交换：          8191        6989        1202
+PID=279543
+Rss:            20391008 kB
+Pss:            20059898 kB
+Private_Dirty:  19815608 kB
+Anonymous:       5644768 kB
+Swap:                  0 kB
+PID=281318
+Rss:            20401320 kB
+Pss:            20069944 kB
+Private_Dirty:  19824796 kB
+Anonymous:       5654436 kB
+Swap:                  0 kB
+=== 2026-10-10 14:20:12 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787       55199       62155       28542       41216       73588
+交换：          8191        6989        1202
+PID=279543
+Rss:            20842496 kB
+Pss:            20511236 kB
+Private_Dirty:  20266840 kB
+Anonymous:       6096000 kB
+Swap:                  0 kB
+PID=281318
+Rss:            20936420 kB
+Pss:            20605044 kB
+Private_Dirty:  20359896 kB
+Anonymous:       6189536 kB
+Swap:                  0 kB
+=== 2026-10-10 14:20:22 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787       56433       60920       28542       41216       72353
+交换：          8191        6989        1202
+PID=279543
+Rss:            21506048 kB
+Pss:            21174788 kB
+Private_Dirty:  20930392 kB
+Anonymous:       6759552 kB
+Swap:                  0 kB
+PID=281318
+Rss:            21523756 kB
+Pss:            21192381 kB
+Private_Dirty:  20947232 kB
+Anonymous:       6776872 kB
+Swap:                  0 kB
+=== 2026-10-10 14:20:33 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787       57696       59658       28542       41216       71091
+交换：          8191        6989        1202
+PID=279543
+Rss:            22128640 kB
+Pss:            21797379 kB
+Private_Dirty:  21552984 kB
+Anonymous:       7382144 kB
+Swap:                  0 kB
+PID=281318
+Rss:            22185788 kB
+Pss:            21854412 kB
+Private_Dirty:  21609264 kB
+Anonymous:       7438904 kB
+Swap:                  0 kB
+=== 2026-10-10 14:20:43 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787       58796       58558       28542       41217       69991
+交换：          8191        6989        1202
+PID=279543
+Rss:            22638900 kB
+Pss:            22307640 kB
+Private_Dirty:  22063244 kB
+Anonymous:       7892404 kB
+Swap:                  0 kB
+PID=281318
+Rss:            22841060 kB
+Pss:            22509685 kB
+Private_Dirty:  22264536 kB
+Anonymous:       8094176 kB
+Swap:                  0 kB
+=== 2026-10-10 14:20:54 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787       60001       57352       28542       41217       68786
+交换：          8191        6989        1202
+PID=279543
+Rss:            23213256 kB
+Pss:            22881996 kB
+Private_Dirty:  22637600 kB
+Anonymous:       8466760 kB
+Swap:                  0 kB
+PID=281318
+Rss:            23510756 kB
+Pss:            23179381 kB
+Private_Dirty:  22934232 kB
+Anonymous:       8763872 kB
+Swap:                  0 kB
+=== 2026-10-10 14:21:04 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787       61614       55739       28542       41217       67173
+交换：          8191        6989        1202
+PID=279543
+Rss:            24081180 kB
+Pss:            23749920 kB
+Private_Dirty:  23505524 kB
+Anonymous:       9334684 kB
+Swap:                  0 kB
+PID=281318
+Rss:            24285276 kB
+Pss:            23953900 kB
+Private_Dirty:  23708752 kB
+Anonymous:       9538392 kB
+Swap:                  0 kB
+=== 2026-10-10 14:21:15 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787       62807       54546       28543       41218       65980
+交换：          8191        6989        1202
+PID=279543
+Rss:            24448940 kB
+Pss:            24117680 kB
+Private_Dirty:  23873284 kB
+Anonymous:       9702444 kB
+Swap:                  0 kB
+PID=281318
+Rss:            25111576 kB
+Pss:            24780201 kB
+Private_Dirty:  24535052 kB
+Anonymous:      10364692 kB
+Swap:                  0 kB
+=== 2026-10-10 14:21:26 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787       64547       52806       28543       41218       64240
+交换：          8191        6989        1202
+PID=279543
+Rss:            25381188 kB
+Pss:            25049928 kB
+Private_Dirty:  24805532 kB
+Anonymous:      10634692 kB
+Swap:                  0 kB
+PID=281318
+Rss:            25967840 kB
+Pss:            25636465 kB
+Private_Dirty:  25391316 kB
+Anonymous:      11220956 kB
+Swap:                  0 kB
+=== 2026-10-10 14:21:36 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787       65777       51575       28543       41219       63010
+交换：          8191        6989        1202
+PID=279543
+Rss:            26280896 kB
+Pss:            25949636 kB
+Private_Dirty:  25705240 kB
+Anonymous:      11534400 kB
+Swap:                  0 kB
+PID=281318
+Rss:            26302984 kB
+Pss:            25971609 kB
+Private_Dirty:  25726460 kB
+Anonymous:      11556100 kB
+Swap:                  0 kB
+=== 2026-10-10 14:21:47 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787       67644       49708       28543       41219       61143
+交换：          8191        6989        1202
+PID=279543
+Rss:            26642268 kB
+Pss:            26311007 kB
+Private_Dirty:  26066612 kB
+Anonymous:      11895772 kB
+Swap:                  0 kB
+PID=281318
+Rss:            27872748 kB
+Pss:            27541373 kB
+Private_Dirty:  27296224 kB
+Anonymous:      13125864 kB
+Swap:                  0 kB
+=== 2026-10-10 14:21:57 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787       69057       48295       28543       41219       59730
+交换：          8191        6989        1202
+PID=279543
+Rss:            27696956 kB
+Pss:            27365696 kB
+Private_Dirty:  27121300 kB
+Anonymous:      12950460 kB
+Swap:                  0 kB
+PID=281318
+Rss:            28225012 kB
+Pss:            27893637 kB
+Private_Dirty:  27648488 kB
+Anonymous:      13478128 kB
+Swap:                  0 kB
+=== 2026-10-10 14:22:08 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787       70593       46759       28543       41220       58194
+交换：          8191        6989        1202
+PID=279543
+Rss:            28218348 kB
+Pss:            27887088 kB
+Private_Dirty:  27642692 kB
+Anonymous:      13471852 kB
+Swap:                  0 kB
+PID=281318
+Rss:            29288552 kB
+Pss:            28957176 kB
+Private_Dirty:  28712028 kB
+Anonymous:      14541668 kB
+Swap:                  0 kB
+=== 2026-10-10 14:22:19 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787       71813       45539       28544       41220       56974
+交换：          8191        6989        1202
+PID=279543
+Rss:            28527788 kB
+Pss:            28196528 kB
+Private_Dirty:  27952132 kB
+Anonymous:      13781292 kB
+Swap:                  0 kB
+PID=281318
+Rss:            30195284 kB
+Pss:            29863908 kB
+Private_Dirty:  29618760 kB
+Anonymous:      15448400 kB
+Swap:                  0 kB
+=== 2026-10-10 14:22:29 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787       72993       44359       28543       41219       55794
+交换：          8191        6989        1202
+PID=279543
+Rss:            29669236 kB
+Pss:            29337976 kB
+Private_Dirty:  29093580 kB
+Anonymous:      14922740 kB
+Swap:                  0 kB
+PID=281318
+Rss:            30302996 kB
+Pss:            29971620 kB
+Private_Dirty:  29726472 kB
+Anonymous:      15556112 kB
+Swap:                  0 kB
+=== 2026-10-10 14:22:40 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787       74676       42675       28543       41220       54111
+交换：          8191        6989        1202
+PID=279543
+Rss:            30188620 kB
+Pss:            29857360 kB
+Private_Dirty:  29612964 kB
+Anonymous:      15442124 kB
+Swap:                  0 kB
+PID=281318
+Rss:            31517060 kB
+Pss:            31185685 kB
+Private_Dirty:  30940536 kB
+Anonymous:      16770176 kB
+Swap:                  0 kB
+=== 2026-10-10 14:22:51 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787       75981       41370       28543       41220       52806
+交换：          8191        6989        1202
+PID=279543
+Rss:            30351216 kB
+Pss:            30019956 kB
+Private_Dirty:  29775560 kB
+Anonymous:      15604720 kB
+Swap:                  0 kB
+PID=281318
+Rss:            32657256 kB
+Pss:            32325881 kB
+Private_Dirty:  32080732 kB
+Anonymous:      17910372 kB
+Swap:                  0 kB
+=== 2026-10-10 14:23:02 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787       77170       40181       28543       41220       51617
+交换：          8191        6989        1202
+PID=279543
+Rss:            31551932 kB
+Pss:            31220672 kB
+Private_Dirty:  30976276 kB
+Anonymous:      16805436 kB
+Swap:                  0 kB
+PID=281318
+Rss:            32657256 kB
+Pss:            32325881 kB
+Private_Dirty:  32080732 kB
+Anonymous:      17910372 kB
+Swap:                  0 kB
+=== 2026-10-10 14:23:12 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787       78840       38499       28543       41233       49947
+交换：          8191        6989        1202
+PID=279543
+Rss:            32650600 kB
+Pss:            32319340 kB
+Private_Dirty:  32074944 kB
+Anonymous:      17904104 kB
+Swap:                  0 kB
+PID=281318
+Rss:            33287732 kB
+Pss:            32956357 kB
+Private_Dirty:  32711208 kB
+Anonymous:      18540848 kB
+Swap:                  0 kB
+=== 2026-10-10 14:23:23 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787       80006       37332       28544       41233       48781
+交换：          8191        6989        1202
+PID=279543
+Rss:            32650600 kB
+Pss:            32319342 kB
+Private_Dirty:  32074944 kB
+Anonymous:      17904104 kB
+Swap:                  0 kB
+PID=281318
+Rss:            34465316 kB
+Pss:            34133941 kB
+Private_Dirty:  33888792 kB
+Anonymous:      19718432 kB
+Swap:                  0 kB
+=== 2026-10-10 14:23:34 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787       81772       35565       28544       41234       47015
+交换：          8191        6989        1202
+PID=279543
+Rss:            33281496 kB
+Pss:            32950236 kB
+Private_Dirty:  32705840 kB
+Anonymous:      18535000 kB
+Swap:                  0 kB
+PID=281318
+Rss:            35661524 kB
+Pss:            35330148 kB
+Private_Dirty:  35085000 kB
+Anonymous:      20914640 kB
+Swap:                  0 kB
+=== 2026-10-10 14:23:45 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787       83047       34291       28544       41234       45740
+交换：          8191        6989        1202
+PID=279543
+Rss:            34455656 kB
+Pss:            34124397 kB
+Private_Dirty:  33880000 kB
+Anonymous:      19709160 kB
+Swap:                  0 kB
+PID=281318
+Rss:            35734448 kB
+Pss:            35403073 kB
+Private_Dirty:  35157924 kB
+Anonymous:      20987564 kB
+Swap:                  0 kB
+=== 2026-10-10 14:23:56 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787       84191       33147       28544       41235       44596
+交换：          8191        6989        1202
+PID=279543
+Rss:            35593876 kB
+Pss:            35262616 kB
+Private_Dirty:  35018220 kB
+Anonymous:      20847380 kB
+Swap:                  0 kB
+PID=281318
+Rss:            35734448 kB
+Pss:            35403072 kB
+Private_Dirty:  35157924 kB
+Anonymous:      20987564 kB
+Swap:                  0 kB
+=== 2026-10-10 14:24:07 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787       84607       32730       28544       41235       44180
+交换：          8191        6989        1202
+PID=279543
+Rss:            35727792 kB
+Pss:            35396532 kB
+Private_Dirty:  35152136 kB
+Anonymous:      20981296 kB
+Swap:                  0 kB
+PID=281318
+Rss:            36102628 kB
+Pss:            35771253 kB
+Private_Dirty:  35526104 kB
+Anonymous:      21355744 kB
+Swap:                  0 kB
+=== 2026-10-10 14:24:17 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787       85766       31571       28545       41235       43021
+交换：          8191        6989        1202
+PID=279543
+Rss:            35727792 kB
+Pss:            35396532 kB
+Private_Dirty:  35152136 kB
+Anonymous:      20981296 kB
+Swap:                  0 kB
+PID=281318
+Rss:            37287208 kB
+Pss:            36955832 kB
+Private_Dirty:  36710684 kB
+Anonymous:      22540324 kB
+Swap:                  0 kB
+=== 2026-10-10 14:24:28 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787       86876       30461       28545       41236       41911
+交换：          8191        6989        1202
+PID=279543
+Rss:            35727792 kB
+Pss:            35396532 kB
+Private_Dirty:  35152136 kB
+Anonymous:      20981296 kB
+Swap:                  0 kB
+PID=281318
+Rss:            38421644 kB
+Pss:            38090269 kB
+Private_Dirty:  37845120 kB
+Anonymous:      23674760 kB
+Swap:                  0 kB
+=== 2026-10-10 14:24:39 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787       89043       28294       28544       41235       39744
+交换：          8191        6989        1202
+PID=279543
+Rss:            36733024 kB
+Pss:            36401764 kB
+Private_Dirty:  36157368 kB
+Anonymous:      21986528 kB
+Swap:                  0 kB
+PID=281318
+Rss:            39580532 kB
+Pss:            39249157 kB
+Private_Dirty:  39004008 kB
+Anonymous:      24833648 kB
+Swap:                  0 kB
+=== 2026-10-10 14:24:50 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787       90144       27193       28544       41235       38643
+交换：          8191        6989        1202
+PID=279543
+Rss:            37872748 kB
+Pss:            37541488 kB
+Private_Dirty:  37297092 kB
+Anonymous:      23126252 kB
+Swap:                  0 kB
+PID=281318
+Rss:            39580532 kB
+Pss:            39249156 kB
+Private_Dirty:  39004008 kB
+Anonymous:      24833648 kB
+Swap:                  0 kB
+=== 2026-10-10 14:25:01 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787       91233       26103       28544       41236       37553
+交换：          8191        6989        1202
+PID=279543
+Rss:            38997188 kB
+Pss:            38665928 kB
+Private_Dirty:  38421532 kB
+Anonymous:      24250692 kB
+Swap:                  0 kB
+PID=281318
+Rss:            39580532 kB
+Pss:            39249156 kB
+Private_Dirty:  39004008 kB
+Anonymous:      24833648 kB
+Swap:                  0 kB
+=== 2026-10-10 14:25:12 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787       91833       25503       28545       41236       36954
+交换：          8191        6989        1202
+PID=279543
+Rss:            39573868 kB
+Pss:            39242608 kB
+Private_Dirty:  38998212 kB
+Anonymous:      24827372 kB
+Swap:                  0 kB
+PID=281318
+Rss:            39580532 kB
+Pss:            39249156 kB
+Private_Dirty:  39004008 kB
+Anonymous:      24833648 kB
+Swap:                  0 kB
+=== 2026-10-10 14:25:24 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787       91814       25522       28545       41236       36973
+交换：          8191        6989        1202
+PID=279543
+Rss:            39573868 kB
+Pss:            39242608 kB
+Private_Dirty:  38998212 kB
+Anonymous:      24827372 kB
+Swap:                  0 kB
+PID=281318
+Rss:            39580532 kB
+Pss:            39249156 kB
+Private_Dirty:  39004008 kB
+Anonymous:      24833648 kB
+Swap:                  0 kB
+=== 2026-10-10 14:25:35 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787       92138       25199       28545       41237       36649
+交换：          8191        6989        1202
+PID=279543
+Rss:            39573868 kB
+Pss:            39242608 kB
+Private_Dirty:  38998212 kB
+Anonymous:      24827372 kB
+Swap:                  0 kB
+PID=281318
+Rss:            39950116 kB
+Pss:            39618740 kB
+Private_Dirty:  39373592 kB
+Anonymous:      25203232 kB
+Swap:                  0 kB
+=== 2026-10-10 14:25:45 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787       93295       24042       28545       41237       35492
+交换：          8191        6989        1202
+PID=279543
+Rss:            39573868 kB
+Pss:            39242608 kB
+Private_Dirty:  38998212 kB
+Anonymous:      24827372 kB
+Swap:                  0 kB
+PID=281318
+Rss:            41140284 kB
+Pss:            40808909 kB
+Private_Dirty:  40563760 kB
+Anonymous:      26393400 kB
+Swap:                  0 kB
+=== 2026-10-10 14:25:56 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787       94950       23104       28545       41010       33837
+交换：          8191        6989        1202
+PID=279543
+Rss:            39573868 kB
+Pss:            39242608 kB
+Private_Dirty:  38998212 kB
+Anonymous:      24827372 kB
+Swap:                  0 kB
+PID=281318
+Rss:            42328540 kB
+Pss:            41997164 kB
+Private_Dirty:  41752016 kB
+Anonymous:      27581656 kB
+Swap:                  0 kB
+=== 2026-10-10 14:26:08 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787       97173       20881       28545       41010       31614
+交换：          8191        6989        1202
+PID=279543
+Rss:            40627116 kB
+Pss:            40295856 kB
+Private_Dirty:  40051460 kB
+Anonymous:      25880620 kB
+Swap:                  0 kB
+PID=281318
+Rss:            43540968 kB
+Pss:            43209592 kB
+Private_Dirty:  42964444 kB
+Anonymous:      28794084 kB
+Swap:                  0 kB
+=== 2026-10-10 14:26:19 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787       99244       18810       28546       41011       29543
+交换：          8191        6989        1202
+PID=279543
+Rss:            41835368 kB
+Pss:            41504108 kB
+Private_Dirty:  41259712 kB
+Anonymous:      27088872 kB
+Swap:                  0 kB
+PID=281318
+Rss:            44387552 kB
+Pss:            44056177 kB
+Private_Dirty:  43811028 kB
+Anonymous:      29640668 kB
+Swap:                  0 kB
+=== 2026-10-10 14:26:30 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787      100437       17617       28545       41010       28350
+交换：          8191        6989        1202
+PID=279543
+Rss:            43009808 kB
+Pss:            42678548 kB
+Private_Dirty:  42434152 kB
+Anonymous:      28263312 kB
+Swap:                  0 kB
+PID=281318
+Rss:            44387552 kB
+Pss:            44056176 kB
+Private_Dirty:  43811028 kB
+Anonymous:      29640668 kB
+Swap:                  0 kB
+=== 2026-10-10 14:26:41 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787      101615       16439       28545       41010       27172
+交换：          8191        6989        1202
+PID=279543
+Rss:            44225872 kB
+Pss:            43894611 kB
+Private_Dirty:  43650216 kB
+Anonymous:      29479376 kB
+Swap:                  0 kB
+PID=281318
+Rss:            44387552 kB
+Pss:            44056176 kB
+Private_Dirty:  43811028 kB
+Anonymous:      29640668 kB
+Swap:                  0 kB
+=== 2026-10-10 14:26:52 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787      101755       16299       28545       41011       27032
+交换：          8191        6989        1202
+PID=279543
+Rss:            44380912 kB
+Pss:            44049652 kB
+Private_Dirty:  43805256 kB
+Anonymous:      29634416 kB
+Swap:                  0 kB
+PID=281318
+Rss:            44387552 kB
+Pss:            44056176 kB
+Private_Dirty:  43811028 kB
+Anonymous:      29640668 kB
+Swap:                  0 kB
+=== 2026-10-10 14:27:03 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787      102024       16029       28545       41011       26763
+交换：          8191        6989        1202
+PID=279543
+Rss:            44380912 kB
+Pss:            44049651 kB
+Private_Dirty:  43805256 kB
+Anonymous:      29634416 kB
+Swap:                  0 kB
+PID=281318
+Rss:            44765684 kB
+Pss:            44434307 kB
+Private_Dirty:  44189160 kB
+Anonymous:      30018800 kB
+Swap:                  0 kB
+=== 2026-10-10 14:27:15 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787      103208       14846       28545       41011       25579
+交换：          8191        6989        1202
+PID=279543
+Rss:            44380912 kB
+Pss:            44049652 kB
+Private_Dirty:  43805256 kB
+Anonymous:      29634416 kB
+Swap:                  0 kB
+PID=281318
+Rss:            45954292 kB
+Pss:            45622916 kB
+Private_Dirty:  45377768 kB
+Anonymous:      31207408 kB
+Swap:                  0 kB
+=== 2026-10-10 14:27:26 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787      104367       13686       28546       41012       24420
+交换：          8191        6989        1202
+PID=279543
+Rss:            44380912 kB
+Pss:            44049652 kB
+Private_Dirty:  43805256 kB
+Anonymous:      29634416 kB
+Swap:                  0 kB
+PID=281318
+Rss:            47127532 kB
+Pss:            46796156 kB
+Private_Dirty:  46551008 kB
+Anonymous:      32380648 kB
+Swap:                  0 kB
+=== 2026-10-10 14:27:37 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787      105549       12504       28546       41012       23237
+交换：          8191        6989        1202
+PID=279543
+Rss:            44431056 kB
+Pss:            44099795 kB
+Private_Dirty:  43855400 kB
+Anonymous:      29684560 kB
+Swap:                  0 kB
+PID=281318
+Rss:            48272376 kB
+Pss:            47941000 kB
+Private_Dirty:  47695852 kB
+Anonymous:      33525492 kB
+Swap:                  0 kB
+=== 2026-10-10 14:27:48 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787      107749       10304       28546       41012       21038
+交换：          8191        6989        1202
+PID=279543
+Rss:            45565704 kB
+Pss:            45234444 kB
+Private_Dirty:  44990048 kB
+Anonymous:      30819208 kB
+Swap:                  0 kB
+PID=281318
+Rss:            49353868 kB
+Pss:            49022492 kB
+Private_Dirty:  48777344 kB
+Anonymous:      34606984 kB
+Swap:                  0 kB
+=== 2026-10-10 14:27:59 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787      109993        8060       28546       41012       18794
+交换：          8191        6989        1202
+PID=279543
+Rss:            46795560 kB
+Pss:            46464300 kB
+Private_Dirty:  46219904 kB
+Anonymous:      32049064 kB
+Swap:                  0 kB
+PID=281318
+Rss:            50395468 kB
+Pss:            50064092 kB
+Private_Dirty:  49818944 kB
+Anonymous:      35648584 kB
+Swap:                  0 kB
+=== 2026-10-10 14:28:11 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787      111201        6852       28546       41013       17586
+交换：          8191        6989        1202
+PID=279543
+Rss:            48046796 kB
+Pss:            47715536 kB
+Private_Dirty:  47471140 kB
+Anonymous:      33300300 kB
+Swap:                  0 kB
+PID=281318
+Rss:            50395468 kB
+Pss:            50064092 kB
+Private_Dirty:  49818944 kB
+Anonymous:      35648584 kB
+Swap:                  0 kB
+=== 2026-10-10 14:28:22 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787      112423        5630       28547       41013       16364
+交换：          8191        6989        1202
+PID=279543
+Rss:            49314264 kB
+Pss:            48982956 kB
+Private_Dirty:  48738544 kB
+Anonymous:      34567704 kB
+Swap:                  0 kB
+PID=281318
+Rss:            50395468 kB
+Pss:            50064087 kB
+Private_Dirty:  49818944 kB
+Anonymous:      35648584 kB
+Swap:                  0 kB
+=== 2026-10-10 14:28:33 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787      113489        4563       28547       41013       15298
+交换：          8191        6989        1202
+PID=279543
+Rss:            50388900 kB
+Pss:            50057592 kB
+Private_Dirty:  49813180 kB
+Anonymous:      35642340 kB
+Swap:                  0 kB
+PID=281318
+Rss:            50395468 kB
+Pss:            50064087 kB
+Private_Dirty:  49818944 kB
+Anonymous:      35648584 kB
+Swap:                  0 kB
+=== 2026-10-10 14:28:45 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787      113478        4574       28546       41013       15309
+交换：          8191        6989        1202
+PID=279543
+Rss:            50388900 kB
+Pss:            50057592 kB
+Private_Dirty:  49813180 kB
+Anonymous:      35642340 kB
+Swap:                  0 kB
+PID=281318
+Rss:            50395468 kB
+Pss:            50064087 kB
+Private_Dirty:  49818944 kB
+Anonymous:      35648584 kB
+Swap:                  0 kB
+=== 2026-10-10 14:28:56 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787      113638        4415       28546       41013       15149
+交换：          8191        6989        1202
+PID=279543
+Rss:            50388900 kB
+Pss:            50057592 kB
+Private_Dirty:  49813180 kB
+Anonymous:      35642340 kB
+Swap:                  0 kB
+PID=281318
+Rss:            50631176 kB
+Pss:            50299795 kB
+Private_Dirty:  50054652 kB
+Anonymous:      35884292 kB
+Swap:                  0 kB
+=== 2026-10-10 14:29:07 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787      114756        3297       28546       41013       14031
+交换：          8191        6989        1202
+PID=279543
+Rss:            50388900 kB
+Pss:            50057592 kB
+Private_Dirty:  49813180 kB
+Anonymous:      35642340 kB
+Swap:                  0 kB
+PID=281318
+Rss:            51780552 kB
+Pss:            51449153 kB
+Private_Dirty:  51204028 kB
+Anonymous:      37033668 kB
+Swap:                  0 kB
+=== 2026-10-10 14:29:18 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787      115945        2108       28546       41013       12842
+交换：          8191        6989        1202
+PID=279543
+Rss:            50388900 kB
+Pss:            50057591 kB
+Private_Dirty:  49813180 kB
+Anonymous:      35642340 kB
+Swap:                  0 kB
+PID=281318
+Rss:            52957128 kB
+Pss:            52625747 kB
+Private_Dirty:  52380604 kB
+Anonymous:      38210244 kB
+Swap:                  0 kB
+=== 2026-10-10 14:29:30 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787      117081         971       28547       41014       11705
+交换：          8191        6989        1202
+PID=279543
+Rss:            50388900 kB
+Pss:            50057592 kB
+Private_Dirty:  49813180 kB
+Anonymous:      35642340 kB
+Swap:                  0 kB
+PID=281318
+Rss:            54138308 kB
+Pss:            53806927 kB
+Private_Dirty:  53561784 kB
+Anonymous:      39391424 kB
+Swap:                  0 kB
+=== 2026-10-10 14:29:41 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787      118073         724       28547       39777       10714
+交换：          8191        7028        1163
+PID=279543
+Rss:            50839776 kB
+Pss:            50508468 kB
+Private_Dirty:  50264056 kB
+Anonymous:      36093216 kB
+Swap:                  0 kB
+PID=281318
+Rss:            55249144 kB
+Pss:            54917763 kB
+Private_Dirty:  54672620 kB
+Anonymous:      40502260 kB
+Swap:                  0 kB
+=== 2026-10-10 14:29:53 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787      119527         964       28546       37853        9260
+交换：          8191        7565         626
+PID=279543
+Rss:            52061696 kB
+Pss:            51730388 kB
+Private_Dirty:  51485976 kB
+Anonymous:      37315136 kB
+Swap:                  0 kB
+PID=281318
+Rss:            56365776 kB
+Pss:            56034397 kB
+Private_Dirty:  55789252 kB
+Anonymous:      41618892 kB
+Swap:                  0 kB
+=== 2026-10-10 14:30:04 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787      121418         958       28546       35976        7369
+交换：          8191        7904         287
+PID=279543
+Rss:            53258256 kB
+Pss:            52927192 kB
+Private_Dirty:  52682804 kB
+Anonymous:      38511964 kB
+Swap:                  0 kB
+PID=281318
+Rss:            57441204 kB
+Pss:            57110071 kB
+Private_Dirty:  56864952 kB
+Anonymous:      42694592 kB
+Swap:                  0 kB
+=== 2026-10-10 14:30:16 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787       28540       94272         854        7841      100247
+交换：          8191        7946         245
+=== 2026-10-10 14:30:26 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787        8669      114086         850        7893      120118
+交换：          8191        7942         249
+=== 2026-10-10 14:30:36 ===
+               total        used        free      shared  buff/cache   available
+内存：        128787        8631      114117         850        7899      120156
+交换：          8191        7941         250

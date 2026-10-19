@@ -1,0 +1,207 @@
+data:
+  tokenizer: null
+  train_files: /home/wzy/workspace/r2searcher/R2-Searcher/data/train.parquet
+  val_files: /home/wzy/workspace/r2searcher/R2-Searcher/data/smoke_1.parquet
+  train_data_num: null
+  val_data_num: null
+  prompt_key: prompt
+  max_prompt_length: 2048
+  max_response_length: 384
+  max_start_length: 1024
+  max_obs_length: 384
+  train_batch_size: 4
+  val_batch_size: 1
+  return_raw_input_ids: false
+  return_raw_chat: false
+  shuffle_train_dataloader: true
+actor_rollout_ref:
+  hybrid_engine: true
+  model:
+    path: /home/wzy/workspace/r2searcher/R2-Searcher/models/Qwen2.5-3B-Instruct
+    external_lib: null
+    override_config: {}
+    enable_gradient_checkpointing: false
+    use_remove_padding: false
+  actor:
+    strategy: fsdp
+    policy_loss: grpo
+    ppo_mini_batch_size: 2
+    ppo_micro_batch_size: 2
+    ppo_mini_batch_size_fixed: null
+    ppo_micro_batch_size_fixed: null
+    use_dynamic_bsz: false
+    ppo_max_token_len_per_gpu: 16384
+    grad_clip: 1.0
+    state_masking: false
+    clip_ratio: 0.2
+    clip_ratio_low: 0.2
+    clip_ratio_high: 0.2
+    clip_ratio_c: 3.0
+    loss_agg_mode: token-mean
+    entropy_coeff: 0.001
+    use_kl_loss: false
+    kl_loss_coef: 0.001
+    kl_loss_type: low_var_kl
+    ppo_epochs: 1
+    shuffle: false
+    ulysses_sequence_parallel_size: 1
+    optim:
+      lr: 1.0e-06
+      lr_warmup_steps_ratio: 0.0
+      min_lr_ratio: null
+      warmup_style: constant
+      total_training_steps: -1
+    fsdp_config:
+      wrap_policy:
+        min_num_params: 0
+      param_offload: false
+      grad_offload: false
+      optimizer_offload: false
+      fsdp_size: -1
+      mixed_precision:
+        param_dtype: fp16
+        reduce_dtype: fp32
+        buffer_dtype: fp32
+  ref:
+    fsdp_config:
+      param_offload: false
+      wrap_policy:
+        min_num_params: 0
+      fsdp_size: -1
+      mixed_precision:
+        param_dtype: fp16
+        reduce_dtype: fp32
+        buffer_dtype: fp32
+      model_dtype: fp16
+    log_prob_micro_batch_size: 2
+    log_prob_use_dynamic_bsz: false
+    log_prob_max_token_len_per_gpu: 16384
+    ulysses_sequence_parallel_size: 1
+  rollout:
+    name: vllm
+    temperature: 1.0
+    top_k: -1
+    top_p: 0.95
+    prompt_length: 2048
+    response_length: 384
+    dtype: float16
+    gpu_memory_utilization: 0.3
+    ignore_eos: false
+    enforce_eager: true
+    free_cache_engine: true
+    load_format: dummy_dtensor
+    tensor_model_parallel_size: 1
+    max_num_batched_tokens: 4096
+    max_num_seqs: 8
+    log_prob_micro_batch_size: 2
+    log_prob_use_dynamic_bsz: false
+    log_prob_max_token_len_per_gpu: 16384
+    do_sample: true
+    'n': 1
+    n_agent: 1
+    tree_search: true
+    ts_n: 2
+    ts_m: 2
+    ts_l: 1
+    ts_k: 3
+    ts_n_s1: 1
+    ts_m_s1: 1
+    ts_l_s1: 1
+    ts_k_s1: 1
+    ts_n_s2: 1
+    ts_m_s2: 1
+    ts_l_s2: 1
+    ts_k_s2: 1
+    reward_mode: base
+    expand_mode: random
+    disable_log_stats: true
+    enable_chunked_prefill: false
+critic:
+  strategy: fsdp
+  optim:
+    lr: 1.0e-05
+    lr_warmup_steps_ratio: 0.0
+    min_lr_ratio: null
+    warmup_style: constant
+    total_training_steps: -1
+  model:
+    path: ~/models/deepseek-llm-7b-chat
+    tokenizer_path: /home/wzy/workspace/r2searcher/R2-Searcher/models/Qwen2.5-3B-Instruct
+    override_config: {}
+    external_lib: null
+    enable_gradient_checkpointing: false
+    use_remove_padding: false
+    fsdp_config:
+      param_offload: false
+      grad_offload: false
+      optimizer_offload: false
+      wrap_policy:
+        min_num_params: 0
+      fsdp_size: -1
+  ppo_mini_batch_size: 2
+  ppo_micro_batch_size: 64
+  forward_micro_batch_size: 64
+  use_dynamic_bsz: false
+  ppo_max_token_len_per_gpu: 32768
+  forward_max_token_len_per_gpu: 32768
+  ulysses_sequence_parallel_size: 1
+  ppo_epochs: 1
+  shuffle: false
+  grad_clip: 1.0
+  cliprange_value: 0.5
+reward_model:
+  enable: false
+  strategy: fsdp
+  model:
+    input_tokenizer: /home/wzy/workspace/r2searcher/R2-Searcher/models/Qwen2.5-3B-Instruct
+    path: ~/models/FsfairX-LLaMA3-RM-v0.1
+    external_lib: null
+    use_remove_padding: false
+    fsdp_config:
+      min_num_params: 0
+      param_offload: false
+  micro_batch_size: 64
+  max_length: null
+  ulysses_sequence_parallel_size: 1
+  use_dynamic_bsz: false
+  forward_max_token_len_per_gpu: 32768
+  structure_format_score: 0
+  final_format_score: 0
+  retrieval_score: 0
+retriever:
+  url: http://127.0.0.1:8000/retrieve
+  topk: 3
+algorithm:
+  gamma: 1.0
+  lam: 1.0
+  adv_estimator: tree
+  adv_estimator_s2: gae
+  no_think_rl: false
+  kl_penalty: kl
+  use_kl_in_reward: false
+  kl_fix: none
+  kl_ctrl:
+    type: fixed
+    kl_coef: 0.001
+  state_masking:
+    start_state_marker: <documents>
+    end_state_marker: </documents>
+trainer:
+  total_epochs: 30
+  total_training_steps: null
+  stage1_training_steps: null
+  project_name: r2_v100
+  experiment_name: official_val1
+  logger:
+  - console
+  nnodes: 1
+  n_gpus_per_node: 2
+  save_freq: -1
+  test_freq: -1
+  critic_warmup: 0
+  default_hdfs_dir: null
+  default_local_dir: /home/wzy/workspace/r2searcher/R2-Searcher/results/official_val1
+  val_only: true
+  val_before_train: true
+max_turns: 3
+do_search: true
